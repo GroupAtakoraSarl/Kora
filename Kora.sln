@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kora.Server", "Kora\Server\Kora.Server.csproj", "{BBE7B4D1-1C30-4FEA-BEE8-80453CDE5F97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kora.Client", "Kora\Client\Kora.Client.csproj", "{A7AF1B18-413A-48C4-A754-962EB73F169E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kora.Shared", "Kora\Shared\Kora.Shared.csproj", "{C35818AB-08D8-4046-BD85-FCD9EA5CF2F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBE7B4D1-1C30-4FEA-BEE8-80453CDE5F97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBE7B4D1-1C30-4FEA-BEE8-80453CDE5F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBE7B4D1-1C30-4FEA-BEE8-80453CDE5F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE7B4D1-1C30-4FEA-BEE8-80453CDE5F97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7AF1B18-413A-48C4-A754-962EB73F169E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7AF1B18-413A-48C4-A754-962EB73F169E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7AF1B18-413A-48C4-A754-962EB73F169E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7AF1B18-413A-48C4-A754-962EB73F169E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C35818AB-08D8-4046-BD85-FCD9EA5CF2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C35818AB-08D8-4046-BD85-FCD9EA5CF2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C35818AB-08D8-4046-BD85-FCD9EA5CF2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C35818AB-08D8-4046-BD85-FCD9EA5CF2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
