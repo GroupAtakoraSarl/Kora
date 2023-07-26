@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230725211535_koraMigration")]
-    partial class koraMigration
+    [Migration("20230726164546_KoraMigration")]
+    partial class KoraMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,8 +53,9 @@ namespace Kora.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ContactAgence")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ContactAgence")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("DeviseAgence")
                         .IsRequired()
@@ -121,8 +122,9 @@ namespace Kora.Server.Migrations
                     b.Property<int>("IdClient")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("NumCompte")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("NumCompte")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("Solde")
                         .HasColumnType("TEXT");
@@ -144,8 +146,9 @@ namespace Kora.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ContactKiosque")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ContactKiosque")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("IdAgence")
                         .HasColumnType("INTEGER");
@@ -212,8 +215,9 @@ namespace Kora.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Tel")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Tel")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("IdResponsable");
 
@@ -235,8 +239,9 @@ namespace Kora.Server.Migrations
                     b.Property<decimal>("Montant")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("NumExp")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("NumExp")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .IsRequired()

@@ -19,7 +19,7 @@ public class ResponsableAgence
     public int AgeResponsable { get; set; }
     [Required]
 
-    public int Tel { get; set; }
+    public string Tel { get; set; }
     [Required]
     public string StatutResponsable { get; set; }
 

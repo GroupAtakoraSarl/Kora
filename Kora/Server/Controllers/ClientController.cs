@@ -1,4 +1,5 @@
 using Kora.Models;
+using Kora.Server.ModelsDto;
 using Kora.Server.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +9,18 @@ namespace Kora.Server.Controllers;
 [Route("api/[controller]")]
 public class ClientController : ControllerBase
 {
-    private readonly ClientService _clientService;
+    private readonly IClientService _clientService;
 
-    public ClientController(ClientService clientService)
+    public ClientController(IClientService clientService)
     {
         _clientService = clientService;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<ClientDto>>> GetAllClient()
+    {
+        var clients = await _clientService.GetAllClient();
+        return Ok(clients);
     }
 
     [HttpPost("Enregistrer")]

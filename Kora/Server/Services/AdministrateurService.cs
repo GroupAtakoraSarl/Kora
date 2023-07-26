@@ -26,7 +26,7 @@ public class AdministrateurService : IAdministrateurService
 
     public async Task<AdministrateurDto> GetAdminByEmail(string email)
     {
-        var admin = await _dbContext.Administrateurs.FindAsync(email);
+        var admin = await _dbContext.Administrateurs.FirstOrDefaultAsync(a=>a.Email == email);
         return _mapper.Map<AdministrateurDto>(admin);
 
     }

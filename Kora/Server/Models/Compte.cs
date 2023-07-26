@@ -7,7 +7,7 @@ public class Compte
 {
     [Key]
     public int IdCompte { get; set; }
-    public int NumCompte { get; set; }
+    public string NumCompte { get; set; }
     public decimal Solde { get; set; }
     
     [ForeignKey("IdClient")]

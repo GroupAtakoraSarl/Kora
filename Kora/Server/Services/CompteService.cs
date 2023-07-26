@@ -23,7 +23,7 @@ public class CompteService : ICompteService
         return _mapper.Map<Compte>(lecompte);
     }
 
-    public async Task<bool> DepotCompte(int numCompte, decimal solde)
+    public async Task<bool> DepotCompte(string numCompte, decimal solde)
     {
         var compte = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompte);
         if (compte is null)
@@ -36,7 +36,7 @@ public class CompteService : ICompteService
         return true;
     }
 
-    public async Task<bool> RetraitCompte(int numCompte, decimal solde)
+    public async Task<bool> RetraitCompte(string numCompte, decimal solde)
     {
         var compte = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompte);
         if (compte is null)
@@ -44,12 +44,30 @@ public class CompteService : ICompteService
             return false;
         }
 
+        if (solde >= compte.Solde)
+        {
+            return false;
+        }
+        
         compte.Solde -= solde;
         await _dbContext.SaveChangesAsync();
         return true;
     }
 
-    public async Task<bool> DeleteCompte(int numCompte)
+    public async Task<bool> Transfert(string numCompte, decimal solde)
+    {
+        var compte = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte != numCompte);
+        if (compte is null)
+        {
+            return false;
+        }
+
+        compte.Solde += solde;
+        await _dbContext.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> DeleteCompte(string numCompte)
     {
         var compte = await _dbContext.Comptes.FindAsync(numCompte);
         if (compte is null)

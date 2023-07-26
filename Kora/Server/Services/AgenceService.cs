@@ -23,7 +23,7 @@ public class AgenceService : IAgenceService
         return _mapper.Map<List<AgenceDto>>(agences);
     }
     
-    public async Task<AgenceDto> GetAgenceByContact(int contactAgence)
+    public async Task<AgenceDto> GetAgenceByContact(string contactAgence)
     {
         var agence = await _dbContext.Agences.FindAsync(contactAgence);
         return _mapper.Map<AgenceDto>(agence);

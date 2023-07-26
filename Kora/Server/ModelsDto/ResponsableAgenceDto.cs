@@ -8,5 +8,5 @@ public class ResponsableAgenceDto
 
     public string SexeResponsable { get; set; }
     
-    public int Tel { get; set; }
+    public string Tel { get; set; }
 }

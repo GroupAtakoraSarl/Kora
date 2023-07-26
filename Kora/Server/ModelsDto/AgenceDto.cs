@@ -7,7 +7,7 @@ public class AgenceDto
     public string Ville { get; set; }
     public string NomAgence { get; set; }
     public string AdresseAgence { get; set; }
-    public int ContactAgence { get; set; }
+    public string ContactAgence { get; set; }
     public string EmailAgence { get; set; }
     public string DeviseAgence { get; set; }
     public double SoldeInitial { get; set; }

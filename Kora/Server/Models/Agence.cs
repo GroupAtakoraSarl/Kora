@@ -17,7 +17,7 @@ public class Agence
     [Required] 
     public string AdresseAgence { get; set; }
     [Required] 
-    public int ContactAgence { get; set; }
+    public string ContactAgence { get; set; }
     [Required] 
     public string EmailAgence { get; set; }
     [Required] 

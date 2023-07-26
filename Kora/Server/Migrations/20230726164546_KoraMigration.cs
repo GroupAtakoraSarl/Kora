@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Kora.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class koraMigration : Migration
+    public partial class KoraMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,7 +67,7 @@ namespace Kora.Server.Migrations
                     PrenomResponsable = table.Column<string>(type: "TEXT", nullable: false),
                     SexeResponsable = table.Column<string>(type: "TEXT", nullable: false),
                     AgeResponsable = table.Column<int>(type: "INTEGER", nullable: false),
-                    Tel = table.Column<int>(type: "INTEGER", nullable: false),
+                    Tel = table.Column<string>(type: "TEXT", nullable: false),
                     StatutResponsable = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -81,7 +81,7 @@ namespace Kora.Server.Migrations
                 {
                     IdCompte = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    NumCompte = table.Column<int>(type: "INTEGER", nullable: false),
+                    NumCompte = table.Column<string>(type: "TEXT", nullable: false),
                     Solde = table.Column<decimal>(type: "TEXT", nullable: false),
                     IdClient = table.Column<int>(type: "INTEGER", nullable: false)
                 },
@@ -126,7 +126,7 @@ namespace Kora.Server.Migrations
                     Ville = table.Column<string>(type: "TEXT", nullable: false),
                     NomAgence = table.Column<string>(type: "TEXT", nullable: false),
                     AdresseAgence = table.Column<string>(type: "TEXT", nullable: false),
-                    ContactAgence = table.Column<int>(type: "INTEGER", nullable: false),
+                    ContactAgence = table.Column<string>(type: "TEXT", nullable: false),
                     EmailAgence = table.Column<string>(type: "TEXT", nullable: false),
                     DeviseAgence = table.Column<string>(type: "TEXT", nullable: false),
                     SoldeInitial = table.Column<double>(type: "REAL", nullable: false),
@@ -150,7 +150,7 @@ namespace Kora.Server.Migrations
                     IdTransaction = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     DateTransaction = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    NumExp = table.Column<int>(type: "INTEGER", nullable: false),
+                    NumExp = table.Column<string>(type: "TEXT", nullable: false),
                     Montant = table.Column<decimal>(type: "TEXT", nullable: false),
                     Type = table.Column<string>(type: "TEXT", nullable: false),
                     IdCompte = table.Column<int>(type: "INTEGER", nullable: false)
@@ -174,7 +174,7 @@ namespace Kora.Server.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     NomKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     AdresseKiosque = table.Column<string>(type: "TEXT", nullable: false),
-                    ContactKiosque = table.Column<int>(type: "INTEGER", nullable: false),
+                    ContactKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     IdAgence = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

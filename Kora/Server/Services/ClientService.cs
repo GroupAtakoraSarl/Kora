@@ -22,7 +22,7 @@ public class ClientService : IClientService
     
     public async Task<List<ClientDto>> GetAllClient()
     {
-        var clients = await _dbContext.Administrateurs.ToListAsync();
+        var clients = await _dbContext.Clients.ToListAsync();
         return _mapper.Map<List<ClientDto>>(clients);
     }
 

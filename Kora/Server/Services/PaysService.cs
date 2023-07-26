@@ -1,7 +1,7 @@
 using Kora.Models;
 using Kora.Server.Services;
 
-namespace Kora_Transfert.Shared.Services;
+namespace Kora.Server.Services;
 
 public class PaysService : IPaysService
 {

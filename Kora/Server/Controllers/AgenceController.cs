@@ -24,7 +24,7 @@ public class AgenceController : ControllerBase
     }
 
     [HttpGet("{contactAgence}")]
-    public async Task<ActionResult<AgenceDto>> GetAgenceById(int contactAgence)
+    public async Task<ActionResult<AgenceDto>> GetAgenceById(string contactAgence)
     {
         var agence = await _agenceService.GetAgenceByContact(contactAgence);
         if (agence is null)
