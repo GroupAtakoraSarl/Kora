@@ -1,6 +1,7 @@
 using AutoMapper;
 using Kora.Models;
 using Kora.Server.Data;
+using Kora.Server.ModelsDto;
 
 namespace Kora.Server.Services;
 
@@ -21,6 +22,12 @@ public class CompteService : ICompteService
         _dbContext.Comptes.Add(compte);
         await _dbContext.SaveChangesAsync();
         return _mapper.Map<Compte>(lecompte);
+    }
+
+    public async Task<CompteDto> GetCompteByNum(string numCompte)
+    {
+        var compte = await _dbContext.Comptes.FindAsync(numCompte);
+        return _mapper.Map<CompteDto>(compte);
     }
 
     public async Task<bool> DepotCompte(string numCompte, decimal solde)

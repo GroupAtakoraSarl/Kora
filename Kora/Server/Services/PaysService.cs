@@ -1,17 +1,40 @@
+using AutoMapper;
 using Kora.Models;
+using Kora.Server.Data;
 using Kora.Server.Services;
 
 namespace Kora.Server.Services;
 
 public class PaysService : IPaysService
 {
+    private readonly KoraDbContext _dbContext;
+    private readonly IMapper _mapper;
+
+    public PaysService(KoraDbContext dbContext, IMapper mapper)
+    {
+        _dbContext = dbContext;
+        _mapper = mapper;
+    }
+    
+    
     public async Task<Pays> AddPays(Pays pays)
     {
-        throw new NotImplementedException();
+        var lepays = _mapper.Map<Pays>(pays);
+        _dbContext.Pays.Add(lepays);
+        await _dbContext.SaveChangesAsync();
+        return _mapper.Map<Pays>(pays);
     }
 
     public async Task<bool> DeletePays(int indicatif)
     {
-        throw new NotImplementedException();
+        var pays = await _dbContext.Pays.FindAsync(indicatif);
+        if (pays is null)
+        {
+            return false;
+        }
+
+        _dbContext.Pays.Remove(pays);
+        await _dbContext.SaveChangesAsync();
+        return true;
     }
 }

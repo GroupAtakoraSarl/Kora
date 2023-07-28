@@ -1,5 +1,4 @@
 using AutoMapper;
-using Kora.Models;
 using Kora.Server.Data;
 using Kora.Server.ModelsDto;
 
