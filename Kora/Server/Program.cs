@@ -45,7 +45,6 @@ public class Program
         services.AddScoped<IKiosqueService, KiosqueService>();
         services.AddScoped<IPaysService, PaysService>();
         services.AddScoped<IResponsableAgence, ResponsableAgenceService>();
-        services.AddScoped<TransactionService, TransactionService>();
         services.AddScoped<IVilleService, VilleService>();
 
         services.AddControllersWithViews();

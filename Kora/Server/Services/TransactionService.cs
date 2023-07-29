@@ -1,37 +1,26 @@
 using AutoMapper;
+using Kora.Models;
 using Kora.Server.Data;
 using Kora.Server.ModelsDto;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;
 
-public class TransactionService : ITransactionService
+public class TransactionService
 {
 
     private readonly KoraDbContext _dbContext;
-    private readonly IMapper _mapper;
     private readonly ICompteService _compteService;
 
-    public TransactionService(KoraDbContext dbContext, IMapper mapper, ICompteService compteService)
+    public TransactionService(KoraDbContext dbContext, ICompteService compteService)
     {
-        _dbContext = dbContext;
-        _mapper = mapper;
+
         _compteService = compteService;
     }
-
-
-    public async Task<TransactionDto> GetInfoTransac(DateTime date, decimal montant, string numExp, string type)
+    
+    public async Task<List<string>> GetTransactions()
     {
-
-        var info = await _compteService.DepotCompte(numExp, montant);
-
-        var infoDepot = new TransactionDto
-        {
-            DateTransaction = DateTime.Now,
-            Montant = montant,
-            Type = "Depot",
-            NumExp = numExp
-        };
-        
-        return infoDepot;
+        return await _compteService.GetTransaction();
     }
 }

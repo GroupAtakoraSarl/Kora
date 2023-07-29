@@ -32,13 +32,7 @@ public class KoraDbContext : DbContext
             .WithMany()
             .HasForeignKey("IdClient")
             .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<Transaction>()
-            .HasOne(t => t.Compte)
-            .WithMany(c => c.Transactions)
-            .HasForeignKey("IdCompte")
-            .OnDelete(DeleteBehavior.Restrict);
-
+        
         modelBuilder.Entity<Kiosque>()
             .HasOne(k => k.Agence)
             .WithMany()
@@ -54,7 +48,6 @@ public class KoraDbContext : DbContext
     public DbSet<Kiosque> Kiosques { get; set; }
     public DbSet<Pays> Pays { get; set; }
     public DbSet<ResponsableAgence> ResponsableAgences { get; set; }
-    public DbSet<Transaction> Transactions { get; set; }
     public DbSet<Ville> Villes { get; set; }
     
 

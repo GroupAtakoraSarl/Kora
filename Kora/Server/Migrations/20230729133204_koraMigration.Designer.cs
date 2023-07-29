@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230726164546_KoraMigration")]
-    partial class KoraMigration
+    [Migration("20230729133204_koraMigration")]
+    partial class koraMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,36 +224,6 @@ namespace Kora.Server.Migrations
                     b.ToTable("ResponsableAgences");
                 });
 
-            modelBuilder.Entity("Kora.Models.Transaction", b =>
-                {
-                    b.Property<int>("IdTransaction")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DateTransaction")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("IdCompte")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Montant")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NumExp")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("IdTransaction");
-
-                    b.HasIndex("IdCompte");
-
-                    b.ToTable("Transactions");
-                });
-
             modelBuilder.Entity("Kora.Models.Ville", b =>
                 {
                     b.Property<int?>("IdVille")
@@ -307,17 +277,6 @@ namespace Kora.Server.Migrations
                     b.Navigation("Agence");
                 });
 
-            modelBuilder.Entity("Kora.Models.Transaction", b =>
-                {
-                    b.HasOne("Kora.Models.Compte", "Compte")
-                        .WithMany("Transactions")
-                        .HasForeignKey("IdCompte")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Compte");
-                });
-
             modelBuilder.Entity("Kora.Models.Ville", b =>
                 {
                     b.HasOne("Kora.Models.Pays", "Pays")
@@ -327,11 +286,6 @@ namespace Kora.Server.Migrations
                         .IsRequired();
 
                     b.Navigation("Pays");
-                });
-
-            modelBuilder.Entity("Kora.Models.Compte", b =>
-                {
-                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

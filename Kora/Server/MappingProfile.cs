@@ -15,7 +15,6 @@ public class MappingProfile : Profile
         CreateMap<Kiosque, KiosqueDto>().ReverseMap();
         CreateMap<Pays, PaysDto>().ReverseMap();
         CreateMap<ResponsableAgence, ResponsableAgenceDto>().ReverseMap();
-        CreateMap<Transaction, TransactionDto>().ReverseMap();
         CreateMap<Ville, VilleDto>().ReverseMap();
 
     }

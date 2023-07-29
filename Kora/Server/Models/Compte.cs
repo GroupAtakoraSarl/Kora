@@ -13,5 +13,4 @@ public class Compte
     [ForeignKey("IdClient")]
     public Client Client { get; set; }
     
-    public List<Transaction> Transactions { get; set; }
 }

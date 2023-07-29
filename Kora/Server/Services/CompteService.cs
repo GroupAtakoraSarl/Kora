@@ -9,6 +9,8 @@ public class CompteService : ICompteService
 {
     private readonly IMapper _mapper;
     private readonly KoraDbContext _dbContext;
+    private List<string> transactions = new List<string>();
+
 
     public CompteService(IMapper mapper, KoraDbContext dbContext)
     {
@@ -40,6 +42,7 @@ public class CompteService : ICompteService
         
         compte.Solde += solde;
         await _dbContext.SaveChangesAsync();
+        transactions.Add($"Dépot sur le Compte : {numCompte}, Montant : {solde} Date : "+DateTime.Now);
         return true;
     }
 
@@ -58,8 +61,11 @@ public class CompteService : ICompteService
         
         compte.Solde -= solde;
         await _dbContext.SaveChangesAsync();
+        transactions.Add($"Retrait sur le Compte : {numCompte}, Montant : {solde}. Date : "+DateTime.Now);
+
         return true;
     }
+
 
     public async Task<bool> Transfert(string numCompte, decimal solde)
     {
@@ -71,6 +77,8 @@ public class CompteService : ICompteService
 
         compte.Solde += solde;
         await _dbContext.SaveChangesAsync();
+        transactions.Add($"Transafert vers le Compte : {numCompte}, Montant : {solde}. Date : "+DateTime.Now);
+
         return true;
     }
 
@@ -87,4 +95,10 @@ public class CompteService : ICompteService
         
         return true;
     }
+
+    public async Task<List<string>> GetTransaction()
+    {
+        return transactions;
+    }
+    
 }

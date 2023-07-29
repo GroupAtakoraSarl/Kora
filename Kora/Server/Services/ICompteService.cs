@@ -11,5 +11,6 @@ public interface ICompteService
     Task<bool> RetraitCompte(string numCompte, decimal solde);
     Task<bool> Transfert(string numCompte, decimal solde);
     Task<bool> DeleteCompte(string numCompte);
-    
+    Task<List<string>> GetTransaction();
+
 }
