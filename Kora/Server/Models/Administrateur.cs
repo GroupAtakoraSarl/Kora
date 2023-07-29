@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kora.Models;
 
@@ -6,6 +7,7 @@ public class Administrateur
 {
 
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdAdmin { get; set; }
 
     [Required]

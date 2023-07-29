@@ -92,7 +92,7 @@ namespace Kora.Server.Migrations
                         column: x => x.IdClient,
                         principalTable: "Clients",
                         principalColumn: "IdClient",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,7 +112,7 @@ namespace Kora.Server.Migrations
                         column: x => x.IdPays,
                         principalTable: "Pays",
                         principalColumn: "IdPays",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -139,7 +139,7 @@ namespace Kora.Server.Migrations
                         column: x => x.IdResponsable,
                         principalTable: "ResponsableAgences",
                         principalColumn: "IdResponsable",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,7 +161,7 @@ namespace Kora.Server.Migrations
                         column: x => x.IdAgence,
                         principalTable: "Agences",
                         principalColumn: "IdAgence",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

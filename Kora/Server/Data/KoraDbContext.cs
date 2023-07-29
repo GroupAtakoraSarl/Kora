@@ -12,34 +12,6 @@ public class KoraDbContext : DbContext
     {
         
     }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Agence>()
-            .HasOne(a => a.ResponsableAgence)
-            .WithMany()
-            .HasForeignKey("IdResponsable")
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<Ville>()
-            .HasOne(v => v.Pays)
-            .WithMany()
-            .HasForeignKey("IdPays")
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder.Entity<Compte>()
-            .HasOne(c => c.Client)
-            .WithMany()
-            .HasForeignKey("IdClient")
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<Kiosque>()
-            .HasOne(k => k.Agence)
-            .WithMany()
-            .HasForeignKey("IdAgence")
-            .OnDelete(DeleteBehavior.Restrict);
-
-    }
     
     public DbSet<Agence> Agences { get; set; }
     public DbSet<Administrateur> Administrateurs { get; set; }
@@ -49,6 +21,36 @@ public class KoraDbContext : DbContext
     public DbSet<Pays> Pays { get; set; }
     public DbSet<ResponsableAgence> ResponsableAgences { get; set; }
     public DbSet<Ville> Villes { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Agence>()
+            .HasOne(a => a.ResponsableAgence)
+            .WithMany()
+            .HasForeignKey(a => a.IdResponsable)
+            .IsRequired();
+
+        modelBuilder.Entity<Ville>()
+            .HasOne(v => v.Pays)
+            .WithMany()
+            .HasForeignKey(v => v.IdPays)
+            .IsRequired();
+
+        modelBuilder.Entity<Compte>()
+            .HasOne(c => c.Client)
+            .WithMany()
+            .HasForeignKey(c => c.IdClient)
+            .IsRequired();
+
+        modelBuilder.Entity<Kiosque>()
+            .HasOne(k => k.Agence)
+            .WithMany()
+            .HasForeignKey("IdAgence")
+            .IsRequired();
+
+    }
+    
+    
     
 
 }

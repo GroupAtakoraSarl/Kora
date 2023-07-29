@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230729133204_koraMigration")]
+    [Migration("20230729152732_koraMigration")]
     partial class koraMigration
     {
         /// <inheritdoc />
@@ -249,7 +249,7 @@ namespace Kora.Server.Migrations
                     b.HasOne("Kora.Models.ResponsableAgence", "ResponsableAgence")
                         .WithMany()
                         .HasForeignKey("IdResponsable")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ResponsableAgence");
@@ -260,7 +260,7 @@ namespace Kora.Server.Migrations
                     b.HasOne("Kora.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("IdClient")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Client");
@@ -271,7 +271,7 @@ namespace Kora.Server.Migrations
                     b.HasOne("Kora.Models.Agence", "Agence")
                         .WithMany()
                         .HasForeignKey("IdAgence")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Agence");
@@ -282,7 +282,7 @@ namespace Kora.Server.Migrations
                     b.HasOne("Kora.Models.Pays", "Pays")
                         .WithMany()
                         .HasForeignKey("IdPays")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Pays");

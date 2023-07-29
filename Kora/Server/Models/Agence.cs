@@ -7,6 +7,7 @@ public class Agence
 {
 
     [Key] 
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdAgence { get; set; }
     [Required] 
     public string Pays { get; set; }
@@ -24,8 +25,8 @@ public class Agence
     public string DeviseAgence { get; set; }
     [Required] 
     public double SoldeInitial { get; set; }
-    
-    [ForeignKey("IdResponsable")]
+
+    public int IdResponsable { get; set; }
     public ResponsableAgence ResponsableAgence { get; set; }
     
 

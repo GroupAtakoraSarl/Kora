@@ -6,12 +6,13 @@ namespace Kora.Models;
 public class Kiosque
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int? IDKiosque { get; set; }
     public string NomKiosque { get; set; }
     public string AdresseKiosque { get; set; }
     public string ContactKiosque { get; set; }
-    
-    [ForeignKey("IdAgence")]
+
+    public int IdAgence { get; set; }
     public Agence Agence { get; set; }
     
 }

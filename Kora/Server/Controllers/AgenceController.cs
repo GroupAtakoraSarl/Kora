@@ -35,7 +35,7 @@ public class AgenceController : ControllerBase
         return Ok(agence);
     }
 
-    [HttpPost]
+    [HttpPost("AjouterAgence")]
     public async Task<ActionResult<Agence>> AddAgence(Agence agence)
     {
         var newAgence = await _agenceService.AddAgence(agence);
