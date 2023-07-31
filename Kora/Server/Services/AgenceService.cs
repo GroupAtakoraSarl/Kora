@@ -37,7 +37,7 @@ public class AgenceService : IAgenceService
         return _mapper.Map<Agence>(agence);
     }
     
-    public async Task<bool> DeleteAgence(int contactAgence)
+    public async Task<bool> DeleteAgence(string contactAgence)
     {
         var agence = await _dbContext.Agences.FindAsync(contactAgence);
         if (agence is null)

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Kora.Models;
 using Kora.Server.Data;
 using Kora.Server.ModelsDto;
 using Kora.Server.Services;
@@ -24,7 +25,22 @@ public class ResponsableAgenceService : IResponsableAgence
         return _mapper.Map<List<ResponsableAgenceDto>>(responsables);
     }
 
-    public async Task<bool> DeleteResponsable(int tel)
+    public async Task<ResponsableAgenceDto> GetResponsableByTel(string tel)
+    {
+        var responsable = await _dbContext.ResponsableAgences.FindAsync(tel);
+        return _mapper.Map<ResponsableAgenceDto>(responsable);
+    }
+
+    public async Task<ResponsableAgence> AddResponsable(ResponsableAgence responsableAgence)
+    {
+        var newRes = _mapper.Map<ResponsableAgence>(responsableAgence);
+        _dbContext.ResponsableAgences.Add(newRes);
+        await _dbContext.SaveChangesAsync();
+        return _mapper.Map<ResponsableAgence>(responsableAgence);
+    }
+
+
+    public async Task<bool> DeleteResponsable(string tel)
     {
         var responsable = await _dbContext.ResponsableAgences.FindAsync(tel);
         if (responsable is null)

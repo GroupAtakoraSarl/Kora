@@ -64,8 +64,7 @@ public class CompteService : ICompteService
 
     public async Task<bool> DepotCompte(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
     {
-        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(passwordExpediteur);
-        var expediteur = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompteExpediteur && c.Client.Password == hashedPassword);
+        var expediteur = _dbContext.Comptes.Include(c => c.Client).FirstOrDefault(c=>c.NumCompte == numCompteExpediteur);
         var destinataire = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompteDestinataire);
 
 
@@ -73,22 +72,36 @@ public class CompteService : ICompteService
         {
             return false;
         }
+        
+        var isPwdCorrect = BCrypt.Net.BCrypt.Verify(passwordExpediteur, expediteur.Client.Password);
+
+        if (!isPwdCorrect)
+        {
+            return false;
+        }
 
         expediteur.Solde -= solde;
         destinataire.Solde += solde;
         var frais = solde * 0.05m;
-        expediteur.Solde = expediteur.Solde - frais;
-
+        expediteur.Solde -= frais;
+        
         await _dbContext.SaveChangesAsync();
+        
+        transactions.Add($"Dépôt depuis le Compte : {numCompteExpediteur} vers le Compte : {numCompteDestinataire}, Montant : {solde}, Frais : {frais} Date : " + DateTime.Now);
 
         return true;
-        transactions.Add($"Dépôt depuis le Compte : {numCompteExpediteur} vers le Compte : {numCompteDestinataire}, Montant : {solde}, Frais : {frais} Date : " + DateTime.Now);
     }
 
-    public async Task<bool> RetraitCompte(string numCompte, decimal solde)
+    public async Task<bool> RetraitCompte(string numCompte, decimal solde, string password)
     {
-        var compte = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompte);
+        var compte = _dbContext.Comptes.Include(c => c.Client).FirstOrDefault(c => c.NumCompte == numCompte);
         if (compte is null)
+        {
+            return false;
+        }
+
+        bool isPwdCorrect = BCrypt.Net.BCrypt.Verify(password, compte.Client.Password);
+        if (!isPwdCorrect)
         {
             return false;
         }
@@ -99,8 +112,8 @@ public class CompteService : ICompteService
         }
         
         compte.Solde -= solde;
-        await _dbContext.SaveChangesAsync();
         transactions.Add($"Retrait sur le Compte : {numCompte}, Montant : {solde}. Date : "+DateTime.Now);
+        await _dbContext.SaveChangesAsync();
 
         return true;
     }
@@ -115,8 +128,8 @@ public class CompteService : ICompteService
         }
 
         compte.Solde += solde;
-        await _dbContext.SaveChangesAsync();
         transactions.Add($"Transafert vers le Compte : {numCompte}, Montant : {solde}. Date : "+DateTime.Now);
+        await _dbContext.SaveChangesAsync();
 
         return true;
     }

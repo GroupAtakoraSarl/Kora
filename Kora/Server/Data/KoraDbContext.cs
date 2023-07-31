@@ -45,7 +45,7 @@ public class KoraDbContext : DbContext
         modelBuilder.Entity<Kiosque>()
             .HasOne(k => k.Agence)
             .WithMany()
-            .HasForeignKey("IdAgence")
+            .HasForeignKey(k=>k.IdAgence)
             .IsRequired();
 
     }

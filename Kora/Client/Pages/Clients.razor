@@ -1,0 +1,33 @@
+@* @page "/Clients" *@
+@* *@
+@* @inject HttpClient HttpClient *@
+@* *@
+@* <h3>Listes des clients</h3> *@
+@* *@
+@* @if clients == null) *@
+@* { *@
+@*     <p>Chargement en cours...</p> *@
+@* } *@
+@* else if(clients.Count ==0) *@
+@* { *@
+@*     <p>Aucun client trouvé</p> *@
+@* } *@
+@* else{ *@
+@* <ul> *@
+@*     @foreach (var client in clients) *@
+@*     { *@
+@*         <li>@clients.Username - @clients.Email</li> *@
+@*     } *@
+@* </ul> *@
+@* } *@
+@* *@
+@* *@
+@* *@
+@* @code { *@
+@*     private List<ClientDto> clients; *@
+@* *@
+@*     protected override async Task OnInitializedAsync() *@
+@*     { *@
+@*         clients = await HttpClient.GetFromJsonAsync<List<ClientDto>>("http://localhost:5099/api/Client"); *@
+@*     } *@
+@* } *@

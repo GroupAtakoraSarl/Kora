@@ -6,5 +6,7 @@ namespace Kora.Server.Services;
 public interface IResponsableAgence
 {
     Task<List<ResponsableAgenceDto>> GetAllResponsable();
-    Task<bool> DeleteResponsable(int tel);
+    Task<ResponsableAgenceDto> GetResponsableByTel(string tel);
+    Task<ResponsableAgence> AddResponsable(ResponsableAgence responsableAgence);
+    Task<bool> DeleteResponsable(string tel);
 }

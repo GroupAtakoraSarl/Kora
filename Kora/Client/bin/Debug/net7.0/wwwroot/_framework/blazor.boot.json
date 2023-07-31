@@ -199,14 +199,14 @@
       "netstandard.dll": "sha256-5SHKPh1PcuJjq4lIo7ymdIyhb9d3++oMAjr46auhUSc=",
       "System.Private.CoreLib.dll": "sha256-eH+XIsCUG5oZ0k8AIzNtRLTCLiV\/8Zv0RFCPMsIkdYY=",
       "Kora.Shared.dll": "sha256-YuedwHNSacUsbzYkV9cgFojpdLt2yGJNBddNAO6jnPw=",
-      "Kora.Client.dll": "sha256-2Xo1UY0LjHbhbRV7pA9FtyWdtMtCNDrpuo6wZLRK5HM="
+      "Kora.Client.dll": "sha256-5wC1AgW9gnGvjjUvbwgGMYEPg5ehCbNBfDiErrzu5aA="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "Kora.Shared.pdb": "sha256-AgDHi7OLF5DFo+5DKG4nC2fQhPLLx9P0Csnsla+j87I=",
-      "Kora.Client.pdb": "sha256-UZyBEsZs7pvK\/I+HvMMxNio1Gioj\/igsq0A5tBM7rAM="
+      "Kora.Client.pdb": "sha256-JVPVc5uqfjuSiGPwHVW\/b8u4QUmkULTFlVneD014Kls="
     },
     "runtime": {
       "dotnet.7.0.9.wep0k6qray.js": "sha256-dUIY5Mz0ozZWqtTfBb7ArJKbdh5IIp8BXeq6UjK4u\/c=",

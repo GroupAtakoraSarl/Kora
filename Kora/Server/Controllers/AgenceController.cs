@@ -39,12 +39,12 @@ public class AgenceController : ControllerBase
     public async Task<ActionResult<Agence>> AddAgence(Agence agence)
     {
         var newAgence = await _agenceService.AddAgence(agence);
-        return CreatedAtAction(nameof(GetAgenceById), new { idAgence = newAgence.IdAgence }, newAgence);
+        return Ok(newAgence);
     }
     
 
     [HttpDelete("{contactAgence}")]
-    public async Task<IActionResult> DeleteAgence(int contactAgence)
+    public async Task<IActionResult> DeleteAgence(string contactAgence)
     {
         var success = await _agenceService.DeleteAgence(contactAgence);
         if (!success)

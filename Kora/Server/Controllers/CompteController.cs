@@ -19,12 +19,7 @@ public class CompteController : ControllerBase
         _dbContext = dbContext;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<List<string>>> GetTransaction()
-    {
-        var transaction = await _compteService.GetTransaction();
-        return transaction;
-    }
+    
     
     [HttpGet]
     public async Task<ActionResult<List<CompteDto>>> GetAllComptes()
@@ -61,28 +56,32 @@ public class CompteController : ControllerBase
             IdClient = idClient
         };
         
-        
         return CreatedAtAction(nameof(GetAuteurByNum), new { numCompte = newcompte.NumCompte }, newcompte);
     }
+    
     
     [HttpPost("DepotCompte")]
     public async Task<ActionResult<string>> DepotCompte(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
     {
         var result = await _compteService.DepotCompte(numCompteExpediteur, passwordExpediteur, numCompteDestinataire, solde);
         if (!result)
+        {
             return NotFound("Compte introuvable !");
-
+        }
+        
         var frais = solde * 0.05m;
-        var msg = $"Dépôt effectué avec succès sur le compte {numCompteExpediteur}. Montant de frais : {frais}";
+        var msg = $"Dépôt effectué avec succès depuis le {numCompteExpediteur} vers {numCompteDestinataire}. Montant de frais : {frais}";
         return msg;
     }
 
+    
     [HttpPost("RetraitCompte")]
-    public async Task<ActionResult<string>> RetraitCompte(string numCompte, decimal solde)
+    public async Task<ActionResult<string>> RetraitCompte(string numCompte, decimal solde, string password)
     {
-        var result = await _compteService.RetraitCompte(numCompte, solde);
+        var result = await _compteService.RetraitCompte(numCompte, solde, password);
         if (!result)
             return NotFound("Compte introuvable ou solde supérieure à celui du compte");
+        
         var frais = (solde * 0.02m);
         var msg = $"Transaction effectuée avec succès. Montant de frais : {frais}";
 
@@ -107,6 +106,17 @@ public class CompteController : ControllerBase
         if (!result)
             return NotFound("Compte introuvable !");
         return $"Le compte {numCompte}  bien supprimé";
+    }
+    
+    [HttpGet("GetTransaction")]
+    public async Task<ActionResult<List<string>>> GetTransaction()
+    {
+        var transactions = await _compteService.GetTransaction();
+        if (transactions == null || transactions.Count == 0)
+        {
+            return NotFound("Aucune transaction trouvée.");
+        }
+        return Ok(transactions);
     }
 
 }

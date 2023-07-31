@@ -23,6 +23,15 @@ public class KiosqueService : IKiosqueService
         return _mapper.Map<List<KiosqueDto>>(kiosques);
     }
 
+    public async Task<List<KiosqueDto>> GetKiosqueByAdresse(string adresseKiosque)
+    {
+        var kiosque = await _dbContext.Kiosques
+            .Where(k => k.AdresseKiosque == adresseKiosque)
+            .ToListAsync();
+        
+        return _mapper.Map<List<KiosqueDto>>(kiosque);
+    }
+    
     public async Task<Kiosque> AddKiosque(Kiosque kiosque)
     {
         var lekiosque = _mapper.Map<Kiosque>(kiosque);

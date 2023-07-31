@@ -1,7 +1,9 @@
 using AutoMapper;
 using Kora.Models;
 using Kora.Server.Data;
+using Kora.Server.ModelsDto;
 using Kora.Server.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;
 
@@ -15,8 +17,20 @@ public class PaysService : IPaysService
         _dbContext = dbContext;
         _mapper = mapper;
     }
-    
-    
+
+
+    public async Task<List<PaysDto>> GetAllPays()
+    {
+        var pays = await _dbContext.Pays.ToListAsync();
+        return _mapper.Map<List<PaysDto>>(pays);
+    }
+
+    public async Task<PaysDto> GetPaysByIndi(int indicatif)
+    {
+        var pays = await _dbContext.Pays.FindAsync(indicatif);
+        return _mapper.Map<PaysDto>(pays);
+    }
+
     public async Task<Pays> AddPays(Pays pays)
     {
         var lepays = _mapper.Map<Pays>(pays);
