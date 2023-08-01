@@ -1,7 +1,7 @@
 using AutoMapper;
-using Kora.Models;
+using Kora.Shared.Models;
 using Kora.Server.Data;
-using Kora.Server.ModelsDto;
+using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;

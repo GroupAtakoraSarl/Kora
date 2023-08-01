@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Kora.Models;
+using Kora.Shared.Models;
 
 
 namespace Kora.Server.Data;
@@ -15,7 +15,7 @@ public class KoraDbContext : DbContext
     
     public DbSet<Agence> Agences { get; set; }
     public DbSet<Administrateur> Administrateurs { get; set; }
-    public DbSet<Models.Client> Clients { get; set; }
+    public DbSet<Shared.Models.Client> Clients { get; set; }
     public DbSet<Compte> Comptes { get; set; }
     public DbSet<Kiosque> Kiosques { get; set; }
     public DbSet<Pays> Pays { get; set; }

@@ -1,7 +1,6 @@
-using Kora.Models;
-using Kora.Server.ModelsDto;
+using Kora.Shared.Models;
+using Kora.Shared.ModelsDto;
 using Kora.Server.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kora.Server.Controllers;
@@ -25,6 +24,7 @@ public class ResponsableAgenceController : ControllerBase
         return Ok(resp);
     }
 
+    [HttpGet("{tel}")]
     public async Task<ActionResult<ResponsableAgenceDto>> GetResponsableByTel(string tel)
     {
         var responsable = _responsableAgence.GetResponsableByTel(tel);

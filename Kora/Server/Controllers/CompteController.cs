@@ -1,6 +1,6 @@
-using Kora.Models;
+using Kora.Shared.Models;
 using Kora.Server.Data;
-using Kora.Server.ModelsDto;
+using Kora.Shared.ModelsDto;
 using Kora.Server.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +18,6 @@ public class CompteController : ControllerBase
         _compteService = compteService;
         _dbContext = dbContext;
     }
-
     
     
     [HttpGet]

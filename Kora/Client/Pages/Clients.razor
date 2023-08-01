@@ -1,33 +1,39 @@
-@* @page "/Clients" *@
-@* *@
-@* @inject HttpClient HttpClient *@
-@* *@
-@* <h3>Listes des clients</h3> *@
-@* *@
-@* @if clients == null) *@
-@* { *@
-@*     <p>Chargement en cours...</p> *@
-@* } *@
-@* else if(clients.Count ==0) *@
-@* { *@
-@*     <p>Aucun client trouvé</p> *@
-@* } *@
-@* else{ *@
-@* <ul> *@
-@*     @foreach (var client in clients) *@
-@*     { *@
-@*         <li>@clients.Username - @clients.Email</li> *@
-@*     } *@
-@* </ul> *@
-@* } *@
-@* *@
-@* *@
-@* *@
-@* @code { *@
-@*     private List<ClientDto> clients; *@
-@* *@
-@*     protected override async Task OnInitializedAsync() *@
-@*     { *@
-@*         clients = await HttpClient.GetFromJsonAsync<List<ClientDto>>("http://localhost:5099/api/Client"); *@
-@*     } *@
-@* } *@
+@page "/clients"
+@using Kora.Client.Services
+@using Kora.Shared.ModelsDto
+@inject IClientService ClientService
+
+<h3>Liste des Clients</h3>
+
+@if (clients is null)
+{
+    <p>Loading...</p>
+}
+
+<table>
+    <thead>
+    <th>Nom & Prénoms</th>
+    <th>Téléphone</th>
+    </thead>
+    <tbody>
+    @foreach (var client in clients)
+    {
+        <tr>
+            <td>@client.Username</td>
+            <td>@client.Tel</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+@code {
+    
+    private List<ClientDto> clients;
+
+    protected override async Task OnInitializedAsync()
+    {
+        clients = await ClientService.GetAllClient();
+    }
+
+}

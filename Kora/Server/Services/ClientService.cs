@@ -1,10 +1,10 @@
 using AutoMapper;
 using Kora.Server.Data;
 using Kora.Server.Services;
-using Kora.Server.ModelsDto;
+using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
-using Kora.Models;
+using Kora.Shared.Models;
 
 namespace Kora.Server.Services;
 
@@ -12,7 +12,7 @@ public class ClientService : IClientService
 {
     private readonly IMapper _mapper;
     private readonly KoraDbContext _dbContext;
-
+    
 
     public ClientService(IMapper mapper, KoraDbContext dbContext)
     {
@@ -38,7 +38,7 @@ public class ClientService : IClientService
         return _mapper.Map<ClientLog>(client);
     }
     
-    public void EnregistrerClient(Models.Client client)
+    public void EnregistrerClient(Shared.Models.Client client)
     {
         if (_dbContext.Clients.Any(c => c.Username == client.Username))
         {
@@ -47,7 +47,7 @@ public class ClientService : IClientService
         
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(client.Password);
         
-        var leclient = _mapper.Map<Models.Client>(client);
+        var leclient = _mapper.Map<Shared.Models.Client>(client);
         client.Password = hashedPassword;
         _dbContext.Clients.Add(leclient);
         _dbContext.SaveChangesAsync();
@@ -67,7 +67,7 @@ public class ClientService : IClientService
     }
     
  
-    public async Task<bool> UpateClient(string tel, Models.Client client)
+    public async Task<bool> UpateClient(string tel, Shared.Models.Client client)
     {
         var existingClient = await _dbContext.Clients.FindAsync(tel);
         if (existingClient is null)

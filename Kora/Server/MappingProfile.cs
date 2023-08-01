@@ -1,6 +1,6 @@
 using AutoMapper;
-using Kora.Models;
-using Kora.Server.ModelsDto;
+using Kora.Shared.Models;
+using Kora.Shared.ModelsDto;
 
 namespace Kora.Server;
 
@@ -10,7 +10,7 @@ public class MappingProfile : Profile
     {
         CreateMap<Agence, AgenceDto>().ReverseMap();
         CreateMap<Administrateur, AdministrateurDto>().ReverseMap();
-        CreateMap<Models.Client, ClientDto>().ReverseMap();
+        CreateMap<Shared.Models.Client, ClientDto>().ReverseMap();
         CreateMap<Compte, CompteDto>().ReverseMap();
         CreateMap<Kiosque, KiosqueDto>().ReverseMap();
         CreateMap<Pays, PaysDto>().ReverseMap();
