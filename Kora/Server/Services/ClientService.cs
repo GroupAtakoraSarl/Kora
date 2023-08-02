@@ -83,7 +83,7 @@ public class ClientService : IClientService
 
     public async Task<bool> DeleteClient(string tel)
     {
-        var client = await _dbContext.Clients.FindAsync(tel);
+        var client = _dbContext.Clients.FirstOrDefault(c=>c.Tel == tel);
         if (client is null)
             return false;
 

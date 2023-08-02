@@ -20,20 +20,28 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Agences.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWdlbmNlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Clients.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Configurations.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uZmlndXJhdGlvbnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/FetchData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Sign.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/BUREAU/STAGE/Kora/Kora/Client/Shared/SurveyPrompt.razor]

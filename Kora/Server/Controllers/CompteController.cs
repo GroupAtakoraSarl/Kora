@@ -3,6 +3,7 @@ using Kora.Server.Data;
 using Kora.Shared.ModelsDto;
 using Kora.Server.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Controllers;
 
@@ -96,6 +97,22 @@ public class CompteController : ControllerBase
         var frais = solde * 0.02m;
         var msg = $"Transfert effectué avec succès vers le numéro : {numCompte}. Frais : {frais}";
         return msg;
+    }
+    
+    [HttpGet("GetCompteByClientId/{IdClient}")]
+    public async Task<ActionResult<List<CompteDto>>> GetCompteByClientId(int idClient)
+    {
+        var comptes = await _dbContext.Comptes
+            .Where(c => c.IdClient == idClient)
+            .Select(c => new CompteDto
+            {
+                // Assigner les propriétés du compte DTO à partir de l'entité Compte
+                IdCompte = c.IdCompte,
+                // Autres propriétés...
+            })
+            .ToListAsync();
+
+        return comptes;
     }
 
     [HttpDelete("{numCompte}")]

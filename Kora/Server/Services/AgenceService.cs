@@ -17,10 +17,10 @@ public class AgenceService : IAgenceService
         _dbContext = dbContext;
     }
 
-    public async Task<List<AgenceDto>> GetAllAgence()
+    public async Task<List<Agence>> GetAllAgence()
     {
         var agences = await _dbContext.Agences.ToListAsync();
-        return _mapper.Map<List<AgenceDto>>(agences);
+        return _mapper.Map<List<Agence>>(agences);
     }
     
     public async Task<AgenceDto> GetAgenceByContact(string contactAgence)
@@ -39,7 +39,7 @@ public class AgenceService : IAgenceService
     
     public async Task<bool> DeleteAgence(string contactAgence)
     {
-        var agence = await _dbContext.Agences.FindAsync(contactAgence);
+        var agence = _dbContext.Agences.FirstOrDefault(a=>a.ContactAgence == contactAgence);
         if (agence is null)
         {
             return false;

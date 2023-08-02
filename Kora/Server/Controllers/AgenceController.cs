@@ -16,14 +16,14 @@ public class AgenceController : ControllerBase
         _agenceService = agenceService;
     }
 
-    [HttpGet]
+    [HttpGet("GetAllAgence")]
     public async Task<ActionResult<List<AgenceDto>>> GetAllAgence()
     {
         var agences = await _agenceService.GetAllAgence();
         return Ok(agences);
     }
 
-    [HttpGet("{contactAgence}")]
+    [HttpGet("GetAgenceByContact/{contactAgence}")]
     public async Task<ActionResult<AgenceDto>> GetAgenceByContact(string contactAgence)
     {
         var agence = await _agenceService.GetAgenceByContact(contactAgence);
@@ -43,16 +43,11 @@ public class AgenceController : ControllerBase
     }
     
 
-    [HttpDelete("{contactAgence}")]
-    public async Task<IActionResult> DeleteAgence(string contactAgence)
+    [HttpDelete("DeleteAgence/{contactAgence}")]
+    public IActionResult DeleteAgence(string contactAgence)
     {
-        var success = await _agenceService.DeleteAgence(contactAgence);
-        if (!success)
-        {
-            return NotFound();
-        }
-
-        return NoContent();
+        var success = _agenceService.DeleteAgence(contactAgence);
+        return Ok(success);
     }
     
 }

@@ -1,0 +1,67 @@
+@page "/agences"
+@using Kora.Client.Services
+@using Kora.Shared.Models
+@inject IAgenceService AgenceService
+@inject IJSRuntime JSRuntime
+
+<h3 class="mb-5">Liste des Agences</h3>
+<table class="table table-striped table-bordered bg-light">
+    <thead>
+    <th>NOM</th>
+    <th>PAYS</th>
+    <th>VILLE</th>
+    <th>ADRESSE</th>
+    <th>CONTACT</th>
+    <th>EMAIL</th>
+    <th>DEVISE</th>
+    <th>SOLDE</th>
+    <th>RESPONSABLE</th>
+    <th>ACTION</th>
+    </thead>
+    <tbody>
+    @foreach (var agence in agences)
+    {
+        <tr>
+            <td>@agence.NomAgence</td>
+            <td>@agence.Pays</td>
+            <td>@agence.Ville</td>
+            <td>@agence.AdresseAgence</td>
+            <td>@agence.ContactAgence</td>
+            <td>@agence.EmailAgence</td>
+            <td>@agence.DeviseAgence</td>
+            <td>@agence.SoldeInitial</td>
+            <td>#res @agence.IdResponsable</td>
+            <td><span class="oi oi-trash btn btn-danger" @onclick="() => ShowConfirmation(agence.ContactAgence)"></span></td>
+        </tr>
+    }
+    </tbody>
+</table>
+@code {
+    private List<Agence> agences = new List<Agence>();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        agences = await AgenceService.GetAllAgence();
+    }
+    
+    private async Task ShowConfirmation(string contactAgence)
+    {
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", $"Voulez-vous vraiment supprimer l'agence avec le contact : {contactAgence} ?");
+
+        if (result)
+        {
+            await DeleteAgence(contactAgence);
+        }
+    }
+    
+    private async Task DeleteAgence(string contactAgence)
+    {
+        var isDeleted = await AgenceService.DeleteAgence(contactAgence);
+        if (isDeleted)
+        {
+            // Mettre à jour la liste des agences après la suppression réussie
+            agences = await AgenceService.GetAllAgence();
+        }
+    }
+
+}

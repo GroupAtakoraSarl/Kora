@@ -134,9 +134,14 @@ public class CompteService : ICompteService
         return true;
     }
 
+    public async Task<List<CompteDto>> GetCompteByClientId(int idClient)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<bool> DeleteCompte(string numCompte)
     {
-        var compte = await _dbContext.Comptes.FindAsync(numCompte);
+        var compte = _dbContext.Comptes.FirstOrDefault(c=>c.NumCompte == numCompte);
         if (compte is null)
         {
             return false;

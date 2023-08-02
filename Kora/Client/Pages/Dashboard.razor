@@ -1,0 +1,57 @@
+@page "/"
+@using Kora.Client.Services
+@inject IClientService ClientService
+@inject IAgenceService AgenceService
+@inject ICompteService CompteService
+
+<div class="d-flex justify-content-between"> <!-- Ajout de la classe d-flex et justify-content-between -->
+        <div class="container m-5">
+            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem">
+                <div class="card-header">
+                    <h5 class="card-title text-center"><span class="oi oi-person"></span></h5>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-text text-center"><strong>@ClientCount</strong> Clients</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container m-5">
+            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem">
+                <div class="card-header">
+                    <h5 class="card-title text-center"><span class="oi oi-vertical-align-top"></span></h5>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-text text-center"><strong>@AgenceCount</strong> Agences</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container m-5">
+            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem">
+                <div class="card-header">
+                    <h5 class="card-title text-center"><span class="oi oi-clipboard"></span></h5>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-text text-center"><strong>@CompteCount</strong> Comptes</h1>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+@code {
+    private int ClientCount;
+    private int AgenceCount;
+    private int CompteCount;
+
+    protected override async Task OnInitializedAsync()
+    {
+    // Charger le nombre de clients depuis l'API en utilisant le service ClientService
+        var clients = await ClientService.GetAllClient();
+        ClientCount = clients.Count;
+        var agences = await AgenceService.GetAllAgence();
+        AgenceCount = agences.Count;
+        var comptes = await CompteService.GetAllComptes();
+        CompteCount = comptes.Count;
+    }
+}
+

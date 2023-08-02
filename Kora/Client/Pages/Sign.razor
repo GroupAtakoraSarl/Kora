@@ -1,0 +1,60 @@
+@page "/sign"
+@using Kora.Shared.Models
+@inject HttpClient HttpClient
+@inject NavigationManager Navigation
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Inscription</h4>
+                </div>
+                <div class="card-body">
+                    <form @onsubmit="HandleSubmit">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nom d'utilisateur</label>
+                            <input type="text" class="form-control" id="username" @bind="Client.Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tel" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="tel" @bind="Client.Tel" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tel" class="form-label">Mot de passe</label>
+                            <input type="tel" class="form-control" id="tel" @bind="Client.Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Client Client = new Client();
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            // Envoyer le client enregistré à l'API via une requête POST
+            var response = await HttpClient.PostAsJsonAsync("api/EnregistrerClient", Client);
+
+            // Vérifier si la requête a réussi
+            if (response.IsSuccessStatusCode)
+            {
+                Navigation.NavigateTo("/");
+            }
+            else
+            {
+                Navigation.NavigateTo("/Sign");
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+}

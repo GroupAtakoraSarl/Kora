@@ -43,8 +43,8 @@ public class KiosqueController : ControllerBase
         return Ok(lekiosque);
     }
 
-    [HttpDelete("{contactKiosque}")]
-    public async Task<ActionResult<KiosqueDto>> DeleteKiosque(int contactKiosque)
+    [HttpDelete("DeleteKiosque/{contactKiosque}")]
+    public async Task<ActionResult<KiosqueDto>> DeleteKiosque(string contactKiosque)
     {
         var kiosque = await _kiosqueService.DeleteKiosque(contactKiosque);
         if (!kiosque)
@@ -54,8 +54,6 @@ public class KiosqueController : ControllerBase
 
         return Ok("Kiosque bien supprimé");
     }
-
-
-
+    
 
 }

@@ -1,0 +1,65 @@
+@page "/login"
+@using Kora.Shared.Models
+@using Kora.Client.Services
+@inject HttpClient HttpClient
+@inject IAdministrateurService AdministrateurService
+@inject NavigationManager Navigation
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4 shadow p-3 mb-5 bg-body-tertiary rounded">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <h4 class="card-title text-center text text-white">CONNECTEZ-VOUS !</h4>
+                </div>
+                <div class="card-body">
+                    @if (showError)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <p class="text-center">Veuillez vérifiez les informations fournies</p>
+                        </div>
+                    }
+                    <form @onsubmit="HandleSubmit">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="username" @bind="admin.Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tel" class="form-label">Mot de passe</label>
+                            <input type="password" class="form-control" id="tel" @bind="admin.Password" required>
+                        </div>
+                        <button type="submit" class="text-center w-100 btn btn-primary">Se connecter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Administrateur admin = new Administrateur();
+    private bool showError = false;
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            // Envoyer le client enregistré à l'API via une requête POST
+            var response = await AdministrateurService.ConnecterAdmin(admin.Email, admin.Password);
+
+            // Vérifier si la requête a réussi
+            if (response)
+            {
+                Navigation.NavigateTo("/");
+            }
+            else
+            {
+                showError = true;
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+}

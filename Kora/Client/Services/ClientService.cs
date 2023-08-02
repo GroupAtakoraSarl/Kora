@@ -16,7 +16,7 @@ public class ClientService : IClientService
 
     public async Task<List<ClientDto>> GetAllClient()
     {
-        return await _httpClient.GetFromJsonAsync<List<ClientDto>>("api/Client/GetAllClient");
+        return await _httpClient.GetFromJsonAsync<List<ClientDto>>("api/Client/");
     }
 
     public async Task<ClientDto> GetClientByTel(string tel)
@@ -49,7 +49,7 @@ public class ClientService : IClientService
     
     public async Task<bool> DeleteClient(string tel)
     {
-        var response = await _httpClient.DeleteAsync($"api/Client/DeleteClient/{tel}");
+        var response = await _httpClient.DeleteAsync($"api/Client/{tel}");
         return response.IsSuccessStatusCode;
     }
 }

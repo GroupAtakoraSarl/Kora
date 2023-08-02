@@ -23,6 +23,11 @@ namespace Kora.Client.Services
             return await _httpClient.GetFromJsonAsync<CompteDto>($"api/Compte/{numCompte}");
         }
 
+        public async Task<List<CompteDto>> GetCompteByClientId(int clientId)
+        {
+            return await _httpClient.GetFromJsonAsync<List<CompteDto>>($"api/Compte/GetCompteByClientId/{clientId}");
+        }
+
         public async Task<Compte> AddCompte(Compte compte, int idClient)
         {
             var response = await _httpClient.PostAsJsonAsync($"api/Compte/CreerCompte?idClient={idClient}", compte);

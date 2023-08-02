@@ -1049,7 +1049,8 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Kora.Shared": "1.0.0",
-          "Microsoft.AspNetCore.Components.WebAssembly": "7.0.9"
+          "Microsoft.AspNetCore.Components.WebAssembly": "7.0.9",
+          "Microsoft.EntityFrameworkCore": "8.0.0-preview.6.23329.4"
         },
         "compile": {
           "bin/placeholder/Kora.Client.dll": {}

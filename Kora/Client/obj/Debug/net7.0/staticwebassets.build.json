@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yJbIVJDfbjaiiyVbCrMhZyL0z1VhGtX197ndEFjbMHU=",
+  "Hash": "tD1nyPJuhVOHtC+8H7nhXvlewJ6SdnKrsb7GFzat8AA=",
   "Source": "Kora.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -357,6 +357,74 @@
       "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.9\\runtimes\\browser-wasm\\lib\\net7.0\\Microsoft.CSharp.dll"
     },
     {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.EntityFrameworkCore.Abstractions.dll",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.EntityFrameworkCore.Abstractions.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.0-preview.6.23329.4\\lib\\net6.0\\Microsoft.EntityFrameworkCore.Abstractions.dll"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.EntityFrameworkCore.dll",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.EntityFrameworkCore.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0-preview.6.23329.4\\lib\\net6.0\\Microsoft.EntityFrameworkCore.dll"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Caching.Abstractions.dll",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Caching.Abstractions.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0-preview.6.23329.7\\lib\\net7.0\\Microsoft.Extensions.Caching.Abstractions.dll"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Caching.Memory.dll",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Caching.Memory.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.0-preview.6.23329.7\\lib\\net7.0\\Microsoft.Extensions.Caching.Memory.dll"
+    },
+    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Configuration.Abstractions.dll",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -456,7 +524,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\lib\\net7.0\\Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0-preview.6.23329.7\\lib\\net7.0\\Microsoft.Extensions.DependencyInjection.Abstractions.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.dll",
@@ -473,7 +541,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\lib\\net7.0\\Microsoft.Extensions.DependencyInjection.dll"
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0-preview.6.23329.7\\lib\\net7.0\\Microsoft.Extensions.DependencyInjection.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.FileProviders.Abstractions.dll",
@@ -541,7 +609,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\lib\\net7.0\\Microsoft.Extensions.Logging.Abstractions.dll"
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0-preview.6.23329.7\\lib\\net7.0\\Microsoft.Extensions.Logging.Abstractions.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.dll",
@@ -558,7 +626,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\lib\\net7.0\\Microsoft.Extensions.Logging.dll"
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0-preview.6.23329.7\\lib\\net7.0\\Microsoft.Extensions.Logging.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Options.dll",
@@ -575,7 +643,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\lib\\net7.0\\Microsoft.Extensions.Options.dll"
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.options\\8.0.0-preview.6.23329.7\\lib\\net7.0\\Microsoft.Extensions.Options.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Primitives.dll",
@@ -592,7 +660,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\lib\\net7.0\\Microsoft.Extensions.Primitives.dll"
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0-preview.6.23329.7\\lib\\net7.0\\Microsoft.Extensions.Primitives.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.JSInterop.dll",
@@ -3536,6 +3604,23 @@
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Data.DataSetExtensions.dll"
     },
     {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\+RxvCE6M.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.EntityFrameworkCore.Abstractions.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.EntityFrameworkCore.Abstractions.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.EntityFrameworkCore.Abstractions.dll"
+    },
+    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\0EkmCOUH.gz",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -3842,6 +3927,23 @@
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Diagnostics.Tracing.dll"
     },
     {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\3CzrY3lc.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Primitives.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Primitives.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Primitives.dll"
+    },
+    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\3DrCW4Ho.gz",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -3908,6 +4010,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\netstandard.dll"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\3PKOi3Oz.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.DependencyInjection.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\47NGIaNy.gz",
@@ -4913,6 +5032,23 @@
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Private.CoreLib.dll"
     },
     {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\HLL2aLTu.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.EntityFrameworkCore.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.EntityFrameworkCore.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.EntityFrameworkCore.dll"
+    },
+    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\HnrgsAlX.gz",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -4962,6 +5098,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Runtime.Extensions.dll"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\i0BEPGjU.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Caching.Memory.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Caching.Memory.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Caching.Memory.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\I6XP1kc3.gz",
@@ -5219,6 +5372,23 @@
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Threading.Overlapped.dll"
     },
     {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\LU+fh9yM.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Caching.Abstractions.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Caching.Abstractions.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Caching.Abstractions.dll"
+    },
+    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\lzYzvCjC.gz",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -5440,23 +5610,6 @@
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.IO.IsolatedStorage.dll"
     },
     {
-      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\OMjbSj7k.gz",
-      "SourceId": "Kora.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.Extensions.Options.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Options.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Options.dll"
-    },
-    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\OPJ5PouJ.gz",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -5525,6 +5678,23 @@
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Formats.Asn1.dll"
     },
     {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\PA62RQzY.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Logging.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.dll"
+    },
+    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\pHojYNiM.gz",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -5557,23 +5727,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.ComponentModel.EventBasedAsync.dll"
-    },
-    {
-      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\q1zRPYMA.gz",
-      "SourceId": "Kora.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.Extensions.DependencyInjection.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\q2uXwiUF.gz",
@@ -5729,23 +5882,6 @@
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Runtime.CompilerServices.Unsafe.dll"
     },
     {
-      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\RKtuWN4M.gz",
-      "SourceId": "Kora.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.Extensions.DependencyInjection.Abstractions.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.Abstractions.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.Abstractions.dll"
-    },
-    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\rmmwZHl7.gz",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -5778,23 +5914,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Win32.Registry.dll"
-    },
-    {
-      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\rNw55O5J.gz",
-      "SourceId": "Kora.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.Extensions.Logging.Abstractions.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.Abstractions.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.Abstractions.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\rXCnNQwT.gz",
@@ -6050,23 +6169,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.IO.Pipes.dll"
-    },
-    {
-      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\TZy+SKu7.gz",
-      "SourceId": "Kora.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.Extensions.Logging.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\U+XA2Dw3.gz",
@@ -6698,6 +6800,23 @@
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Net.NetworkInformation.dll"
     },
     {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\YEkBTy4N.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Options.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Options.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Options.dll"
+    },
+    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\yF3+f7kR.gz",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -6713,6 +6832,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Globalization.dll"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\YJ6ROfyh.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.DependencyInjection.Abstractions.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.DependencyInjection.Abstractions.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\yOA3AHEk.gz",
@@ -6800,6 +6936,23 @@
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Web.dll"
     },
     {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\z7oQqv1z.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Logging.Abstractions.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.Abstractions.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.Abstractions.dll"
+    },
+    {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\ZchJCmUn.gz",
       "SourceId": "Kora.Client",
       "SourceType": "Computed",
@@ -6832,23 +6985,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.Runtime.Numerics.dll"
-    },
-    {
-      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\zHdFIk24.gz",
-      "SourceId": "Kora.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/Microsoft.Extensions.Primitives.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Primitives.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.Extensions.Primitives.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\zJvG1f9v.gz",

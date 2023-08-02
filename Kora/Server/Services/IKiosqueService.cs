@@ -8,5 +8,5 @@ public interface IKiosqueService
     Task<List<KiosqueDto>> GetAllKiosque();
     Task<List<KiosqueDto>> GetKiosqueByAdresse(string adresseKiosque);
     Task<Kiosque> AddKiosque(Kiosque kiosque);
-    Task<bool> DeleteKiosque(int contactKiosque);
+    Task<bool> DeleteKiosque(string contactKiosque);
 }

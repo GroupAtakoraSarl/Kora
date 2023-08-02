@@ -2,18 +2,19 @@
 @using Kora.Client.Services
 @using Kora.Shared.ModelsDto
 @inject IClientService ClientService
+@inject ICompteService CompteService
 
-<h3>Liste des Clients</h3>
+<h3 class="mb-5">Liste des Clients</h3>
 
 @if (clients is null)
 {
     <p>Loading...</p>
 }
 
-<table>
+<table class="table table-striped table-bordered bg-light fs-6">
     <thead>
-    <th>Nom & Prénoms</th>
-    <th>Téléphone</th>
+    <th>NOMS D'UTILISATEURS</th>
+    <th>TELEPHONES</th>
     </thead>
     <tbody>
     @foreach (var client in clients)
@@ -28,8 +29,9 @@
 
 
 @code {
-    
-    private List<ClientDto> clients;
+
+    private List<ClientDto> clients = new List<ClientDto>();
+    private int compteCount;
 
     protected override async Task OnInitializedAsync()
     {

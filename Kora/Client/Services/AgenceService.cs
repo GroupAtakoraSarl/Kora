@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using Kora.Client.Pages;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
 
@@ -13,9 +14,9 @@ namespace Kora.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<AgenceDto>> GetAllAgence()
+        public async Task<List<Agence>> GetAllAgence()
         {
-            return await _httpClient.GetFromJsonAsync<List<AgenceDto>>("api/Agence");
+            return await _httpClient.GetFromJsonAsync<List<Agence>>("api/Agence/GetAllAgence");
         }
         
         public async Task<AgenceDto> GetAgenceByContact(string contactAgence)

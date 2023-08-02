@@ -16,9 +16,8 @@ builder.Services.AddScoped<IKiosqueService, KiosqueService>();
 builder.Services.AddScoped<IPaysService, PaysService>();
 builder.Services.AddScoped<IResponsableAgence, ResponsableAgenceService>();
 builder.Services.AddScoped<IVilleService, VilleService>();
-// ... autres configurations
 
-// builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5099/") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5099/") });
 
 
 await builder.Build().RunAsync();

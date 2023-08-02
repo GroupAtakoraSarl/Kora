@@ -40,9 +40,9 @@ public class KiosqueService : IKiosqueService
         return _mapper.Map<Kiosque>(kiosque);
     }
 
-    public async Task<bool> DeleteKiosque(int contactKiosque)
+    public async Task<bool> DeleteKiosque(string contactKiosque)
     {
-        var kiosque = await _dbContext.Kiosques.FindAsync(contactKiosque);
+        var kiosque = _dbContext.Kiosques.FirstOrDefault(k=>k.ContactKiosque == contactKiosque);
         if (kiosque is null)
         {
             return false;
