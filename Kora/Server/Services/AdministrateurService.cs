@@ -32,9 +32,9 @@ public class AdministrateurService : IAdministrateurService
 
     public void EnregistrerAdmin(Administrateur administrateur)
     {
-        if (_dbContext.Administrateurs.Any(a => a.Email == administrateur.Email))
+        if (_dbContext.Administrateurs.Any(a => a.Username == administrateur.Username))
         {
-            throw new Exception("Email already exists");
+            throw new Exception("Username already exists");
         }
         
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(administrateur.Password);

@@ -1,16 +1,37 @@
+@layout LoginLayout
+@page "/"
 @page "/login"
 @using Kora.Shared.Models
-@using Kora.Client.Services
 @inject HttpClient HttpClient
 @inject IAdministrateurService AdministrateurService
 @inject NavigationManager Navigation
 
-<div class="container mt-5">
+<style>
+    .bg-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-image: url('argent.jpg');
+        background-size: cover;
+        background-position: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 100vh;
+        min-height: 100%;
+    }
+    .form{
+        margin: 30px;
+        border: none;
+    }
+</style>
+
+<div class="container-fluid bg-image">
     <div class="row justify-content-center">
-        <div class="col-md-4 shadow p-3 mb-5 bg-body-tertiary rounded">
-            <div class="card">
-                <div class="card-header bg-secondary">
-                    <h4 class="card-title text-center text text-white">CONNECTEZ-VOUS !</h4>
+        <div class="col-md-4 shadow p-3 mb-5 bg-body-tertiary rounded" style="margin-top: 100px">
+            <div class="card form">
+                <div class="card-header h-25" style="background-color: #4b3d13">
+                    <h4 class="card-title fw-bold text-center pt-3 text text-white">CONNECTEZ-VOUS !</h4>
                 </div>
                 <div class="card-body">
                     @if (showError)
@@ -29,6 +50,7 @@
                             <input type="password" class="form-control" id="tel" @bind="admin.Password" required>
                         </div>
                         <button type="submit" class="text-center w-100 btn btn-primary">Se connecter</button>
+                            <a style="margin-left: 120px; color: purple" href="/sign" class="sign text-center">Ma première fois</a>
                     </form>
                 </div>
             </div>
@@ -50,7 +72,7 @@
             // Vérifier si la requête a réussi
             if (response)
             {
-                Navigation.NavigateTo("/");
+                Navigation.NavigateTo("/dashboard");
             }
             else
             {
@@ -59,7 +81,7 @@
         }
         catch (Exception ex)
         {
-
+            
         }
     }
 }

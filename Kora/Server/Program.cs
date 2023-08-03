@@ -1,8 +1,6 @@
-using Kora_Transfert.Shared.Services;
 using Kora.Server.Data;
 using Kora.Server.Services;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 
 public class Program
 {
@@ -43,8 +41,8 @@ public class Program
         services.AddScoped<IClientService, ClientService>();
         services.AddScoped<ICompteService, CompteService>();
         services.AddScoped<IKiosqueService, KiosqueService>();
-        services.AddScoped<IPaysService, PaysService>();
         services.AddScoped<IResponsableAgence, ResponsableAgenceService>();
+        services.AddScoped<IPaysService, PaysService>();
         services.AddScoped<IVilleService, VilleService>();
 
         services.AddControllersWithViews();

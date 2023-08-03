@@ -44,5 +44,10 @@ public class AdministrateurService : IAdministrateurService
         return response.IsSuccessStatusCode;
     }
 
+    public async Task<bool> EnregistrerAdmin(string adminUsername, string adminEmail, string adminPassword)
+    {
+        throw new NotImplementedException();
+    }
+
     // Implémentez les autres méthodes en utilisant HttpClient
 }

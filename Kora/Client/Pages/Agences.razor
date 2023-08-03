@@ -1,22 +1,80 @@
 @page "/agences"
-@using Kora.Client.Services
 @using Kora.Shared.Models
+@using Kora.Shared.ModelsDto
+@inject IPaysService PaysService
+@inject IVilleService VilleService
 @inject IAgenceService AgenceService
 @inject IJSRuntime JSRuntime
 
-<h3 class="mb-5">Liste des Agences</h3>
+<h2>Entrez les informations pour creer une <strong>agence</strong></h2>
+<br/>
+<form @onsubmit="">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <label>Pays</label>
+                <select @bind="selectedPays">
+                    @foreach (var lepays in pays)
+                    {
+                        <option>@lepays.NomPays</option>
+                    }
+                </select>
+            </div>
+        
+            <div class="col">
+                <label style="margin-left: 5px">Ville</label>
+                <select @bind="selectedVille">
+                    @foreach (var ville in villes)
+                    {
+                        <option>@ville.NomVille</option>
+                    }
+                </select>
+            </div>
+        
+            <div class="col">
+                <label>Nom de l'Agence</label>
+                <input type="text" @bind="@agence.NomAgence"/>
+            </div>
+        
+        </div>
+    
+        <div class="col">
+            <label> Adresse de l'Agence</label>
+            <input type="text" @bind="@agence.AdresseAgence"/>
+        </div>
+    
+        <div class="col">
+            <label class="col"> Contact Téléphonique</label>
+            <input type="tel" @bind="@agence.ContactAgence"/>
+        </div>
+    
+        <label> Email de l'Agence</label>
+        <input type="email" @bind="@agence.EmailAgence"/>
+        <label> Devise de l'Agence</label>
+        <input class="w-25" type="text" @bind="@agence.DeviseAgence"/>
+        <label> Solde Initial</label>
+        <input type="number" @bind="@agence.SoldeInitial"/>
+        <label> Identifiant du Responsable</label>
+        <input type="text" @bind="@agence.ResponsableAgence"/>
+        <label> Adresse de l'Agence (#RES)</label>
+        <input type="text" @bind="@agence.AdresseAgence"/>
+        
+    </div>
+</form>
+
+<h4 class="mb-5">Liste des Agences</h4>
 <table class="table table-striped table-bordered bg-light">
     <thead>
-    <th>NOM</th>
-    <th>PAYS</th>
-    <th>VILLE</th>
-    <th>ADRESSE</th>
-    <th>CONTACT</th>
-    <th>EMAIL</th>
-    <th>DEVISE</th>
-    <th>SOLDE</th>
-    <th>RESPONSABLE</th>
-    <th>ACTION</th>
+    <th>Nom</th>
+    <th>Pays</th>
+    <th>Ville</th>
+    <th>Adresse</th>
+    <th>Contact</th>
+    <th>Email</th>
+    <th>Devise</th>
+    <th>Solde</th>
+    <th>Responsable</th>
+    <th>Supprimer</th>
     </thead>
     <tbody>
     @foreach (var agence in agences)
@@ -30,20 +88,30 @@
             <td>@agence.EmailAgence</td>
             <td>@agence.DeviseAgence</td>
             <td>@agence.SoldeInitial</td>
-            <td>#res @agence.IdResponsable</td>
+            <td>#RES @agence.ResponsableAgence</td>
             <td><span class="oi oi-trash btn btn-danger" @onclick="() => ShowConfirmation(agence.ContactAgence)"></span></td>
         </tr>
     }
     </tbody>
 </table>
+
+
 @code {
     private List<Agence> agences = new List<Agence>();
-    
+    private List<PaysDto> pays = new List<PaysDto>();
+    private List<Ville> villes = new List<Ville>();
+    private int selectedPays;
+    private int selectedVille;
+    private Agence agence = new Agence();
+    private bool isAdd; 
+
     protected override async Task OnInitializedAsync()
     {
         agences = await AgenceService.GetAllAgence();
+        pays = await PaysService.GetAllPays();
+        villes = await VilleService.GetAllVille();
     }
-    
+
     private async Task ShowConfirmation(string contactAgence)
     {
         var result = await JSRuntime.InvokeAsync<bool>("confirm", $"Voulez-vous vraiment supprimer l'agence avec le contact : {contactAgence} ?");
@@ -53,6 +121,16 @@
             await DeleteAgence(contactAgence);
         }
     }
+
+    private async Task Confirm()
+    {
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Vous êtes de creer une nouvelle Agence ?");
+        if (result)
+        {
+            await AddAgence(agence);
+        }
+    }
+    
     
     private async Task DeleteAgence(string contactAgence)
     {
@@ -65,3 +143,6 @@
     }
 
 }
+
+
+

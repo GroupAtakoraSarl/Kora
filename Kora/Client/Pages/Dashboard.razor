@@ -1,50 +1,106 @@
-@page "/"
-@using Kora.Client.Services
+@page "/dashboard"
 @inject IClientService ClientService
 @inject IAgenceService AgenceService
 @inject ICompteService CompteService
+@inject IKiosqueService KiosqueService
+@inject IAdministrateurService AdministrateurService
 
-<div class="d-flex justify-content-between"> <!-- Ajout de la classe d-flex et justify-content-between -->
-        <div class="container m-5">
-            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem">
+<style>
+    .transition:hover{
+        transform: scale(1.1);
+        transition: transform 0.6s ease;
+        cursor: pointer;
+    }
+    .bgclient{
+        background-color: #95d5e2;
+    }
+    .bgcomptes{
+        background-color: #a9edcc;
+    }
+    .bgagence{
+        background-color: #5c6eb9;
+    }
+    .bgkiosque{
+        background-color: #c94652;
+    }
+    .bgadmin{
+        background-color: #5b646d;
+    }
+
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bgclient shadow p-3 mb-5 bg-body-tertiary rounded transition">
                 <div class="card-header">
-                    <h5 class="card-title text-center"><span class="oi oi-person"></span></h5>
+                    <h5 class="card-title text-center"><span class="oi oi-people"></span></h5>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-text text-center"><strong>@ClientCount</strong> Clients</h1>
+                    <h2 class="card-text text-center"><strong>@ClientCount</strong> Clients</h2>
                 </div>
             </div>
         </div>
-        <div class="container m-5">
-            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem">
+        <div class="col-md-4">
+            <div class="card text-white bgagence shadow p-3 mb-5 bg-body-tertiary rounded transition">
                 <div class="card-header">
                     <h5 class="card-title text-center"><span class="oi oi-vertical-align-top"></span></h5>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-text text-center"><strong>@AgenceCount</strong> Agences</h1>
+                    <h2 class="card-text text-center"><strong>@AgenceCount</strong> Agences</h2>
                 </div>
             </div>
         </div>
-        <div class="container m-5">
-            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem">
+        <div class="col-md-4">
+            <div class="card text-white bgkiosque shadow p-3 mb-5 bg-body-tertiary rounded transition">
+                <div class="card-header">
+                    <h5 class="card-title text-center"><span class="oi oi-vertical-align-top"></span></h5>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-text text-center"><strong>@KiosqueCount</strong> Kiosques</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bgcomptes shadow p-3 mb-5 bg-body-tertiary rounded transition">
                 <div class="card-header">
                     <h5 class="card-title text-center"><span class="oi oi-clipboard"></span></h5>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-text text-center"><strong>@CompteCount</strong> Comptes</h1>
+                    <h2 class="card-text text-center"><strong>@CompteCount</strong> Comptes</h2>
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card text-white bgadmin shadow p-3 mb-5 bg-body-tertiary rounded transition">
+                <div class="card-header">
+                    <h5 class="card-title text-center"><span class="oi oi-person"></span></h5>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-text text-center"><strong>@AdminCount</strong> Administrateurs</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+                
+
 
 
 @code {
     private int ClientCount;
     private int AgenceCount;
     private int CompteCount;
+    private int KiosqueCount;
+    private int AdminCount;
 
     protected override async Task OnInitializedAsync()
     {
+        var admins = await AdministrateurService.GetAllAdmin();
+        AdminCount = admins.Count;
     // Charger le nombre de clients depuis l'API en utilisant le service ClientService
         var clients = await ClientService.GetAllClient();
         ClientCount = clients.Count;
@@ -52,6 +108,8 @@
         AgenceCount = agences.Count;
         var comptes = await CompteService.GetAllComptes();
         CompteCount = comptes.Count;
+        var kiosques = await KiosqueService.GetAllKiosque();
+        KiosqueCount = kiosques.Count;
     }
 }
 

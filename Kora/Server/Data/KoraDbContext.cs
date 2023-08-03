@@ -50,7 +50,4 @@ public class KoraDbContext : DbContext
 
     }
     
-    
-    
-
 }

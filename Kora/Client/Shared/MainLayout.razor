@@ -1,8 +1,5 @@
 ﻿@inherits LayoutComponentBase
-@using Kora.Client.Services
-@using Kora.Shared.Models
-@inject IAdministrateurService AdministrateurService
-@inject NavigationManager Navigation
+
 
 
 <div class="page">
@@ -17,20 +14,8 @@
 </div>
 
 
-
-
 @code {
-    private Administrateur admin = new Administrateur();
-    private bool isConnected = false;
     
-    protected override async Task OnInitializedAsync()
-    {
-    // Vérifier si l'utilisateur est connecté en utilisant votre service d'authentification personnalisé
-        isConnected = await AdministrateurService.ConnecterAdmin(admin.Email, admin.Password);
-        if (!isConnected)
-        {
-    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-            Navigation.NavigateTo("/login");
-        }
-    }
 }
+
+

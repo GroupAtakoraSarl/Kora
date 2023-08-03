@@ -1,6 +1,6 @@
+using Kora.Server.Services;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
-using Kora.Server.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kora.Server.Controllers;
@@ -10,32 +10,26 @@ namespace Kora.Server.Controllers;
 [Route("api/[controller]")]
 public class PaysController : ControllerBase
 {
-    private readonly PaysService _paysService;
+    private readonly IPaysService _paysService;
 
-    public PaysController(PaysService paysService)
+    public PaysController(IPaysService paysService)
     {
         _paysService = paysService;
     }
 
-    [HttpGet]
+    [HttpGet("GetAllPays")]
     public async Task<ActionResult<List<PaysDto>>> GetAllPays()
     {
         var pays = await _paysService.GetAllPays();
         return Ok(pays);
     }
 
-    [HttpGet("{indicatif}")]
-    public async Task<ActionResult<PaysDto>> GetPaysByIndi(int indicatif)
-    {
-        var pays = _paysService.GetPaysByIndi(indicatif);
-        return Ok(pays);
-    }
 
-    [HttpPost("AjouterPays")]
+    [HttpPost("AddPays")]
     public async Task<ActionResult<Pays>> AddPays(Pays pays)
     {
         var newPays = await _paysService.AddPays(pays);
-        return CreatedAtAction(nameof(GetPaysByIndi), new { idPays = newPays.IdPays }, newPays);
+        return Ok(newPays);
     }
 
 }

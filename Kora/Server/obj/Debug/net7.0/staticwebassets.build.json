@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9c+25E41mUTtVcs4+Ag2rAWnv8fPvU5ixWBNDaNbPAs=",
+  "Hash": "B5n2Pp128+SAIMUPmSFS3yyQf647ugjcuDHvNutPjO0=",
   "Source": "Kora.Server",
   "BasePath": "_content/Kora.Server",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "Kora.Client",
       "GetPublishAssetsTargets": "ComputeFilesToPublish;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true;_PublishingBlazorWasmProject=true;Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "BuildProjectReferences=false;ResolveAssemblyReferencesFindRelatedSatellites=true;_PublishingBlazorWasmProject=true",
       "AdditionalPublishPropertiesToRemove": "NoBuild;RuntimeIdentifier;WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],
@@ -7099,6 +7099,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Kora.Client.styles.css"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\wwwroot\\argent.jpg",
+      "SourceId": "Kora.Client",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "argent.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\argent.jpg"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\wwwroot\\css\\app.css",

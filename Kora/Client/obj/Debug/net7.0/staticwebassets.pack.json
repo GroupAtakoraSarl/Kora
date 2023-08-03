@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\Kora.Client.styles.css"
     },
     {
+      "Id": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\wwwroot\\argent.jpg",
+      "PackagePath": "staticwebassets\\argent.jpg"
+    },
+    {
       "Id": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },

@@ -17,10 +17,10 @@ public class KiosqueController : ControllerBase
         _kiosqueService = kiosqueService;
     }
 
-    [HttpGet]
+    [HttpGet("GetAllKiosque")]
     public async Task<ActionResult<List<KiosqueDto>>> GetAllKiosque()
     {
-        var kiosques = _kiosqueService.GetAllKiosque();
+        var kiosques = await _kiosqueService.GetAllKiosque();
         return Ok(kiosques);
     }
 
@@ -32,7 +32,6 @@ public class KiosqueController : ControllerBase
         {
             return NotFound("Aucun Kiosque trouvé avec cette adresse !");
         }
-
         return Ok(kiosques);
     }
 

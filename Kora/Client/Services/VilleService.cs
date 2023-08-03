@@ -12,6 +12,10 @@ namespace Kora.Client.Services
             _httpClient = httpClient;
         }
 
+        public async Task<List<Ville>> GetAllVille()
+        {
+            return await _httpClient.GetFromJsonAsync<List<Ville>>("api/Ville/GetAllVille");
+        }
         public async Task<Ville> AddVille(Ville ville)
         {
             var response = await _httpClient.PostAsJsonAsync("api/Ville/AddVille", ville);
