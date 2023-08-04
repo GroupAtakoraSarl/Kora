@@ -30,23 +30,20 @@ public class KoraDbContext : DbContext
             .HasForeignKey(a => a.IdResponsable)
             .IsRequired();
 
-        modelBuilder.Entity<Ville>()
-            .HasOne(v => v.Pays)
-            .WithMany()
-            .HasForeignKey(v => v.IdPays)
-            .IsRequired();
-
+        modelBuilder.Entity<Pays>()
+            .HasMany(p => p.Villes)
+            .WithOne(v => v.Pays)
+            .HasForeignKey(v => v.IdPays);
+        
         modelBuilder.Entity<Compte>()
             .HasOne(c => c.Client)
             .WithMany()
-            .HasForeignKey(c => c.IdClient)
-            .IsRequired();
+            .HasForeignKey(cp => cp.IdClient);
 
         modelBuilder.Entity<Kiosque>()
             .HasOne(k => k.Agence)
             .WithMany()
-            .HasForeignKey(k=>k.IdAgence)
-            .IsRequired();
+            .HasForeignKey(k => k.IdAgence);
 
     }
     

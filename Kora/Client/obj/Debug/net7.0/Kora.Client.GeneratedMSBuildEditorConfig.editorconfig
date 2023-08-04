@@ -28,6 +28,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Comptes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHRlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Configurations.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uZmlndXJhdGlvbnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

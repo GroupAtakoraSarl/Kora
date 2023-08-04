@@ -1,5 +1,6 @@
 using Kora.Shared.Models;
 using System.Net.Http.Json;
+using Kora.Shared.ModelsDto;
 
 namespace Kora.Client.Services
 {
@@ -12,9 +13,9 @@ namespace Kora.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<Ville>> GetAllVille()
+        public async Task<List<VilleDto>> GetAllVille()
         {
-            return await _httpClient.GetFromJsonAsync<List<Ville>>("api/Ville/GetAllVille");
+            return await _httpClient.GetFromJsonAsync<List<VilleDto>>("api/Ville/GetAllVille");
         }
         public async Task<Ville> AddVille(Ville ville)
         {

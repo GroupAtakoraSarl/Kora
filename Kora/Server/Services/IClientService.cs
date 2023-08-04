@@ -5,7 +5,7 @@ namespace Kora.Server.Services;
 
 public interface IClientService
 {
-    Task<List<ClientDto>> GetAllClient();
+    Task<List<Shared.Models.Client>> GetAllClient();
     Task<ClientDto> GetClientByTel(string tel);
     Task<ClientLog> GetClient(string username, string password);
     void EnregistrerClient(Shared.Models.Client client);

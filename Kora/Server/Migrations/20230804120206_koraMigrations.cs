@@ -5,7 +5,7 @@
 namespace Kora.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class koraMigration : Migration
+    public partial class koraMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -146,7 +146,7 @@ namespace Kora.Server.Migrations
                 name: "Kiosques",
                 columns: table => new
                 {
-                    IDKiosque = table.Column<int>(type: "INTEGER", nullable: false)
+                    IdKiosque = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     NomKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     AdresseKiosque = table.Column<string>(type: "TEXT", nullable: false),
@@ -155,7 +155,7 @@ namespace Kora.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Kiosques", x => x.IDKiosque);
+                    table.PrimaryKey("PK_Kiosques", x => x.IdKiosque);
                     table.ForeignKey(
                         name: "FK_Kiosques_Agences_IdAgence",
                         column: x => x.IdAgence,

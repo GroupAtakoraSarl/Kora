@@ -20,10 +20,10 @@ public class ClientService : IClientService
         _dbContext = dbContext;
     }
     
-    public async Task<List<ClientDto>> GetAllClient()
+    public async Task<List<Shared.Models.Client>> GetAllClient()
     {
         var clients = await _dbContext.Clients.ToListAsync();
-        return _mapper.Map<List<ClientDto>>(clients);
+        return _mapper.Map<List<Shared.Models.Client>>(clients);
     }
 
     public async Task<ClientDto> GetClientByTel(string tel)

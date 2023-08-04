@@ -13,9 +13,9 @@ namespace Kora.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<CompteDto>> GetAllComptes()
+        public async Task<List<Compte>> GetAllComptes()
         {
-            return await _httpClient.GetFromJsonAsync<List<CompteDto>>("api/Compte");
+            return await _httpClient.GetFromJsonAsync<List<Compte>>("api/Compte");
         }
 
         public async Task<CompteDto> GetCompteByNum(string numCompte)
@@ -28,9 +28,9 @@ namespace Kora.Client.Services
             return await _httpClient.GetFromJsonAsync<List<CompteDto>>($"api/Compte/GetCompteByClientId/{clientId}");
         }
 
-        public async Task<Compte> AddCompte(Compte compte, int idClient)
+        public async Task<Compte> AddCompte(Compte compte)
         {
-            var response = await _httpClient.PostAsJsonAsync($"api/Compte/CreerCompte?idClient={idClient}", compte);
+            var response = await _httpClient.PostAsJsonAsync("api/Compte/CreerCompte", compte);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<Compte>();
         }

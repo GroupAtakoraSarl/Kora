@@ -13,39 +13,31 @@ public class CompteService : ICompteService
     
     private List<string> transactions = new List<string>();
 
-
     public CompteService(IMapper mapper, KoraDbContext dbContext)
     {
         _mapper = mapper;
         _dbContext = dbContext;
     }
     
-    public async Task<List<CompteDto>> GetAllComptes()
+    public async Task<List<Compte>> GetAllComptes()
     {
         var comptes = await _dbContext.Comptes.ToListAsync();
-        return _mapper.Map<List<CompteDto>>(comptes);
+        return _mapper.Map<List<Compte>>(comptes);
     }
     
-    public async Task<Compte> AddCompte(Compte compte, int idClient)
+    public async Task<Compte> AddCompte(Compte compte)
     {
-        var existingClient = await _dbContext.Clients.FindAsync(idClient);
-        if (existingClient is null)
-        {
-            return null;
-        }
-
-        compte.Client = existingClient;
-        _dbContext.Comptes.Add(compte);
+        var lecompte = _mapper.Map<Compte>(compte);
+        _dbContext.Comptes.Add(lecompte);
         await _dbContext.SaveChangesAsync();
-
-        return compte;
+        return lecompte;
     }
 
     
     public async Task<CompteDto> GetCompteByNum(string numCompte)
     {
         var compte = await _dbContext.Comptes
-            .Include(c => c.Client)
+            .Include(c => c.IdClient)
             .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
 
         if (compte is null)
@@ -64,7 +56,7 @@ public class CompteService : ICompteService
 
     public async Task<bool> DepotCompte(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
     {
-        var expediteur = _dbContext.Comptes.Include(c => c.Client).FirstOrDefault(c=>c.NumCompte == numCompteExpediteur);
+        var expediteur = _dbContext.Comptes.Include(c => c.IdClient).FirstOrDefault(c=>c.NumCompte == numCompteExpediteur);
         var destinataire = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompteDestinataire);
 
 
@@ -94,7 +86,7 @@ public class CompteService : ICompteService
 
     public async Task<bool> RetraitCompte(string numCompte, decimal solde, string password)
     {
-        var compte = _dbContext.Comptes.Include(c => c.Client).FirstOrDefault(c => c.NumCompte == numCompte);
+        var compte = _dbContext.Comptes.Include(c => c.IdClient).FirstOrDefault(c => c.NumCompte == numCompte);
         if (compte is null)
         {
             return false;

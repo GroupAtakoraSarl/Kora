@@ -19,5 +19,4 @@ builder.Services.AddScoped<IVilleService, VilleService>();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5099/") });
 
-
 await builder.Build().RunAsync();

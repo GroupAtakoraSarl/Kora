@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230729152732_koraMigration")]
-    partial class koraMigration
+    [Migration("20230804120206_koraMigrations")]
+    partial class koraMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace Kora.Server.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0-preview.6.23329.4");
 
-            modelBuilder.Entity("Kora.Models.Administrateur", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Administrateur", b =>
                 {
                     b.Property<int>("IdAdmin")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace Kora.Server.Migrations
                     b.ToTable("Administrateurs");
                 });
 
-            modelBuilder.Entity("Kora.Models.Agence", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Agence", b =>
                 {
                     b.Property<int>("IdAgence")
                         .ValueGeneratedOnAdd()
@@ -90,7 +90,7 @@ namespace Kora.Server.Migrations
                     b.ToTable("Agences");
                 });
 
-            modelBuilder.Entity("Kora.Models.Client", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Client", b =>
                 {
                     b.Property<int>("IdClient")
                         .ValueGeneratedOnAdd()
@@ -113,7 +113,7 @@ namespace Kora.Server.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("Kora.Models.Compte", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Compte", b =>
                 {
                     b.Property<int>("IdCompte")
                         .ValueGeneratedOnAdd()
@@ -136,9 +136,9 @@ namespace Kora.Server.Migrations
                     b.ToTable("Comptes");
                 });
 
-            modelBuilder.Entity("Kora.Models.Kiosque", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Kiosque", b =>
                 {
-                    b.Property<int?>("IDKiosque")
+                    b.Property<int>("IdKiosque")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -157,14 +157,14 @@ namespace Kora.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("IDKiosque");
+                    b.HasKey("IdKiosque");
 
                     b.HasIndex("IdAgence");
 
                     b.ToTable("Kiosques");
                 });
 
-            modelBuilder.Entity("Kora.Models.Pays", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Pays", b =>
                 {
                     b.Property<int?>("IdPays")
                         .ValueGeneratedOnAdd()
@@ -190,7 +190,7 @@ namespace Kora.Server.Migrations
                     b.ToTable("Pays");
                 });
 
-            modelBuilder.Entity("Kora.Models.ResponsableAgence", b =>
+            modelBuilder.Entity("Kora.Shared.Models.ResponsableAgence", b =>
                 {
                     b.Property<int>("IdResponsable")
                         .ValueGeneratedOnAdd()
@@ -224,9 +224,9 @@ namespace Kora.Server.Migrations
                     b.ToTable("ResponsableAgences");
                 });
 
-            modelBuilder.Entity("Kora.Models.Ville", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Ville", b =>
                 {
-                    b.Property<int?>("IdVille")
+                    b.Property<int>("IdVille")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -244,9 +244,9 @@ namespace Kora.Server.Migrations
                     b.ToTable("Villes");
                 });
 
-            modelBuilder.Entity("Kora.Models.Agence", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Agence", b =>
                 {
-                    b.HasOne("Kora.Models.ResponsableAgence", "ResponsableAgence")
+                    b.HasOne("Kora.Shared.Models.ResponsableAgence", "ResponsableAgence")
                         .WithMany()
                         .HasForeignKey("IdResponsable")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -255,9 +255,9 @@ namespace Kora.Server.Migrations
                     b.Navigation("ResponsableAgence");
                 });
 
-            modelBuilder.Entity("Kora.Models.Compte", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Compte", b =>
                 {
-                    b.HasOne("Kora.Models.Client", "Client")
+                    b.HasOne("Kora.Shared.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("IdClient")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -266,9 +266,9 @@ namespace Kora.Server.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("Kora.Models.Kiosque", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Kiosque", b =>
                 {
-                    b.HasOne("Kora.Models.Agence", "Agence")
+                    b.HasOne("Kora.Shared.Models.Agence", "Agence")
                         .WithMany()
                         .HasForeignKey("IdAgence")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -277,15 +277,20 @@ namespace Kora.Server.Migrations
                     b.Navigation("Agence");
                 });
 
-            modelBuilder.Entity("Kora.Models.Ville", b =>
+            modelBuilder.Entity("Kora.Shared.Models.Ville", b =>
                 {
-                    b.HasOne("Kora.Models.Pays", "Pays")
-                        .WithMany()
+                    b.HasOne("Kora.Shared.Models.Pays", "Pays")
+                        .WithMany("Villes")
                         .HasForeignKey("IdPays")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Pays");
+                });
+
+            modelBuilder.Entity("Kora.Shared.Models.Pays", b =>
+                {
+                    b.Navigation("Villes");
                 });
 #pragma warning restore 612, 618
         }

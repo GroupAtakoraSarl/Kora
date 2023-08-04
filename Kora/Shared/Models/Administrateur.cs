@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Kora.Shared.Models;
 
@@ -8,6 +9,7 @@ public class Administrateur
 
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [JsonIgnore]
     public int IdAdmin { get; set; }
 
     [Required]

@@ -14,9 +14,9 @@ public class ClientService : IClientService
         _httpClient = httpClient;
     }
 
-    public async Task<List<ClientDto>> GetAllClient()
+    public async Task<List<Kora.Shared.Models.Client>> GetAllClient()
     {
-        return await _httpClient.GetFromJsonAsync<List<ClientDto>>("api/Client/");
+        return await _httpClient.GetFromJsonAsync<List<Kora.Shared.Models.Client>>("api/Client/");
     }
 
     public async Task<ClientDto> GetClientByTel(string tel)

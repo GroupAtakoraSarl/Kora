@@ -29,7 +29,7 @@ public class CompteController : ControllerBase
     }
 
     [HttpGet("{numCompte}")]
-    public ActionResult<CompteDto> GetAuteurByNum(string numCompte)
+    public ActionResult<CompteDto> GetCompteByNum(string numCompte)
     {
         var compte = _compteService.GetCompteByNum(numCompte);
         if (compte is null)
@@ -41,22 +41,18 @@ public class CompteController : ControllerBase
     
 
     [HttpPost("CreerCompte")]
-    public async Task<ActionResult<CompteDto>> AddCompte(Compte compte, int  idClient)
+    public async Task<ActionResult<Compte>> AddCompte(Compte compte)
     {
-        var newcompte = await  _compteService.AddCompte(compte, idClient);
-        if (newcompte is null)
+        try
         {
-            return NotFound("Client introuvable !");
+            var newCompte = await _compteService.AddCompte(compte);
+            return Ok(newCompte);
         }
-
-        var compteDto = new CompteDto
+        catch (Exception e)
         {
-            NumCompte = newcompte.NumCompte,
-            Solde = newcompte.Solde,
-            IdClient = idClient
-        };
-        
-        return CreatedAtAction(nameof(GetAuteurByNum), new { numCompte = newcompte.NumCompte }, newcompte);
+            Console.WriteLine(e);
+            throw;
+        }
     }
     
     
@@ -99,21 +95,6 @@ public class CompteController : ControllerBase
         return msg;
     }
     
-    [HttpGet("GetCompteByClientId/{IdClient}")]
-    public async Task<ActionResult<List<CompteDto>>> GetCompteByClientId(int idClient)
-    {
-        var comptes = await _dbContext.Comptes
-            .Where(c => c.IdClient == idClient)
-            .Select(c => new CompteDto
-            {
-                // Assigner les propriétés du compte DTO à partir de l'entité Compte
-                IdCompte = c.IdCompte,
-                // Autres propriétés...
-            })
-            .ToListAsync();
-
-        return comptes;
-    }
 
     [HttpDelete("{numCompte}")]
     public async Task<ActionResult<string>> DeleteCompte(string numCompte)

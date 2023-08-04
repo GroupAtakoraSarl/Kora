@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Kora.Shared.Models;
 
@@ -8,6 +9,7 @@ public class Agence
 
     [Key] 
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [JsonIgnore]
     public int IdAgence { get; set; }
     [Required] 
     public string Pays { get; set; }
@@ -26,9 +28,9 @@ public class Agence
     [Required] 
     public double SoldeInitial { get; set; }
 
+    [JsonIgnore]
     public int IdResponsable { get; set; }
     public ResponsableAgence ResponsableAgence { get; set; }
-    
 
     
 
