@@ -13,9 +13,9 @@ namespace Kora.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<ResponsableAgenceDto>> GetAllResponsable()
+        public async Task<List<ResponsableAgence>> GetAllResponsable()
         {
-            return await _httpClient.GetFromJsonAsync<List<ResponsableAgenceDto>>("api/ResponsableAgence");
+            return await _httpClient.GetFromJsonAsync<List<ResponsableAgence>>("api/ResponsableAgence");
         }
 
         public async Task<ResponsableAgenceDto> GetResponsableByTel(string tel)

@@ -40,32 +40,20 @@
             <input required="required" class="col m-2" type="email" @bind="@agence.EmailAgence"/>
             <input required="required" class="col m-2" type="text" @bind="@agence.DeviseAgence"/>
             <input required="required" class="col m-2" type="number" @bind="@agence.SoldeInitial"/>
-            <input required="required" class="col m-2" type="text" @bind="@agence.ResponsableAgence.NomResponsable"/>
+            <select class="col m-2" @bind="selectedResponsableId">
+                @foreach (var resp in responsables)
+                {
+                    <option value="@resp.IdResponsable">@resp.NomResponsable</option>
+                }
+            </select>
         </div>
-
         <div class="row">
-            <label class="col m-2"> Prénoms du Responsable</label>
-            <label class="col m-2"> Sexe du Responsable</label>
-            <label class="col m-2"> Age du Responsale</label>
-            <label class="col m-2">Téléphone du Responsable</label>
-        </div>
-
-        <div class="row">
-            <input required="required" class="col m-2" type="text" @bind="@agence.ResponsableAgence.PrenomResponsable"/>
-            <input required="required" class="col m-2" type="text" @bind="@agence.ResponsableAgence.SexeResponsable"/>
-            <input required="required" class="col m-2" type="number" @bind="@agence.ResponsableAgence.AgeResponsable"/>
-            <input required="required" class="col m-2" type="number" @bind="@agence.ResponsableAgence.Tel"/>
-        </div>
-
-        <div class="row">
-            <label class="col m-2">Statut du Responsable</label>
-            <input class="col m-2" type="tel" placeholder="exple: 22890706165" @bind="@agence.ResponsableAgence.StatutResponsable" />
-            <input class="col m-2" type="number" placeholder="Id du Responsable" @bind="@agence.IdResponsable"/>
-            <button type="button" class="col m-2 btn btn-success" @onclick="ConfirmAdd">CREER</button>
+            <button type="button" class="col w-25 m-2 btn btn-success" @onclick="ConfirmAdd">CREER</button>
         </div>
     </div>
-
 </form>
+
+<br/>
 
 <h4 class="mb-4 mt-5">Liste des Agences</h4>
 <table class="table table-striped table-bordered bg-light">
@@ -93,7 +81,7 @@
             <td>@agence.EmailAgence</td>
             <td>@agence.DeviseAgence</td>
             <td>@agence.SoldeInitial</td>
-            <td>#RES @agence.IdResponsable</td>
+            <td>#RES @agence.ResponsableAgence</td>
             <td><span class="oi oi-trash btn btn-danger" @onclick="() => ShowConfirmation(agence.ContactAgence)"></span></td>
         </tr>
     }
@@ -102,11 +90,11 @@
 
 @code {
     private List<Agence> agences = new List<Agence>();
-    private List<ResponsableAgenceDto> responsables = new List<ResponsableAgenceDto>();
-    private int selectedPays;
-    private int selectedVille;
+    private List<ResponsableAgence> responsables = new List<ResponsableAgence>();
+    private int selectedResponsableId;
+    
     private Agence agence = new Agence();
-
+    
     protected override async Task OnInitializedAsync()
     {
         agences = await AgenceService.GetAllAgence();
@@ -126,16 +114,22 @@
     private async Task ConfirmAdd()
     {
         var result = await JSRuntime.InvokeAsync<bool>("confirm", "Vous voulez-creez cette ajoute ?");
+        
         if (result)
         {
-            await AgenceService.AddAgence(agence);
-            if (!string.IsNullOrEmpty(agence.NomAgence) && !string.IsNullOrEmpty(agence.AdresseAgence) && !string.IsNullOrEmpty(agence.ContactAgence))
+            if (selectedResponsableId != 0)
             {
+                var selectedResponsable = responsables.FirstOrDefault(r => r.IdResponsable == selectedResponsableId);
+                if (selectedResponsable != null)
+                {
+                    agence.ResponsableAgence = selectedResponsable;
+                }
+
                 var newAgence = await AgenceService.AddAgence(agence);
+
                 if (newAgence != null)
                 {
-                // Mettre à jour la liste des agences après l'ajout réussi
-
+                    agences.Add(newAgence);
                 }
             }
         }

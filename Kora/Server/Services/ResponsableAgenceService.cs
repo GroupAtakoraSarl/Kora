@@ -19,10 +19,10 @@ public class ResponsableAgenceService : IResponsableAgence
         _mapper = mapper;
     }
     
-    public async Task<List<ResponsableAgenceDto>> GetAllResponsable()
+    public async Task<List<ResponsableAgence>> GetAllResponsable()
     {
         var responsables = await _dbContext.ResponsableAgences.ToListAsync();
-        return _mapper.Map<List<ResponsableAgenceDto>>(responsables);
+        return _mapper.Map<List<ResponsableAgence>>(responsables);
     }
 
     public async Task<ResponsableAgenceDto> GetResponsableByTel(string tel)

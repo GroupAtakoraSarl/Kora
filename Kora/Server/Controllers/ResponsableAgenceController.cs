@@ -18,7 +18,7 @@ public class ResponsableAgenceController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ResponsableAgenceDto>>> GetAllResponsable()
+    public async Task<ActionResult<List<ResponsableAgence>>> GetAllResponsable()
     {
         var resp = await _responsableAgence.GetAllResponsable();
         return Ok(resp);
