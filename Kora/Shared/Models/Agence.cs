@@ -31,6 +31,6 @@ public class Agence
     public int IdResponsable { get; set; }
     public ResponsableAgence ResponsableAgence { get; set; }
     
-    public ICollection<Agence> Agences { get; set; }
+    public ICollection<Kiosque> Kiosques { get; set; }
     
 }

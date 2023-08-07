@@ -5,7 +5,7 @@
 namespace Kora.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class koraMigrations : Migration
+    public partial class KoraMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -129,17 +129,11 @@ namespace Kora.Server.Migrations
                     EmailAgence = table.Column<string>(type: "TEXT", nullable: false),
                     DeviseAgence = table.Column<string>(type: "TEXT", nullable: false),
                     SoldeInitial = table.Column<double>(type: "REAL", nullable: false),
-                    IdResponsable = table.Column<int>(type: "INTEGER", nullable: false),
-                    AgenceIdAgence = table.Column<int>(type: "INTEGER", nullable: true)
+                    IdResponsable = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Agences", x => x.IdAgence);
-                    table.ForeignKey(
-                        name: "FK_Agences_Agences_AgenceIdAgence",
-                        column: x => x.AgenceIdAgence,
-                        principalTable: "Agences",
-                        principalColumn: "IdAgence");
                     table.ForeignKey(
                         name: "FK_Agences_ResponsableAgences_IdResponsable",
                         column: x => x.IdResponsable,
@@ -157,11 +151,17 @@ namespace Kora.Server.Migrations
                     NomKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     AdresseKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     ContactKiosque = table.Column<string>(type: "TEXT", nullable: false),
-                    IdAgence = table.Column<int>(type: "INTEGER", nullable: false)
+                    IdAgence = table.Column<int>(type: "INTEGER", nullable: false),
+                    AgenceIdAgence = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Kiosques", x => x.IdKiosque);
+                    table.ForeignKey(
+                        name: "FK_Kiosques_Agences_AgenceIdAgence",
+                        column: x => x.AgenceIdAgence,
+                        principalTable: "Agences",
+                        principalColumn: "IdAgence");
                     table.ForeignKey(
                         name: "FK_Kiosques_Agences_IdAgence",
                         column: x => x.IdAgence,
@@ -169,11 +169,6 @@ namespace Kora.Server.Migrations
                         principalColumn: "IdAgence",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Agences_AgenceIdAgence",
-                table: "Agences",
-                column: "AgenceIdAgence");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Agences_IdResponsable",
@@ -184,6 +179,11 @@ namespace Kora.Server.Migrations
                 name: "IX_Comptes_IdClient",
                 table: "Comptes",
                 column: "IdClient");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Kiosques_AgenceIdAgence",
+                table: "Kiosques",
+                column: "AgenceIdAgence");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Kiosques_IdAgence",

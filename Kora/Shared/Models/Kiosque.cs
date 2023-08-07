@@ -14,7 +14,6 @@ public class Kiosque
     public string AdresseKiosque { get; set; }
     public string ContactKiosque { get; set; }
 
-    [JsonIgnore]
     public int IdAgence { get; set; }
     public Agence Agence { get; set; }
     

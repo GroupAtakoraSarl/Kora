@@ -50,9 +50,6 @@ namespace Kora.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("AgenceIdAgence")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("ContactAgence")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -84,8 +81,6 @@ namespace Kora.Server.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("IdAgence");
-
-                    b.HasIndex("AgenceIdAgence");
 
                     b.HasIndex("IdResponsable");
 
@@ -148,6 +143,9 @@ namespace Kora.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("AgenceIdAgence")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("ContactKiosque")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -160,6 +158,8 @@ namespace Kora.Server.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("IdKiosque");
+
+                    b.HasIndex("AgenceIdAgence");
 
                     b.HasIndex("IdAgence");
 
@@ -248,10 +248,6 @@ namespace Kora.Server.Migrations
 
             modelBuilder.Entity("Kora.Shared.Models.Agence", b =>
                 {
-                    b.HasOne("Kora.Shared.Models.Agence", null)
-                        .WithMany("Agences")
-                        .HasForeignKey("AgenceIdAgence");
-
                     b.HasOne("Kora.Shared.Models.ResponsableAgence", "ResponsableAgence")
                         .WithMany()
                         .HasForeignKey("IdResponsable")
@@ -274,6 +270,10 @@ namespace Kora.Server.Migrations
 
             modelBuilder.Entity("Kora.Shared.Models.Kiosque", b =>
                 {
+                    b.HasOne("Kora.Shared.Models.Agence", null)
+                        .WithMany("Kiosques")
+                        .HasForeignKey("AgenceIdAgence");
+
                     b.HasOne("Kora.Shared.Models.Agence", "Agence")
                         .WithMany()
                         .HasForeignKey("IdAgence")
@@ -296,7 +296,7 @@ namespace Kora.Server.Migrations
 
             modelBuilder.Entity("Kora.Shared.Models.Agence", b =>
                 {
-                    b.Navigation("Agences");
+                    b.Navigation("Kiosques");
                 });
 
             modelBuilder.Entity("Kora.Shared.Models.Client", b =>

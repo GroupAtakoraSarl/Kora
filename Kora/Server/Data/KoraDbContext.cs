@@ -27,8 +27,7 @@ public class KoraDbContext : DbContext
         modelBuilder.Entity<Agence>()
             .HasOne(a => a.ResponsableAgence)
             .WithMany()
-            .HasForeignKey(a => a.IdResponsable)
-            .IsRequired();
+            .HasForeignKey(a => a.IdResponsable);
 
         modelBuilder.Entity<Pays>()
             .HasMany(p => p.Villes)
@@ -38,13 +37,12 @@ public class KoraDbContext : DbContext
         modelBuilder.Entity<Compte>()
             .HasOne(c => c.Client)
             .WithMany(c=>c.Comptes)
-            .HasForeignKey(cp => cp.IdClient);
-
+            .HasForeignKey(c => c.IdClient);
+        
         modelBuilder.Entity<Kiosque>()
             .HasOne(k => k.Agence)
             .WithMany()
             .HasForeignKey(k => k.IdAgence);
-
     }
-    
 }
+
