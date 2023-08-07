@@ -44,15 +44,28 @@ public class ClientController : ControllerBase
     {
         try
         {
-            var isConnected = _clientService.ConnecterClient(client.Username, client.Password);
-            if (!isConnected)
+            int tentative = 3;
+
+            while (tentative > 0)
             {
-                return BadRequest("Nom d'utilisateur ou mot de passe incorrect");
+                var isConnected = _clientService.ConnecterClient(client.Tel, client.Password);
+
+                if (isConnected)
+                {
+                    return Ok("Connexion réussie");
+                }
+                else
+                {
+                    tentative--;
+                    if (tentative == 0)
+                    {
+                        return BadRequest(
+                            "3 tentatives échouées. Veuillez contacter l'admin au '22222222' pour changer votre Mot de Passe ");
+                    }
+                }
             }
-            else
-            {
-                return Ok("Connexion réussie");
-            }
+            
+            return BadRequest("Nom d'utilisateur ou mot de passe incorrect");
         }
         catch (Exception e)
         {

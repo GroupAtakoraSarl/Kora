@@ -36,7 +36,7 @@
                     @if (showError)
                     {
                         <div class="alert alert-danger" role="alert">
-                            <p class="text-center">Veuillez vérifiez les informations fournies</p>
+                            <p class="text-center">Mot de Passe déjà utilisé</p>
                         </div>
                     }
                     <form @onsubmit="HandleSubmit">
@@ -53,7 +53,7 @@
                             <input type="password" class="form-control" id="tel" @bind="admin.Password" required>
                         </div>
                         <button type="submit" class="text-center w-100 btn btn-primary">M'Enregistrer</button>
-                        <a href="/login" class="text-center">Se connecter</a>
+                        <a style="text-align: center" href="/login" class="text-center">Se connecter</a>
                     </form>
                 </div>
             </div>
@@ -66,26 +66,19 @@
     private Administrateur admin = new Administrateur();
     private bool showError = false;
 
-    private async Task HandleSubmit()
+    private void  HandleSubmit()
     {
-        try
-        {
-            // Envoyer le client enregistré à l'API via une requête POST
-            // var response = await AdministrateurService.EnregistrerAdmin(admin);
-
+            var response = AdministrateurService.EnregistrerAdmin(admin);
+        
             // Vérifier si la requête a réussi
             // if (response)
             // {
-            //     Navigation.NavigateTo("/dashboard");
+            //     Navigation.NavigateTo("/login");
             // }
             // else
             // {
             //     showError = true;
             // }
-        }
-        catch (Exception ex)
-        {
-            
-        }
+        
     }
 }

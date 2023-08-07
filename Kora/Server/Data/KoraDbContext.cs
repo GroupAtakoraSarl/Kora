@@ -37,7 +37,7 @@ public class KoraDbContext : DbContext
         
         modelBuilder.Entity<Compte>()
             .HasOne(c => c.Client)
-            .WithMany()
+            .WithMany(c=>c.Comptes)
             .HasForeignKey(cp => cp.IdClient);
 
         modelBuilder.Entity<Kiosque>()

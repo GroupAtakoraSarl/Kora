@@ -19,7 +19,7 @@ public class Pays
     
     [Required]
     public string DevisePays { get; set; }
-
+    
     public ICollection<Ville> Villes { get; set; }
 
 

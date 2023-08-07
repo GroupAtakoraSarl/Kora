@@ -129,11 +129,17 @@ namespace Kora.Server.Migrations
                     EmailAgence = table.Column<string>(type: "TEXT", nullable: false),
                     DeviseAgence = table.Column<string>(type: "TEXT", nullable: false),
                     SoldeInitial = table.Column<double>(type: "REAL", nullable: false),
-                    IdResponsable = table.Column<int>(type: "INTEGER", nullable: false)
+                    IdResponsable = table.Column<int>(type: "INTEGER", nullable: false),
+                    AgenceIdAgence = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Agences", x => x.IdAgence);
+                    table.ForeignKey(
+                        name: "FK_Agences_Agences_AgenceIdAgence",
+                        column: x => x.AgenceIdAgence,
+                        principalTable: "Agences",
+                        principalColumn: "IdAgence");
                     table.ForeignKey(
                         name: "FK_Agences_ResponsableAgences_IdResponsable",
                         column: x => x.IdResponsable,
@@ -163,6 +169,11 @@ namespace Kora.Server.Migrations
                         principalColumn: "IdAgence",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agences_AgenceIdAgence",
+                table: "Agences",
+                column: "AgenceIdAgence");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Agences_IdResponsable",

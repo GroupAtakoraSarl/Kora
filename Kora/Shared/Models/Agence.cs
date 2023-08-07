@@ -28,10 +28,9 @@ public class Agence
     [Required] 
     public double SoldeInitial { get; set; }
 
-    [JsonIgnore]
     public int IdResponsable { get; set; }
     public ResponsableAgence ResponsableAgence { get; set; }
-
     
-
+    public ICollection<Agence> Agences { get; set; }
+    
 }

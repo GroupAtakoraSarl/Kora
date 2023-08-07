@@ -50,6 +50,9 @@ namespace Kora.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("AgenceIdAgence")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("ContactAgence")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -81,6 +84,8 @@ namespace Kora.Server.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("IdAgence");
+
+                    b.HasIndex("AgenceIdAgence");
 
                     b.HasIndex("IdResponsable");
 
@@ -243,6 +248,10 @@ namespace Kora.Server.Migrations
 
             modelBuilder.Entity("Kora.Shared.Models.Agence", b =>
                 {
+                    b.HasOne("Kora.Shared.Models.Agence", null)
+                        .WithMany("Agences")
+                        .HasForeignKey("AgenceIdAgence");
+
                     b.HasOne("Kora.Shared.Models.ResponsableAgence", "ResponsableAgence")
                         .WithMany()
                         .HasForeignKey("IdResponsable")
@@ -255,7 +264,7 @@ namespace Kora.Server.Migrations
             modelBuilder.Entity("Kora.Shared.Models.Compte", b =>
                 {
                     b.HasOne("Kora.Shared.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("Comptes")
                         .HasForeignKey("IdClient")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -283,6 +292,16 @@ namespace Kora.Server.Migrations
                         .IsRequired();
 
                     b.Navigation("Pays");
+                });
+
+            modelBuilder.Entity("Kora.Shared.Models.Agence", b =>
+                {
+                    b.Navigation("Agences");
+                });
+
+            modelBuilder.Entity("Kora.Shared.Models.Client", b =>
+                {
+                    b.Navigation("Comptes");
                 });
 
             modelBuilder.Entity("Kora.Shared.Models.Pays", b =>

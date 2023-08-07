@@ -50,7 +50,6 @@ public class AdministrateurController : ControllerBase
         }
     }
     
-    
     [HttpPost("ConnecterAdmin")]
     public IActionResult ConnecterAdmin(AdministrateurLog administrateur)
     {

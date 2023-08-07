@@ -16,5 +16,7 @@ public class Client
     public string Tel { get; set; }
     [Required]
     public string Password { get; set; }
+
+    public ICollection<Compte> Comptes { get; set; }
     
 }

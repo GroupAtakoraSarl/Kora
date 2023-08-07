@@ -30,11 +30,11 @@ public class AdministrateurService : IAdministrateurService
 
     }
 
-    public void EnregistrerAdmin(Administrateur administrateur)
+    public bool EnregistrerAdmin(Administrateur administrateur)
     {
         if (_dbContext.Administrateurs.Any(a => a.Username == administrateur.Username))
         {
-            throw new Exception("Username already exists");
+            return false;
         }
         
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(administrateur.Password);
@@ -43,7 +43,10 @@ public class AdministrateurService : IAdministrateurService
         administrateur.Password = hashedPassword;
         _dbContext.Administrateurs.Add(ladmin);
         _dbContext.SaveChangesAsync();
+        
+        return true;
     }
+
 
     public bool ConnecterAdmin(string email, string password)
     {

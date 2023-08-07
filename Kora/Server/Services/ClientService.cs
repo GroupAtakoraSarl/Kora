@@ -54,9 +54,9 @@ public class ClientService : IClientService
     }
 
     
-    public bool ConnecterClient(string username, string password)
+    public bool ConnecterClient(string tel, string password)
     {
-        var leclient = _dbContext.Clients.FirstOrDefault(c => c.Username == username);
+        var leclient = _dbContext.Clients.FirstOrDefault(c => c.Tel == tel);
         if (leclient is null)
         {
             return false;
