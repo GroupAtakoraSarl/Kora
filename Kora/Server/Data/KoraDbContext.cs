@@ -38,13 +38,19 @@ public class KoraDbContext : DbContext
         //
         // modelBuilder.Entity<Compte>()
         //     .HasOne(c => c.Client)
-        //     .WithMany(c=>c.Comptes)
+        //     .WithMany(c => c.Comptes)
         //     .HasForeignKey(c => c.IdClient);
+        //
+        // modelBuilder.Entity<Kora.Shared.Models.Transaction>()
+        //     .HasOne(t => t.Compte)
+        //     .WithMany(c => c.Transactions)
+        //     .HasForeignKey(t => t.IdCompte);
         //
         // modelBuilder.Entity<Kiosque>()
         //     .HasOne(k => k.Agence)
-        //     .WithMany(a=>a.Kiosques)
+        //     .WithMany(a => a.Kiosques)
         //     .HasForeignKey(k => k.IdAgence);
+
     }
 }
 

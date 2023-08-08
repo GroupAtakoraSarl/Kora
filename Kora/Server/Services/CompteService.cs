@@ -79,7 +79,7 @@ public class CompteService : ICompteService
         var depotTransaction = new Transaction
         {
             Date = DateTime.Now,
-            Type = Transaction.TransactionType.Dépôt,
+            Type = TransactionType.Dépôt,
             Solde = solde
         };
         
@@ -114,7 +114,7 @@ public class CompteService : ICompteService
         var retraitTransaction = new Transaction
         {
             Date = DateTime.Now,
-            Type = Transaction.TransactionType.Retrait,
+            Type = TransactionType.Retrait,
             Solde = solde
         };
         
@@ -139,7 +139,7 @@ public class CompteService : ICompteService
         var transfertTransaction = new Transaction
         {
             Date = DateTime.Now,
-            Type = Transaction.TransactionType.Transfert,
+            Type = TransactionType.Transfert,
             Solde = solde
         };
         

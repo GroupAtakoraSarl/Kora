@@ -16,12 +16,5 @@ public class Transaction
     public int IdCompte { get; set; }
     public Compte Compte { get; set; }
     
-    
-    
-    public enum TransactionType
-    {
-        Dépôt,
-        Retrait,
-        Transfert
-    }
 }
+
