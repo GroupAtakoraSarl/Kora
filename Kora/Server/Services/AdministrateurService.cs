@@ -59,15 +59,7 @@ public class AdministrateurService : IAdministrateurService
         // Vérifier que le mot de passe fourni correspond au hachage de mot de passe stocké
         return BCrypt.Net.BCrypt.Verify(password, ladmin.Password);
     }
-
-    public async Task<Administrateur> AddAdmin(Administrateur administrateur)
-    {
-        var ladmin = _mapper.Map<Administrateur>(administrateur);
-        _dbContext.Administrateurs.Add(ladmin);
-        await _dbContext.SaveChangesAsync();
-        return _mapper.Map<Administrateur>(ladmin);
-    }
-
+    
     public async Task<bool> DeleteAdmin(string email)
     {
         var admin = await _dbContext.Administrateurs.FindAsync(email);

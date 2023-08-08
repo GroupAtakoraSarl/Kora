@@ -28,7 +28,4 @@ public class ResponsableAgence
     public string StatutResponsable { get; set; }
     
 
-
-    
-
 }

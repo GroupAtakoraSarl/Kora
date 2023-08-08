@@ -11,4 +11,5 @@ public class AgenceDto
     public string EmailAgence { get; set; }
     public string DeviseAgence { get; set; }
     public double SoldeInitial { get; set; }
+    public int IdResponsable { get; set; }
 }

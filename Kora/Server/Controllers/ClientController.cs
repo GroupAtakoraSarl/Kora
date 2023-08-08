@@ -1,3 +1,4 @@
+using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
 using Kora.Server.Services;
@@ -10,9 +11,11 @@ namespace Kora.Server.Controllers;
 public class ClientController : ControllerBase
 {
     private readonly IClientService _clientService;
+    private readonly IMapper _mapper;
 
-    public ClientController(IClientService clientService)
+    public ClientController(IClientService clientService, IMapper mapper)
     {
+        _mapper = mapper;
         _clientService = clientService;
     }
 
@@ -20,14 +23,17 @@ public class ClientController : ControllerBase
     public async Task<ActionResult<List<ClientDto>>> GetAllClient()
     {
         var clients = await _clientService.GetAllClient();
-        return Ok(clients);
+        var clientDtos = _mapper.Map<List<ClientDto>>(clients); // Utilisez le mappage ici pour convertir les entités Client en Dto
+        return Ok(clientDtos);
     }
 
+    
     [HttpPost("Enregistrer")]
     public IActionResult EnregistrerClient(Shared.Models.Client client)
     {
         try
         {
+            var leclient = _mapper.Map<Shared.Models.Client>(client);
             _clientService.EnregistrerClient(client);
             return Ok("Enregistrement réussi");
         }
@@ -71,6 +77,28 @@ public class ClientController : ControllerBase
         {
             var Message = "Une erreur est survenue";
             return Ok(Message);
+        }
+    }
+    
+    [HttpPut("{tel}")]
+    public async Task<IActionResult> UpdateClient(string tel, ClientDto clientDto)
+    {
+        var clientEntity = await _clientService.GetClientByTel(tel);
+        if (clientEntity == null)
+        {
+            return NotFound();
+        }
+
+        _mapper.Map(clientDto, clientEntity);
+
+        var success = await _clientService.UpateClient(tel, clientEntity);
+        if (success)
+        {
+            return Ok("Client mis à jour avec succès");
+        }
+        else
+        {
+            return BadRequest("Échec de la mise à jour du client");
         }
     }
  

@@ -28,6 +28,7 @@ public class Agence
     [Required] 
     public double SoldeInitial { get; set; }
 
+    [ForeignKey("ResponsableAgence")]
     public int IdResponsable { get; set; }
     public ResponsableAgence ResponsableAgence { get; set; }
     

@@ -5,7 +5,8 @@
 @inject IClientService ClientService
 
 
-<h4>Entrez des infos pour creer un nouveau <strong>comptes</strong></h4>
+<h4>Entrez des infos pour creer un nouveau <strong>compte</strong></h4>
+<br/>
 
 <div class="container">
     <div class="row">
@@ -85,14 +86,7 @@
                     //compte.Client = selectedClient;
                 }
             }
-
-            // var compteDto = new CompteDto
-            // {
-            //     NumCompte = compte.NumCompte,
-            //     Solde = compte.Solde,
-            //     IdClient = compte.Client.IdClient
-            // };
-
+            
             var newCompte = await CompteService.AddCompte(compte);
             
             if (newCompte != null)

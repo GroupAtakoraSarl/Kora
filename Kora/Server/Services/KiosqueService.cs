@@ -17,27 +17,26 @@ public class KiosqueService : IKiosqueService
         _dbContext = dbContext;
     }
     
-    public async Task<List<KiosqueDto>> GetAllKiosque()
+    public async Task<List<Kiosque>> GetAllKiosque()
     {
         var kiosques = await _dbContext.Kiosques.ToListAsync();
-        return _mapper.Map<List<KiosqueDto>>(kiosques);
+        return kiosques;
     }
 
-    public async Task<List<KiosqueDto>> GetKiosqueByAdresse(string adresseKiosque)
+    public async Task<List<Kiosque>> GetKiosqueByAdresse(string adresseKiosque)
     {
         var kiosque = await _dbContext.Kiosques
             .Where(k => k.AdresseKiosque == adresseKiosque)
             .ToListAsync();
-        
-        return _mapper.Map<List<KiosqueDto>>(kiosque);
+
+        return kiosque;
     }
     
     public async Task<Kiosque> AddKiosque(Kiosque kiosque)
     {
-        var lekiosque = _mapper.Map<Kiosque>(kiosque);
-        _dbContext.Kiosques.Add(lekiosque);
+        var lekiosque = _dbContext.Kiosques.Add(kiosque);
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<Kiosque>(kiosque);
+        return lekiosque.Entity;
     }
 
     public async Task<bool> DeleteKiosque(string contactKiosque)

@@ -27,10 +27,9 @@ public class CompteService : ICompteService
     
     public async Task<Compte> AddCompte(Compte compte)
     {
-        var lecompte = _mapper.Map<Compte>(compte);
-        _dbContext.Comptes.Add(lecompte);
+        _dbContext.Comptes.Add(compte);
         await _dbContext.SaveChangesAsync();
-        return lecompte;
+        return compte;
     }
 
     
@@ -76,10 +75,17 @@ public class CompteService : ICompteService
         destinataire.Solde += solde;
         var frais = solde * 0.05m;
         expediteur.Solde -= frais;
+
+        var depotTransaction = new Transaction
+        {
+            Date = DateTime.Now,
+            Type = Transaction.TransactionType.Dépôt,
+            Solde = solde
+        };
+        
+        expediteur.Transactions.Add(depotTransaction);
         
         await _dbContext.SaveChangesAsync();
-        
-        transactions.Add($"Dépôt depuis le Compte : {numCompteExpediteur} vers le Compte : {numCompteDestinataire}, Montant : {solde}, Frais : {frais} Date : " + DateTime.Now);
 
         return true;
     }
@@ -104,7 +110,16 @@ public class CompteService : ICompteService
         }
         
         compte.Solde -= solde;
-        transactions.Add($"Retrait sur le Compte : {numCompte}, Montant : {solde}. Date : "+DateTime.Now);
+
+        var retraitTransaction = new Transaction
+        {
+            Date = DateTime.Now,
+            Type = Transaction.TransactionType.Retrait,
+            Solde = solde
+        };
+        
+        compte.Transactions.Add(retraitTransaction);
+        
         await _dbContext.SaveChangesAsync();
 
         return true;
@@ -120,7 +135,16 @@ public class CompteService : ICompteService
         }
 
         compte.Solde += solde;
-        transactions.Add($"Transafert vers le Compte : {numCompte}, Montant : {solde}. Date : "+DateTime.Now);
+
+        var transfertTransaction = new Transaction
+        {
+            Date = DateTime.Now,
+            Type = Transaction.TransactionType.Transfert,
+            Solde = solde
+        };
+        
+        compte.Transactions.Add(transfertTransaction);
+        
         await _dbContext.SaveChangesAsync();
 
         return true;

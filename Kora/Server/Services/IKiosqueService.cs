@@ -5,8 +5,8 @@ namespace Kora.Server.Services;
 
 public interface IKiosqueService
 {
-    Task<List<KiosqueDto>> GetAllKiosque();
-    Task<List<KiosqueDto>> GetKiosqueByAdresse(string adresseKiosque);
+    Task<List<Kiosque>> GetAllKiosque();
+    Task<List<Kiosque>> GetKiosqueByAdresse(string adresseKiosque);
     Task<Kiosque> AddKiosque(Kiosque kiosque);
     Task<bool> DeleteKiosque(string contactKiosque);
 }

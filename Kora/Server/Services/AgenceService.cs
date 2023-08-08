@@ -8,33 +8,30 @@ namespace Kora.Server.Services;
 
 public class AgenceService : IAgenceService
 {
-    private readonly IMapper _mapper;
     private readonly KoraDbContext _dbContext;
 
-    public AgenceService(IMapper mapper, KoraDbContext dbContext)
+    public AgenceService(KoraDbContext dbContext)
     {
-        _mapper = mapper;
         _dbContext = dbContext;
     }
 
     public async Task<List<Agence>> GetAllAgence()
     {
         var agences = await _dbContext.Agences.ToListAsync();
-        return _mapper.Map<List<Agence>>(agences);
+        return agences;
     }
     
-    public async Task<AgenceDto> GetAgenceByContact(string contactAgence)
+    public async Task<Agence> GetAgenceByContact(string contactAgence)
     {
         var agence = await _dbContext.Agences.FindAsync(contactAgence);
-        return _mapper.Map<AgenceDto>(agence);
+        return agence;
     }
     
     public async Task<Agence> AddAgence(Agence agence)
     {
-        var lagence = _mapper.Map<Agence>(agence);
-        _dbContext.Agences.Add(lagence);
+        var lagence = _dbContext.Agences.Add(agence);
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<Agence>(agence);
+        return lagence.Entity;
     }
     
     public async Task<bool> DeleteAgence(string contactAgence)

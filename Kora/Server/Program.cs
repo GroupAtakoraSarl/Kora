@@ -44,6 +44,7 @@ public class Program
         services.AddScoped<IResponsableAgence, ResponsableAgenceService>();
         services.AddScoped<IPaysService, PaysService>();
         services.AddScoped<IVilleService, VilleService>();
+        services.AddScoped<ITransactionService, TransactionService>();
 
         services.AddControllersWithViews();
         services.AddRazorPages();

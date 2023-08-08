@@ -1,7 +1,6 @@
 using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Server.Data;
-using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;
@@ -9,26 +8,24 @@ namespace Kora.Server.Services;
 public class VilleService : IVilleService
 {
     private readonly KoraDbContext _dbContext;
-    private readonly IMapper _mapper;
 
     public VilleService(KoraDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
-        _mapper = mapper;
     }
     
-    public async Task<List<VilleDto>> GetAllVille()
+    public async Task<List<Ville>> GetAllVille()
     {
         var villes = await _dbContext.Villes.ToListAsync();
-        return _mapper.Map<List<VilleDto>>(villes);
+        return villes;
     }
     
     public async Task<Ville> AddVille(Ville ville)
     {
-        var laville = _mapper.Map<Ville>(ville);
-        _dbContext.Villes.Add(laville);
+        var laville = _dbContext.Villes.Add(ville);
+        
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<Ville>(ville);
+        return laville.Entity;
     }
 
     public async Task<bool> DeleteVille(string nomVille)

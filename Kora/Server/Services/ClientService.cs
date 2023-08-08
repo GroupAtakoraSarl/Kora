@@ -10,33 +10,31 @@ namespace Kora.Server.Services;
 
 public class ClientService : IClientService
 {
-    private readonly IMapper _mapper;
     private readonly KoraDbContext _dbContext;
     
 
-    public ClientService(IMapper mapper, KoraDbContext dbContext)
+    public ClientService(KoraDbContext dbContext)
     {
-        _mapper = mapper;
         _dbContext = dbContext;
     }
     
     public async Task<List<Shared.Models.Client>> GetAllClient()
     {
         var clients = await _dbContext.Clients.ToListAsync();
-        return _mapper.Map<List<Shared.Models.Client>>(clients);
+        return clients;
     }
 
-    public async Task<ClientDto> GetClientByTel(string tel)
+    public async Task<Shared.Models.Client> GetClientByTel(string tel)
     {
         var client = await _dbContext.Clients.FindAsync(tel);
-        return _mapper.Map<ClientDto>(client);
+        return client;
     }
 
-    public async Task<ClientLog> GetClient(string username, string password)
-    {
-        var client = await _dbContext.Clients.FindAsync(username, password);
-        return _mapper.Map<ClientLog>(client);
-    }
+    // public async Task<ClientLog> GetClient(string username, string password)
+    // {
+    //     var client = await _dbContext.Clients.FindAsync(username, password);
+    //     return _mapper.Map<ClientLog>(client);
+    // }
     
     public void EnregistrerClient(Shared.Models.Client client)
     {
@@ -47,9 +45,8 @@ public class ClientService : IClientService
         
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(client.Password);
         
-        var leclient = _mapper.Map<Shared.Models.Client>(client);
         client.Password = hashedPassword;
-        _dbContext.Clients.Add(leclient);
+        _dbContext.Clients.Add(client);
         _dbContext.SaveChangesAsync();
     }
 
@@ -75,7 +72,10 @@ public class ClientService : IClientService
             return false;
         }
 
-        _mapper.Map(client, existingClient);
+        existingClient.Username = client.Username;
+        existingClient.Tel = client.Tel;
+        existingClient.Password = client.Password;
+        
         await _dbContext.SaveChangesAsync();
         return true;
     }

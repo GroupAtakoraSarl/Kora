@@ -1,3 +1,4 @@
+using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Server.Data;
 using Kora.Shared.ModelsDto;
@@ -13,19 +14,22 @@ public class CompteController : ControllerBase
 {
     private readonly ICompteService _compteService;
     private KoraDbContext _dbContext;
+    private IMapper _mapper;
 
-    public CompteController(ICompteService compteService, KoraDbContext dbContext)
+    public CompteController(IMapper mapper, ICompteService compteService, KoraDbContext dbContext)
     {
+        _mapper = mapper;
         _compteService = compteService;
         _dbContext = dbContext;
     }
     
     
     [HttpGet]
-    public async Task<ActionResult<List<CompteDto>>> GetAllComptes()
+    public async Task<ActionResult<List<Compte>>> GetAllComptes()
     {
         var comptes = await _compteService.GetAllComptes();
-        return Ok(comptes);
+        var comptesDto = _mapper.Map<CompteDto>(comptes);
+        return Ok(comptesDto);
     }
 
     [HttpGet("{numCompte}")]
@@ -41,19 +45,20 @@ public class CompteController : ControllerBase
     
 
     [HttpPost("CreerCompte")]
-    public async Task<ActionResult<Compte>> AddCompte(Compte compte)
+    public async Task<ActionResult<CompteDto>> AddCompte(CompteDto compteDto)
     {
         try
         {
+            var compte = _mapper.Map<Compte>(compteDto); // Effectuez le mappage ici
             var newCompte = await _compteService.AddCompte(compte);
-            return Ok(newCompte);
+            var newCompteDto = _mapper.Map<CompteDto>(newCompte); // Effectuez le mappage ici
+            return Ok(newCompteDto);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
-        
     }
     
     
@@ -65,10 +70,8 @@ public class CompteController : ControllerBase
         {
             return NotFound("Compte introuvable !");
         }
-        
-        var frais = solde * 0.05m;
-        var msg = $"Dépôt effectué avec succès depuis le {numCompteExpediteur} vers {numCompteDestinataire}. Montant de frais : {frais}";
-        return msg;
+
+        return Ok();
     }
 
     
@@ -78,11 +81,9 @@ public class CompteController : ControllerBase
         var result = await _compteService.RetraitCompte(numCompte, solde, password);
         if (!result)
             return NotFound("Compte introuvable ou solde supérieure à celui du compte");
-        
-        var frais = (solde * 0.02m);
-        var msg = $"Transaction effectuée avec succès. Montant de frais : {frais}";
 
-        return msg;
+
+        return Ok();
     }
 
     [HttpPost("Transfert")]
@@ -91,9 +92,8 @@ public class CompteController : ControllerBase
         var result = await _compteService.Transfert(numCompte, solde);
         if (!result)
             return NotFound("Compte introuvable");
-        var frais = solde * 0.02m;
-        var msg = $"Transfert effectué avec succès vers le numéro : {numCompte}. Frais : {frais}";
-        return msg;
+
+        return Ok();
     }
     
 

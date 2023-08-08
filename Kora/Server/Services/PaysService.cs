@@ -9,27 +9,24 @@ namespace Kora.Server.Services;
 public class PaysService : IPaysService
 {
     private readonly KoraDbContext _dbContext;
-    private readonly IMapper _mapper;
 
-    public PaysService(KoraDbContext dbContext, IMapper mapper)
+    public PaysService(KoraDbContext dbContext)
     {
         _dbContext = dbContext;
-        _mapper = mapper;
     }
 
 
-    public async Task<List<PaysDto>> GetAllPays()
+    public async Task<List<Pays>> GetAllPays()
     {
         var pays = await _dbContext.Pays.ToListAsync();
-        return _mapper.Map<List<PaysDto>>(pays);
+        return pays;
     }
 
     public async Task<Pays> AddPays(Pays pays)
     {
-        var lepays = _mapper.Map<Pays>(pays);
-        _dbContext.Pays.Add(lepays);
+        var lepays = _dbContext.Pays.Add(pays);
         await _dbContext.SaveChangesAsync();
-        return _mapper.Map<Pays>(pays);
+        return lepays.Entity;
     }
 
     public async Task<bool> DeletePays(int indicatif)

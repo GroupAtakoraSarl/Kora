@@ -1,3 +1,4 @@
+using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
 using Kora.Server.Services;
@@ -10,17 +11,20 @@ namespace Kora.Server.Controllers;
 public class AdministrateurController : ControllerBase
 {
     private readonly IAdministrateurService _administrateurService;
+    private readonly IMapper _mapper;
 
-    public AdministrateurController(IAdministrateurService administrateurService)
+    public AdministrateurController(IAdministrateurService administrateurService, IMapper mapper)
     {
+        _mapper = mapper;
         _administrateurService = administrateurService;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<AdministrateurDto>>> GetAllAdmin()
+    public async Task<ActionResult<List<Administrateur>>> GetAllAdmin()
     {
         var admins = await _administrateurService.GetAllAdmin();
-        return Ok(admins);
+        var adminDto = _mapper.Map<AdministrateurDto>(admins);
+        return Ok(adminDto);
     }
 
     [HttpGet("{email}")]
@@ -32,7 +36,8 @@ public class AdministrateurController : ControllerBase
             return NotFound("Admin introuvable");
         }
 
-        return Ok(admin);
+        var adminDto = _mapper.Map<AdministrateurDto>(admin);
+        return Ok(adminDto);
     }
 
     [HttpPost("EnregistrerAdmin")]

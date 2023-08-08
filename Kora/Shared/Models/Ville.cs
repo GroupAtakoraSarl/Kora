@@ -11,7 +11,7 @@ public class Ville
     public int IdVille { get; set; }
     public string NomVille { get; set; }
     
-    [JsonIgnore]
+    [ForeignKey("Pays")]
     public int IdPays { get; set; }
     public Pays Pays { get; set; }
     

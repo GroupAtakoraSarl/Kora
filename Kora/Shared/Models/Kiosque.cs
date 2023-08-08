@@ -14,6 +14,7 @@ public class Kiosque
     public string AdresseKiosque { get; set; }
     public string ContactKiosque { get; set; }
 
+    [ForeignKey("Agence")]
     public int IdAgence { get; set; }
     public Agence Agence { get; set; }
     
