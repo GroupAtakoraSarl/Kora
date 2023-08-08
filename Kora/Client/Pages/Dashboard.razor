@@ -4,6 +4,7 @@
 @inject ICompteService CompteService
 @inject IKiosqueService KiosqueService
 @inject IAdministrateurService AdministrateurService
+@inject ITransactionService TransactionService
 
 <style>
     .transition:hover{
@@ -25,6 +26,9 @@
     }
     .bgadmin{
         background-color: #5b646d;
+    }
+    .bgtrans{
+        background-color: rgba(84,219,124,0.82);
     }
 
 </style>
@@ -75,6 +79,17 @@
             </div>
         </div>
         <div class="col-md-4">
+            <div class="card text-white bgtrans shadow p-3 mb-5 bg-body-tertiary rounded transition">
+                <div class="card-header">
+                    <h5 class="card-title text-center"><span class="oi oi-loop-circular"></span></h5>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-text text-center"><strong>@TransCount</strong> Transactions</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
             <div class="card text-white bgadmin shadow p-3 mb-5 bg-body-tertiary rounded transition">
                 <div class="card-header">
                     <h5 class="card-title text-center"><span class="oi oi-person"></span></h5>
@@ -96,6 +111,7 @@
     private int CompteCount;
     private int KiosqueCount;
     private int AdminCount;
+    private int TransCount;
 
     protected override async Task OnInitializedAsync()
     {
@@ -110,6 +126,8 @@
         CompteCount = comptes.Count;
         var kiosques = await KiosqueService.GetAllKiosque();
         KiosqueCount = kiosques.Count;
+        var transactions = await TransactionService.GetAllTransaction();
+        TransCount = transactions.Count;
     }
 }
 

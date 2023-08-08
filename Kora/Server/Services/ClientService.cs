@@ -29,7 +29,7 @@ public class ClientService : IClientService
         var client = await _dbContext.Clients.FindAsync(tel);
         return client;
     }
-
+    
     // public async Task<ClientLog> GetClient(string username, string password)
     // {
     //     var client = await _dbContext.Clients.FindAsync(username, password);

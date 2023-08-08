@@ -1,4 +1,3 @@
-using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Server.Data;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +8,7 @@ public class VilleService : IVilleService
 {
     private readonly KoraDbContext _dbContext;
 
-    public VilleService(KoraDbContext dbContext, IMapper mapper)
+    public VilleService(KoraDbContext dbContext)
     {
         _dbContext = dbContext;
     }

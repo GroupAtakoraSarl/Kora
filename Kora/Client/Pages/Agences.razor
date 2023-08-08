@@ -1,6 +1,5 @@
 @page "/agences"
 @using Kora.Shared.Models
-@using Kora.Shared.ModelsDto
 @inject IPaysService PaysService
 @inject IVilleService VilleService
 @inject IAgenceService AgenceService
@@ -11,53 +10,54 @@
 
 <br/>
 
-<form>
-    <div class="container">
-        <div class="row">
-            <label class="col m-2">Pays</label>
-            <label class="col m-2">Ville</label>
-            <label class="col m-2">Nom de l'Agence</label>
-            <label class="col m-2"> Adresse de l'Agence</label>
-            <label class="col m-2"> Contact Téléphonique</label>
-        </div>
-
-        <div class="row">
-            <input class="col m-2" type="text" @bind="@agence.Pays"/>
-            <input class="col m-2" type="text" @bind="@agence.Ville"/>
-            <input required="required" class="col m-2" type="text" @bind="@agence.NomAgence"/>
-            <input required="required" class="col m-2" type="text" @bind="@agence.AdresseAgence"/>
-            <input required="required" class="col m-2" type="tel" @bind="@agence.ContactAgence"/>
-        </div>
-
-        <div class="row">
-            <label class="col m-2"> Email de l'Agence</label>
-            <label class="col m-2"> Devise de l'Agence</label>
-            <label class="col m-2"> Solde Initial</label>
-            <label class="col m-2">Nom du Responsable</label>
-        </div>
-
-        <div class="row">
-            <input required="required" class="col m-2" type="email" @bind="@agence.EmailAgence"/>
-            <input required="required" class="col m-2" type="text" @bind="@agence.DeviseAgence"/>
-            <input required="required" class="col m-2" type="number" @bind="@agence.SoldeInitial"/>
-            <select class="col m-2" @bind="selectedResponsableId">
-                @foreach (var resp in responsables)
-                {
-                    <option value="@resp.IdResponsable">@resp.NomResponsable</option>
-                }
-            </select>
-        </div>
-        <div class="row">
-            <button type="button" class="col w-25 m-2 btn btn-success" @onclick="ConfirmAdd">CREER</button>
-        </div>
+<div class="container">
+    <div class="row">
+        <label class="col m-2">Pays</label>
+        <label class="col m-2">Ville</label>
+        <label class="col m-2">Nom de l'Agence</label>
+        <label class="col m-2"> Adresse de l'Agence</label>
+        <label class="col m-2"> Contact Téléphonique</label>
     </div>
-</form>
+
+    <div class="row">
+        <input class="col m-2" type="text" @bind="@agence.Pays"/>
+        <input class="col m-2" type="text" @bind="@agence.Ville"/>
+        <input required="required" class="col m-2" type="text" @bind="@agence.NomAgence"/>
+        <input required="required" class="col m-2" type="text" @bind="@agence.AdresseAgence"/>
+        <input required="required" class="col m-2" type="tel" @bind="@agence.ContactAgence"/>
+    </div>
+
+    <div class="row">
+        <label class="col m-2"> Email de l'Agence</label>
+        <label class="col m-2"> Devise de l'Agence</label>
+        <label class="col m-2"> Solde Initial</label>
+        <label class="col m-2">Nom du Responsable</label>
+    </div>
+
+    <div class="row">
+        <input required="required" class="col m-2" type="email" @bind="@agence.EmailAgence"/>
+        <input required="required" class="col m-2" type="text" @bind="@agence.DeviseAgence"/>
+        <input required="required" class="col m-2" type="number" @bind="@agence.SoldeInitial"/>
+        <select class="col m-2" @bind="selectedResponsableId">
+            <option value="0">Sélectionnez un Responsable</option>
+            @foreach (var resp in responsables)
+            {
+                <option value="@resp.IdResponsable">@resp.NomResponsable</option>
+            }
+        </select>
+    </div>
+    <div class="row">
+        <button type="button" class="col w-25 m-2 btn btn-success text-center" @onclick="ConfirmAdd">CREER L'AGENCE</button>
+    </div>
+</div>
 
 <br/>
 
 <h4 class="mb-4 mt-5">Liste des Agences</h4>
+<br/>
+
 <table class="table table-striped table-bordered bg-light">
-    <thead>
+    <thead class="table-light">
     <th>Nom</th>
     <th>Pays</th>
     <th>Ville</th>
@@ -81,8 +81,8 @@
             <td>@agence.EmailAgence</td>
             <td>@agence.DeviseAgence</td>
             <td>@agence.SoldeInitial</td>
-            <td>#RES @agence.ResponsableAgence</td>
-            <td><span class="oi oi-trash btn btn-danger" @onclick="() => ShowConfirmation(agence.ContactAgence)"></span></td>
+            <td>#RES @agence.IdResponsable</td>
+            <td class="text-center"><span class="oi oi-trash btn btn-danger" @onclick="() => ShowConfirmation(agence.ContactAgence)"></span></td>
         </tr>
     }
     </tbody>
@@ -91,7 +91,7 @@
 @code {
     private List<Agence> agences = new List<Agence>();
     private List<ResponsableAgence> responsables = new List<ResponsableAgence>();
-    private int selectedResponsableId = 1;
+    private int selectedResponsableId;
     
     private Agence agence = new Agence();
     
@@ -100,17 +100,7 @@
         agences = await AgenceService.GetAllAgence();
         responsables = await ResponsableAgenceService.GetAllResponsable();
     }
-
-    private async Task ShowConfirmation(string contactAgence)
-    {
-        var result = await JSRuntime.InvokeAsync<bool>("confirm", $"Voulez-vous vraiment supprimer l'agence avec le contact : {contactAgence} ?");
-
-        if (result)
-        {
-            await DeleteAgence(contactAgence);
-        }
-    }
-
+    
     private async Task ConfirmAdd()
     {
         var result = await JSRuntime.InvokeAsync<bool>("confirm", "Vous voulez-creez cette ajoute ?");
@@ -122,20 +112,34 @@
                 var selectedResponsable = responsables.FirstOrDefault(r => r.IdResponsable == selectedResponsableId);
                 if (selectedResponsable != null)
                 {
-                    agence.ResponsableAgence = selectedResponsable;
-                }
-
-                var newAgence = await AgenceService.AddAgence(agence);
-
-                if (newAgence != null)
-                {
-                    agences.Add(newAgence);
+                    agence.IdResponsable = selectedResponsableId;
                 }
             }
+            
+            var newAgence = await AgenceService.AddAgence(agence);
+
+            if (newAgence != null)
+            {
+                agences.Add(newAgence);
+
+                agence = new Agence();
+                selectedResponsableId = 0;
+            }
+            
         }
     }
+    
+    private async Task ShowConfirmation(string contactAgence)
+    {
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", $"Voulez-vous vraiment supprimer l'agence avec le contact : {contactAgence} ?");
 
-
+        if (result)
+        {
+            await DeleteAgence(contactAgence);
+        }
+    }
+    
+    
     private async Task DeleteAgence(string contactAgence)
     {
         var isDeleted = await AgenceService.DeleteAgence(contactAgence);

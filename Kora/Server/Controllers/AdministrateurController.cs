@@ -20,10 +20,10 @@ public class AdministrateurController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Administrateur>>> GetAllAdmin()
+    public async Task<ActionResult<List<AdministrateurDto>>> GetAllAdmin()
     {
         var admins = await _administrateurService.GetAllAdmin();
-        var adminDto = _mapper.Map<AdministrateurDto>(admins);
+        var adminDto = _mapper.Map<List<AdministrateurDto>>(admins);
         return Ok(adminDto);
     }
 

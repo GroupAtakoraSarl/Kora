@@ -4,7 +4,6 @@ using Kora.Server.Data;
 using Kora.Shared.ModelsDto;
 using Kora.Server.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Controllers;
 
@@ -13,14 +12,12 @@ namespace Kora.Server.Controllers;
 public class CompteController : ControllerBase
 {
     private readonly ICompteService _compteService;
-    private KoraDbContext _dbContext;
-    private IMapper _mapper;
+    private readonly IMapper _mapper;
 
     public CompteController(IMapper mapper, ICompteService compteService, KoraDbContext dbContext)
     {
         _mapper = mapper;
         _compteService = compteService;
-        _dbContext = dbContext;
     }
     
     
@@ -28,7 +25,7 @@ public class CompteController : ControllerBase
     public async Task<ActionResult<List<Compte>>> GetAllComptes()
     {
         var comptes = await _compteService.GetAllComptes();
-        var comptesDto = _mapper.Map<CompteDto>(comptes);
+        var comptesDto = _mapper.Map<List<CompteDto>>(comptes);
         return Ok(comptesDto);
     }
 
@@ -106,15 +103,6 @@ public class CompteController : ControllerBase
         return $"Le compte {numCompte}  bien supprimé";
     }
     
-    [HttpGet("GetTransaction")]
-    public async Task<ActionResult<List<string>>> GetTransaction()
-    {
-        var transactions = await _compteService.GetTransaction();
-        if (transactions == null || transactions.Count == 0)
-        {
-            return NotFound("Aucune transaction trouvée.");
-        }
-        return Ok(transactions);
-    }
+
 
 }

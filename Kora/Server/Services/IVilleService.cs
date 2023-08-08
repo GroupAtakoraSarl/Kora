@@ -1,5 +1,4 @@
 using Kora.Shared.Models;
-using Kora.Shared.ModelsDto;
 
 namespace Kora.Server.Services;
 

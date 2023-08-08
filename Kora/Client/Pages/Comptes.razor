@@ -1,5 +1,4 @@
 @page "/comptes"
-@using Kora.Shared.ModelsDto
 @using Kora.Shared.Models
 @inject ICompteService CompteService
 @inject IClientService ClientService
@@ -39,7 +38,7 @@
 <h4>Listes des comptes</h4>
 
 <table class="table table-striped table-bordered bg-light fs-6">
-    <thead>
+    <thead class="table-light">
     <th>Numero de Comptes</th>
     <th>Solde Initial (Fcfa)</th>
     <th>Identifiant du Client</th>
@@ -56,14 +55,13 @@
     </tbody>
 </table>
 
-
 @code {
     private List<Compte> comptes = new List<Compte>();
     private List<Client> clients = new List<Client>();
-    private Compte compte = new Compte();
     private int selectedClientId;
     
-    private int idClient;
+    private Compte compte = new Compte();
+    
     
     protected override async Task OnInitializedAsync()
     {
@@ -73,7 +71,7 @@
     
     private async Task ConfirmAdd()
     {
-        var result = await JSRuntime.InvokeAsync<bool>("confirm", $"Voulez-vous vraiment creer le compte ?");
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Voulez-vous vraiment creer le compte ?");
 
         if (result)
         {
@@ -92,10 +90,13 @@
             if (newCompte != null)
             {
                 comptes.Add(newCompte);
+
+                compte = new Compte();
+                
+                selectedClientId = 0;
             }
         }
         
     }
-    
-    
+
 }

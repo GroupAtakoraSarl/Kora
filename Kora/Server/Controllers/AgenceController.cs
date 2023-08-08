@@ -20,10 +20,10 @@ public class AgenceController : ControllerBase
     }
 
     [HttpGet("GetAllAgence")]
-    public async Task<ActionResult<List<Agence>>> GetAllAgence()
+    public async Task<ActionResult<List<AgenceDto>>> GetAllAgence()
     {
         var agences = await _agenceService.GetAllAgence();
-        var agencesDto = _mapper.Map<AgenceDto>(agences);
+        var agencesDto = _mapper.Map<List<AgenceDto>>(agences);
         return Ok(agencesDto);
     }
 
@@ -41,12 +41,22 @@ public class AgenceController : ControllerBase
         return Ok(agenceDto);
     }
 
-    [HttpPost("AjouterAgence")]
-    public async Task<ActionResult<Agence>> AddAgence(Agence agence)
+    [HttpPost("AddAgence")]
+    public async Task<ActionResult<AgenceDto>> AddAgence(AgenceDto agenceDto)
     {
-        var newAgence = await _agenceService.AddAgence(agence);
-        var newAgenceDto = _mapper.Map<AgenceDto>(newAgence);
-        return Ok(newAgenceDto);
+        try
+        {
+            var agence = _mapper.Map<Agence>(agenceDto);
+            var newAgence = await _agenceService.AddAgence(agence);
+            var newAgenceDto = _mapper.Map<AgenceDto>(newAgence);
+            return Ok(newAgenceDto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
     }
     
 

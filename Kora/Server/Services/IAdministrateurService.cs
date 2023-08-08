@@ -5,7 +5,7 @@ namespace Kora.Server.Services;
 
 public interface IAdministrateurService
 {
-    Task<List<AdministrateurDto>> GetAllAdmin();
+    Task<List<Administrateur>> GetAllAdmin();
     Task<AdministrateurDto> GetAdminByEmail(string email);
     bool EnregistrerAdmin(Administrateur administrateur);
     bool ConnecterAdmin(string email, string password);

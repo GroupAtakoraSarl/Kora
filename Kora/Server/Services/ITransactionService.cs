@@ -1,5 +1,4 @@
-using System.Transactions;
-using Kora.Shared.ModelsDto;
+using Kora.Shared.Models;
 
 namespace Kora.Server.Services;
 

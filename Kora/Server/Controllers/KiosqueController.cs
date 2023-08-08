@@ -1,3 +1,4 @@
+using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
 using Kora.Server.Services;
@@ -11,9 +12,11 @@ namespace Kora.Server.Controllers;
 public class KiosqueController : ControllerBase
 {
     private readonly IKiosqueService _kiosqueService;
+    private readonly IMapper _mapper;
 
-    public KiosqueController(IKiosqueService kiosqueService)
+    public KiosqueController(IKiosqueService kiosqueService, IMapper mapper)
     {
+        _mapper = mapper;
         _kiosqueService = kiosqueService;
     }
 
@@ -21,7 +24,8 @@ public class KiosqueController : ControllerBase
     public async Task<ActionResult<List<KiosqueDto>>> GetAllKiosque()
     {
         var kiosques = await _kiosqueService.GetAllKiosque();
-        return Ok(kiosques);
+        var kiosqueDto = _mapper.Map<List<KiosqueDto>>(kiosques);
+        return Ok(kiosqueDto);
     }
 
     [HttpGet("GetKiosqueByAresse")]

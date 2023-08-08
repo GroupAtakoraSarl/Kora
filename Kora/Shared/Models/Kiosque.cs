@@ -8,7 +8,6 @@ public class Kiosque
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [JsonIgnore]
     public int IdKiosque { get; set; }
     public string NomKiosque { get; set; }
     public string AdresseKiosque { get; set; }

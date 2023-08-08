@@ -1,7 +1,5 @@
-using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Server.Data;
-using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;
@@ -29,9 +27,9 @@ public class AgenceService : IAgenceService
     
     public async Task<Agence> AddAgence(Agence agence)
     {
-        var lagence = _dbContext.Agences.Add(agence);
+        _dbContext.Agences.Add(agence);
         await _dbContext.SaveChangesAsync();
-        return lagence.Entity;
+        return agence;
     }
     
     public async Task<bool> DeleteAgence(string contactAgence)

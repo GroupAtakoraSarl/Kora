@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Kora.Shared.Models;
-using Transaction = System.Transactions.Transaction;
 
 
 namespace Kora.Server.Data;
@@ -13,6 +12,7 @@ public class KoraDbContext : DbContext
     {
         
     }
+    
     
     public DbSet<Agence> Agences { get; set; }
     public DbSet<Administrateur> Administrateurs { get; set; }

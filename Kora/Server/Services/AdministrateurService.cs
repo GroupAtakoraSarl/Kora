@@ -17,10 +17,10 @@ public class AdministrateurService : IAdministrateurService
         _dbContext = dbContext;
     }
     
-    public async Task<List<AdministrateurDto>> GetAllAdmin()
+    public async Task<List<Administrateur>> GetAllAdmin()
     {
         var admins = await _dbContext.Administrateurs.ToListAsync();
-        return _mapper.Map<List<AdministrateurDto>>(admins);
+        return admins;
     }
 
     public async Task<AdministrateurDto> GetAdminByEmail(string email)

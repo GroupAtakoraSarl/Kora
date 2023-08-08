@@ -1,19 +1,16 @@
 using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Server.Data;
-using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;
 
 public class KiosqueService : IKiosqueService
 {
-    private readonly IMapper _mapper;
     private readonly KoraDbContext _dbContext;
 
     public KiosqueService(IMapper mapper, KoraDbContext dbContext)
     {
-        _mapper = mapper;
         _dbContext = dbContext;
     }
     

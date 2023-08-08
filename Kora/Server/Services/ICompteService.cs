@@ -14,6 +14,5 @@ public interface ICompteService
     Task<List<CompteDto>> GetCompteByClientId(int idClient);
 
     Task<bool> DeleteCompte(string numCompte);
-    Task<List<string>> GetTransaction();
 
 }

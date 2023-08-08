@@ -8,8 +8,7 @@ public class Pays
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [JsonIgnore]
-    public int? IdPays { get; set; }
+    public int IdPays { get; set; }
     [Required]
     public string NomPays { get; set; }
     [Required]

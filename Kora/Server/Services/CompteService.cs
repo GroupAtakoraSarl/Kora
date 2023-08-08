@@ -22,7 +22,7 @@ public class CompteService : ICompteService
     public async Task<List<Compte>> GetAllComptes()
     {
         var comptes = await _dbContext.Comptes.ToListAsync();
-        return _mapper.Map<List<Compte>>(comptes);
+        return comptes;
     }
     
     public async Task<Compte> AddCompte(Compte compte)
@@ -79,7 +79,7 @@ public class CompteService : ICompteService
         var depotTransaction = new Transaction
         {
             Date = DateTime.Now,
-            Type = TransactionType.Dépôt,
+            Type = Transaction.TransactionType.Dépôt,
             Solde = solde
         };
         
@@ -114,7 +114,7 @@ public class CompteService : ICompteService
         var retraitTransaction = new Transaction
         {
             Date = DateTime.Now,
-            Type = TransactionType.Retrait,
+            Type = Transaction.TransactionType.Retrait,
             Solde = solde
         };
         
@@ -139,7 +139,7 @@ public class CompteService : ICompteService
         var transfertTransaction = new Transaction
         {
             Date = DateTime.Now,
-            Type = TransactionType.Transfert,
+            Type = Transaction.TransactionType.Transfert,
             Solde = solde
         };
         
@@ -169,9 +169,5 @@ public class CompteService : ICompteService
         return true;
     }
 
-    public async Task<List<string>> GetTransaction()
-    {
-        return transactions;
-    }
     
 }
