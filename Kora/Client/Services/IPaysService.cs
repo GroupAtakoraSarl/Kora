@@ -5,7 +5,7 @@ namespace Kora.Client.Services;
 
 public interface IPaysService
 {
-    Task<List<PaysDto>> GetAllPays();
+    Task<List<Pays>> GetAllPays();
     Task<Pays> AddPays(Pays pays);
     Task<bool> DeletePays(int indicatif);
 }

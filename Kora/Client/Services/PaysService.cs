@@ -13,16 +13,16 @@ namespace Kora.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<PaysDto>> GetAllPays()
+        public async Task<List<Pays>> GetAllPays()
         {
-            return await _httpClient.GetFromJsonAsync<List<PaysDto>>("api/Pays/GetAllPays");
+            return await _httpClient.GetFromJsonAsync<List<Pays>>("api/Pays/GetAllPays");
         }
         
         public async Task<Pays> AddPays(Pays pays)
         {
             var response = await _httpClient.PostAsJsonAsync("api/Pays/AddPays", pays);
             response.EnsureSuccessStatusCode();
-            return pays;
+            return await response.Content.ReadFromJsonAsync<Pays>();
         }
 
         public async Task<bool> DeletePays(int indicatif)

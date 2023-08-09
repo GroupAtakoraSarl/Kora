@@ -10,7 +10,6 @@ public class Ville
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdVille { get; set; }
     public string NomVille { get; set; }
-    
     [ForeignKey("Pays")]
     public int IdPays { get; set; }
     public Pays Pays { get; set; }

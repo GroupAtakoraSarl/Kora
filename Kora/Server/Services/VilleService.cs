@@ -1,5 +1,6 @@
 using Kora.Shared.Models;
 using Kora.Server.Data;
+using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;
@@ -21,8 +22,7 @@ public class VilleService : IVilleService
     
     public async Task<Ville> AddVille(Ville ville)
     {
-        var laville = _dbContext.Villes.Add(ville);
-        
+        var laville =  _dbContext.Villes.Add(ville);
         await _dbContext.SaveChangesAsync();
         return laville.Entity;
     }

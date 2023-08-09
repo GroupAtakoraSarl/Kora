@@ -1,5 +1,6 @@
 @page "/agences"
 @using Kora.Shared.Models
+@using Kora.Shared.ModelsDto
 @inject IPaysService PaysService
 @inject IVilleService VilleService
 @inject IAgenceService AgenceService
@@ -10,7 +11,7 @@
 
 <br/>
 
-<div class="container">
+<form class="container">
     <div class="row">
         <label class="col m-2">Pays</label>
         <label class="col m-2">Ville</label>
@@ -20,8 +21,18 @@
     </div>
 
     <div class="row">
-        <input class="col m-2" type="text" @bind="@agence.Pays"/>
-        <input class="col m-2" type="text" @bind="@agence.Ville"/>
+        <select class="col m-2" @bind="@agence.Pays">
+            @foreach (var lepays in pays)
+            {
+                <option value="@lepays.NomPays">@lepays.NomPays</option>
+            }
+        </select>
+        <select class="col m-2" @bind="@agence.Ville">
+            @foreach (var laville in villes)
+            {
+                <option value="@laville.NomVille">@laville.NomVille</option>
+            }
+        </select>
         <input required="required" class="col m-2" type="text" @bind="@agence.NomAgence"/>
         <input required="required" class="col m-2" type="text" @bind="@agence.AdresseAgence"/>
         <input required="required" class="col m-2" type="tel" @bind="@agence.ContactAgence"/>
@@ -49,7 +60,7 @@
     <div class="row">
         <button type="button" class="col w-25 m-2 btn btn-success text-center" @onclick="ConfirmAdd">CREER L'AGENCE</button>
     </div>
-</div>
+</form>
 
 <br/>
 
@@ -90,6 +101,8 @@
 
 @code {
     private List<Agence> agences = new List<Agence>();
+    private List<Pays> pays = new List<Pays>();
+    private List<Ville> villes = new List<Ville>();
     private List<ResponsableAgence> responsables = new List<ResponsableAgence>();
     private int selectedResponsableId;
     
@@ -99,6 +112,7 @@
     {
         agences = await AgenceService.GetAllAgence();
         responsables = await ResponsableAgenceService.GetAllResponsable();
+        pays = await PaysService.GetAllPays();
     }
     
     private async Task ConfirmAdd()

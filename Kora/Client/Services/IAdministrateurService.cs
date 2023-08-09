@@ -7,7 +7,7 @@ public interface IAdministrateurService
 {
     Task<List<AdministrateurDto>> GetAllAdmin();
     Task<AdministrateurDto> GetAdminByEmail(string email);
-    Task EnregistrerAdmin(Administrateur administrateur);
+    Task<bool> EnregistrerAdmin(Administrateur administrateur);
     Task<bool> ConnecterAdmin(string email, string password);
     Task<bool> DeleteAdmin(string email);
 }

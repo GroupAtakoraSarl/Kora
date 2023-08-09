@@ -16,6 +16,7 @@ builder.Services.AddScoped<IKiosqueService, KiosqueService>();
 builder.Services.AddScoped<IPaysService, PaysService>();
 builder.Services.AddScoped<IResponsableAgence, ResponsableAgenceService>();
 builder.Services.AddScoped<IVilleService, VilleService>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5099/") });
 

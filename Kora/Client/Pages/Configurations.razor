@@ -1,12 +1,130 @@
-
-
 @page "/configurations"
+@using Kora.Shared.Models
+@using Kora.Shared.ModelsDto
+@inject IPaysService PaysService
+@inject IVilleService VilleService
+
 <h3>Configurations</h3>
+<br/>
 
 
+<div style="font-size: small" class="container-fluid">
+    <br/>
+    <div class="row">
+        <div class="col">
+            <h4 class="">Ajouter un <strong>pays</strong></h4>
+            <br/>
+            <div class="row">
+                <label class="col m-2">Nom du Pays</label>
+                <input class="col m-2" type="text" @bind="@pays.NomPays"/>
+            </div>
+            <div class="row">
+                <label class="col m-2">Indicatif</label>
+                <input placeholder="(exple : 228)" class="col m-2" type="number" @bind="@pays.Indicatif"/>
+            </div>
+            <div class="row">
+                <label class="col m-2">Code ISO</label>
+                <input placeholder="(exple : TG)" class="col m-2" type="text" @bind="@pays.CodeISO"/>
+            </div>
+            <div class="row">
+                <label class="col m-2">Devise du Pays</label>
+                <input placeholder="(exple : FCFA)" class="col m-2" type="text" @bind="@pays.DevisePays"/>
+            </div>
+            <button style="margin-bottom: 15px; margin-top: 10px;" class="btn btn-success" @onclick="ConfirmAddPays">Ajouter un Pays</button>
+            <br/>
+            
+            <h5>Listes des <strong>Pays en partenariat</strong></h5>
+            <table class="table table-striped table-bordered bg-light fs-6">
+                <thead class="table-light">
+                <th>Nom</th>
+                <th>Indicatif</th>
+                <th>Code ISO</th>
+                <th>Devive Pays</th>
+                </thead>
+                <tbody>
+                @foreach (var lepays in lespays)
+                {
+                    <tr>
+                        <td>@lepays.NomPays</td>
+                        <td>@lepays.Indicatif</td>
+                        <td>@lepays.CodeISO</td>
+                        <td>@lepays.DevisePays</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h4>Ajouter une <strong>ville</strong></h4>
+            <br/>
+            <div class="row">
+                <label class="col m-2">Nom de la Ville</label>
+                <input class="col m-2" type="text" @bind="@ville.NomVille"/>
+                <select class="col m-2" @bind="selectedPaysId">
+                    <option value="0">Sélectionner le Pays</option>
+                    @foreach (var lepays in lespays)
+                    {
+                        <option value="@lepays.IdPays">@lepays.NomPays</option>
+                    }
+                </select>
+            </div>
+            
+        </div>
+    </div>
 
-
+    
+</div>
 
 @code {
+    private List<Pays> lespays = new List<Pays>();
+    private List<Ville> lesvilles = new List<Ville>();
+    private int selectedPaysId;
+
+    private Pays pays = new Pays();
+    private Ville ville = new Ville();
     
+    protected override async Task OnInitializedAsync()
+    {
+        lespays = await PaysService.GetAllPays();
+        lesvilles = await VilleService.GetAllVille();
+    }
+
+    private async Task ConfirmAddVille()
+    {
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Ajouter une nouvelle ville ?");
+
+        if (result)
+        {
+            if (selectedPaysId != 0)
+            {
+                var selectedPays = lespays.FirstOrDefault(p => p.IdPays == selectedPaysId);
+                if (selectedPays != null)
+                {
+                    ville.IdPays = selectedPaysId;
+                }
+            }
+            var newVille = await VilleService.AddVille(ville);
+
+            if (newVille != null)
+            {
+                lesvilles.Add(newVille);
+                ville = new Ville();
+
+                selectedPaysId = 0;
+            }
+        }
+    }
+
+    private async Task ConfirmAddPays()
+    {
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Ajouter un nouveau Pays ?");
+
+        var newPays = await PaysService.AddPays(pays);
+        if (result)
+        {
+            lespays.Add(newPays);
+            pays = new Pays();
+        }
+    }
+
 }

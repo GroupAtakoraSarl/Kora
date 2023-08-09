@@ -39,6 +39,7 @@
 
 <table class="table table-striped table-bordered bg-light fs-6">
     <thead class="table-light">
+    <th>N&deg</th>
     <th>Numero de Comptes</th>
     <th>Solde Initial (Fcfa)</th>
     <th>Identifiant du Client</th>
@@ -47,6 +48,7 @@
     @foreach (var compte in comptes)
     {
         <tr>
+            <td>@compte.IdCompte</td>
             <td>@compte.NumCompte</td>
             <td>@compte.Solde</td>
             <td>@compte.IdClient</td>

@@ -23,10 +23,10 @@ public class AdministrateurService : IAdministrateurService
         return await _http.GetFromJsonAsync<AdministrateurDto>($"api/Administrateur/GetAdminByEmail/{email}");
     }
 
-    public async Task EnregistrerAdmin(Administrateur administrateur)
+    public async Task<bool> EnregistrerAdmin(Administrateur administrateur)
     {
         var response = await _http.PostAsJsonAsync("api/Administrateur/EnregistrerAdmin", administrateur);
-        response.EnsureSuccessStatusCode();
+        return response.IsSuccessStatusCode;
     }
 
     public async Task<bool> ConnecterAdmin(string email, string password)

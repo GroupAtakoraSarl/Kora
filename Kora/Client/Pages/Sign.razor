@@ -42,7 +42,7 @@
                     <form @onsubmit="HandleSubmit">
                         <div class="mb-3">
                             <label for="username" class="form-label">Nom d'utilisateur</label>
-                            <input type="text" class="form-control" id="username" @bind="admin.Email" required>
+                            <input type="text" class="form-control" id="username" @bind="admin.Username" required>
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label">Email</label>
@@ -53,7 +53,9 @@
                             <input type="password" class="form-control" id="tel" @bind="admin.Password" required>
                         </div>
                         <button type="submit" class="text-center w-100 btn btn-primary">M'Enregistrer</button>
-                        <a style="text-align: center" href="/login" class="text-center">Se connecter</a>
+                        <div class="row text-center" style="margin-top: 10px">
+                            <h6 class="">J'ai déjà un compte. <a style="margin-left: 25px" href="/login" class="text-center">Me connecter</a></h6>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -66,19 +68,22 @@
     private Administrateur admin = new Administrateur();
     private bool showError = false;
 
-    private void  HandleSubmit()
+    private async Task HandleSubmit()
     {
-            var response = AdministrateurService.EnregistrerAdmin(admin);
-        
-            // Vérifier si la requête a réussi
-            // if (response)
-            // {
-            //     Navigation.NavigateTo("/login");
-            // }
-            // else
-            // {
-            //     showError = true;
-            // }
+        try
+        {
+            var response = await AdministrateurService.EnregistrerAdmin(admin);
+            if (response)
+            {
+                Navigation.NavigateTo("/login");
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
         
     }
 }

@@ -1,4 +1,6 @@
+using AutoMapper;
 using Kora.Shared.Models;
+using Kora.Shared.ModelsDto;
 using Microsoft.AspNetCore.Mvc;
 using IVilleService = Kora.Server.Services.IVilleService;
 
@@ -9,10 +11,12 @@ namespace Kora.Server.Controllers;
 [Route("api/[controller]")]
 public class VilleController : ControllerBase
 {
-    public readonly IVilleService _villeService;
+    private readonly IVilleService _villeService;
+    private readonly IMapper _mapper;
 
-    public VilleController(IVilleService villeService)
+    public VilleController(IVilleService villeService, IMapper mapper)
     {
+        _mapper = mapper;
         _villeService = villeService;
     }
 
@@ -24,10 +28,21 @@ public class VilleController : ControllerBase
     }
 
     [HttpPost("AddVille")]
-    public async Task<ActionResult<Ville>> AddVille(Ville ville)
+    public async Task<ActionResult<VilleDto>> AddVille(VilleDto ville)
     {
-        var laville = await _villeService.AddVille(ville);
-        return Ok(laville);
+        try
+        {
+            var laville = _mapper.Map<Ville>(ville);
+            var newVille = _villeService.AddVille(laville);
+            var newVilleDto = _mapper.Map<VilleDto>(newVille);
+            return Ok(newVilleDto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+       
     }
     
 }
