@@ -30,13 +30,25 @@ public class AdministrateurService : IAdministrateurService
 
     }
 
+    public bool Enregistrer(Administrateur administrateur)
+    {
+        var adminUsername = administrateur.Username;
+        var adminEmail = administrateur.Email;
+        
+        var newAdmin = new Administrateur
+        {
+            Username = adminUsername,
+            Email = adminEmail
+        };
+        _dbContext.Administrateurs.Add(newAdmin);
+        _dbContext.SaveChangesAsync();
+
+        return true;
+    }
+
+
     public bool EnregistrerAdmin(Administrateur administrateur)
     {
-        if (_dbContext.Administrateurs.Any(a => a.Username == administrateur.Username))
-        {
-            return false;
-        }
-        
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(administrateur.Password);
         
         var ladmin = _mapper.Map<Administrateur>(administrateur);
@@ -44,6 +56,29 @@ public class AdministrateurService : IAdministrateurService
         _dbContext.Administrateurs.Add(ladmin);
         _dbContext.SaveChangesAsync();
         
+        return true;
+    }
+
+    public bool EnregistrerAdminSaved(string email, string username, string password)
+    {
+        string hashedPwd = BCrypt.Net.BCrypt.HashPassword(password);
+        var adminSaved = _dbContext.Administrateurs.Any(a => a.Username == username && a.Email == email);
+        if (adminSaved)
+        {
+            Administrateur admin = new Administrateur
+            {
+                Username = username,
+                Email = email,
+                Password = hashedPwd
+            };
+            _dbContext.Administrateurs.Add(admin);
+        }
+        else
+        {
+            return false;
+        }
+        
+        _dbContext.SaveChangesAsync();
         return true;
     }
 

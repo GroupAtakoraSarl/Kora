@@ -47,7 +47,7 @@ namespace Kora.Client.Services
         //     var response = await _httpClient.PostAsJsonAsync($"api/Compte/RetraitCompte?numCompte={numCompte}&solde={solde}&password={password}", null).ConfigureAwait(false);
         //     return response.IsSuccessStatusCode;
         // }
-
+        //
         // public async Task<bool> Transfert(string numCompte, decimal solde)
         // {
         //     var response = await _httpClient.PostAsJsonAsync($"api/Compte/Transfert?numCompte={numCompte}&solde={solde}", null);

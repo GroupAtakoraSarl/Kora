@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Kora.Shared.Models;
 using Kora.Server.Data;
 using Kora.Shared.ModelsDto;
@@ -19,7 +20,14 @@ public class VilleService : IVilleService
         var villes = await _dbContext.Villes.ToListAsync();
         return villes;
     }
-    
+
+    public async Task<List<Ville>> GetAllVilleWithPays()
+    {
+        return await _dbContext.Villes
+            .Include(v => v.Pays.NomPays)
+            .ToListAsync();
+    }
+
     public async Task<Ville> AddVille(Ville ville)
     {
         var laville =  _dbContext.Villes.Add(ville);

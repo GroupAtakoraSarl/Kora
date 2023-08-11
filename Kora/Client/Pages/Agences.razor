@@ -1,6 +1,5 @@
 @page "/agences"
 @using Kora.Shared.Models
-@using Kora.Shared.ModelsDto
 @inject IPaysService PaysService
 @inject IVilleService VilleService
 @inject IAgenceService AgenceService
@@ -22,12 +21,14 @@
 
     <div class="row">
         <select class="col m-2" @bind="@agence.Pays">
+            <option value="0">Sélectionnez un Pays</option>
             @foreach (var lepays in pays)
             {
                 <option value="@lepays.NomPays">@lepays.NomPays</option>
             }
         </select>
         <select class="col m-2" @bind="@agence.Ville">
+            <option value="0">Sélectionnez une Ville</option>
             @foreach (var laville in villes)
             {
                 <option value="@laville.NomVille">@laville.NomVille</option>
@@ -113,6 +114,7 @@
         agences = await AgenceService.GetAllAgence();
         responsables = await ResponsableAgenceService.GetAllResponsable();
         pays = await PaysService.GetAllPays();
+        villes = await VilleService.GetAllVille();
     }
     
     private async Task ConfirmAdd()

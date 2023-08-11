@@ -1,17 +1,16 @@
 @page "/configurations"
 @using Kora.Shared.Models
-@using Kora.Shared.ModelsDto
+@inject IAdministrateurService AdministrateurService
 @inject IPaysService PaysService
 @inject IVilleService VilleService
 
 <h3>Configurations</h3>
 <br/>
 
-
 <div style="font-size: small" class="container-fluid">
     <br/>
-    <div class="row">
-        <div class="col">
+    <div  class="row">
+        <div class="col" style="margin-right: 40px">
             <h4 class="">Ajouter un <strong>pays</strong></h4>
             <br/>
             <div class="row">
@@ -36,6 +35,7 @@
             <h5>Listes des <strong>Pays en partenariat</strong></h5>
             <table class="table table-striped table-bordered bg-light fs-6">
                 <thead class="table-light">
+                <th>ID</th>
                 <th>Nom</th>
                 <th>Indicatif</th>
                 <th>Code ISO</th>
@@ -45,6 +45,7 @@
                 @foreach (var lepays in lespays)
                 {
                     <tr>
+                        <td>@lepays.IdPays</td>
                         <td>@lepays.NomPays</td>
                         <td>@lepays.Indicatif</td>
                         <td>@lepays.CodeISO</td>
@@ -54,12 +55,12 @@
                 </tbody>
             </table>
         </div>
-        <div class="col">
+        <div class="col" style="margin-left: 40px">
             <h4>Ajouter une <strong>ville</strong></h4>
             <br/>
             <div class="row">
-                <label class="col m-2">Nom de la Ville</label>
-                <input class="col m-2" type="text" @bind="@ville.NomVille"/>
+                <label class="col">Nom de la Ville</label>
+                <input class="col m-1" type="text" @bind="@ville.NomVille"/>
                 <select class="col m-2" @bind="selectedPaysId">
                     <option value="0">Sélectionner le Pays</option>
                     @foreach (var lepays in lespays)
@@ -68,26 +69,73 @@
                     }
                 </select>
             </div>
-            
+            <div class="row">
+                <button class="m-2 col btn btn-success" @onclick="ConfirmAddVille">CREER LA VILLE</button>
+            </div>
+            <br/>
+            <div class="row">
+                <table class="m-2 table table-striped table-bordered bg-light fs-6">
+                    <thead class="table-dark">
+                    <th>Nom</th>
+                    <th>ID du Pays</th>
+                    </thead>
+                    <tbody>
+                    @foreach (var laville in lesvilles)
+                    {
+                        <tr>
+                            <td>@laville.NomVille</td>
+                            <td>@laville.IdPays</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
+    <br/>
     
+    <div class="row">
+        <h4>Enregistrer un Assistant <strong>Gérant</strong></h4>
+        <div class="row">
+            <label class="col m-2">Nom d'Utilisateur</label>
+            <label class="col m-2">Email</label>
+        </div>
+        <div class="row">
+            <input type="text" class="col m-2" @bind="admin.Username"/>
+            <input type="text" class="col m-2" @bind="admin.Email"/>
+        </div>
+
+    </div>
 </div>
 
 @code {
     private List<Pays> lespays = new List<Pays>();
     private List<Ville> lesvilles = new List<Ville>();
+    private List<Administrateur> lesadmins = new List<Administrateur>();
     private int selectedPaysId;
 
     private Pays pays = new Pays();
     private Ville ville = new Ville();
+    private Administrateur admin = new Administrateur();
     
     protected override async Task OnInitializedAsync()
     {
+        lesadmins = await AdministrateurService.GetAllAdmin();
         lespays = await PaysService.GetAllPays();
         lesvilles = await VilleService.GetAllVille();
     }
+
+    private async Task ConfirmAddAdmin()
+    {
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Ajouter un assistant ? ");
+        var newAdmin = await AdministrateurService.EnregistrerAdmin(admin);
+        if (result)
+        {
+            lesadmins.Add(newAdmin);
+            admin = new Administrateur();
+        }
+    }
+
 
     private async Task ConfirmAddVille()
     {
@@ -103,14 +151,13 @@
                     ville.IdPays = selectedPaysId;
                 }
             }
+            
             var newVille = await VilleService.AddVille(ville);
-
+            
             if (newVille != null)
             {
                 lesvilles.Add(newVille);
                 ville = new Ville();
-
-                selectedPaysId = 0;
             }
         }
     }
@@ -126,5 +173,6 @@
             pays = new Pays();
         }
     }
+    
 
 }

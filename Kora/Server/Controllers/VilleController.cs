@@ -1,7 +1,9 @@
 using AutoMapper;
+using Kora.Server.Data;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using IVilleService = Kora.Server.Services.IVilleService;
 
 namespace Kora.Server.Controllers;
@@ -13,36 +15,35 @@ public class VilleController : ControllerBase
 {
     private readonly IVilleService _villeService;
     private readonly IMapper _mapper;
+    private readonly KoraDbContext _dbContext;
 
-    public VilleController(IVilleService villeService, IMapper mapper)
+    public VilleController(KoraDbContext dbContext, IVilleService villeService, IMapper mapper)
     {
         _mapper = mapper;
         _villeService = villeService;
+        _dbContext = dbContext;
     }
 
     [HttpGet("GetAllVille")]
-    public async Task<ActionResult<List<Ville>>> GetAllAgence()
+    public async Task<ActionResult<IEnumerable<Ville>>> GetAllVille()
     {
         var villes = await _villeService.GetAllVille();
         return Ok(villes);
     }
-
+    
+    [HttpGet("GetAllVilleWithPays")]
+    public async Task<ActionResult<IEnumerable<Ville>>> GetAllVilleWithPays()
+    {
+        var villes = await _villeService.GetAllVilleWithPays();
+        return Ok(villes);
+    }
+    
+    
     [HttpPost("AddVille")]
     public async Task<ActionResult<VilleDto>> AddVille(VilleDto ville)
     {
-        try
-        {
-            var laville = _mapper.Map<Ville>(ville);
-            var newVille = _villeService.AddVille(laville);
-            var newVilleDto = _mapper.Map<VilleDto>(newVille);
-            return Ok(newVilleDto);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-       
+        var laville = _mapper.Map<Ville>(ville);
+        var newVille = _villeService.AddVille(laville);
+        return Ok(newVille);
     }
-    
 }

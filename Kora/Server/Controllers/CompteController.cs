@@ -77,9 +77,10 @@ public class CompteController : ControllerBase
     {
         var result = await _compteService.RetraitCompte(numCompte, solde, password);
         if (!result)
+        {
             return NotFound("Compte introuvable ou solde supérieure à celui du compte");
-
-
+        }
+        
         return Ok();
     }
 

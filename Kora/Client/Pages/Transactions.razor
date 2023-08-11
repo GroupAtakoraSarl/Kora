@@ -11,6 +11,8 @@
     <thead class="table-light">
     <th>N&deg</th>
     <th>Solde</th>
+    <th>N&deg Expéditeur</th>
+    <th>N&deg Destinataire</th>
     <th>Date</th>
     <th>Type de Transaction</th>
     <th>Identifiant du Compte</th>
@@ -21,6 +23,9 @@
         <tr>
             <td>@transaction.IdTransaction</td>
             <td>@transaction.Solde</td>
+            <td>@transaction.NumExp</td>
+            <td>@transaction.NumDes</td>
+            <td>@transaction.Date</td>
             <td>@transaction.Type</td>
             <td>@transaction.IdCompte</td>
             <td></td>

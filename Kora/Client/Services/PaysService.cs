@@ -1,5 +1,4 @@
 using Kora.Shared.Models;
-using Kora.Shared.ModelsDto;
 using System.Net.Http.Json;
 
 namespace Kora.Client.Services
@@ -17,7 +16,12 @@ namespace Kora.Client.Services
         {
             return await _httpClient.GetFromJsonAsync<List<Pays>>("api/Pays/GetAllPays");
         }
-        
+
+        public async Task<Pays> GetPaysNameById(int idPays)
+        {
+            return await _httpClient.GetFromJsonAsync<Pays>($"api/Pays/GetPaysNameById/{idPays}");
+        }
+
         public async Task<Pays> AddPays(Pays pays)
         {
             var response = await _httpClient.PostAsJsonAsync("api/Pays/AddPays", pays);

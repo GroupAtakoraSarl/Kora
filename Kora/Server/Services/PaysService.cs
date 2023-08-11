@@ -1,7 +1,5 @@
-using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Server.Data;
-using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;
@@ -20,6 +18,12 @@ public class PaysService : IPaysService
     {
         var pays = await _dbContext.Pays.ToListAsync();
         return pays;
+    }
+
+    public async Task<Pays> GetPaysNameById(int idPays)
+    {
+        var lepays = _dbContext.Pays.FirstOrDefault(p => p.IdPays == idPays);
+        return lepays;
     }
 
     public async Task<Pays> AddPays(Pays pays)

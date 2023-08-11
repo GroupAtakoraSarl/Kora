@@ -13,9 +13,9 @@ public class AdministrateurService : IAdministrateurService
         _http = http;
     }
     
-    public async Task<List<AdministrateurDto>> GetAllAdmin()
+    public async Task<List<Administrateur>> GetAllAdmin()
     {
-        return await _http.GetFromJsonAsync<List<AdministrateurDto>>("api/Administrateur");
+        return await _http.GetFromJsonAsync<List<Administrateur>>("api/Administrateur");
     }
 
     public async Task<AdministrateurDto> GetAdminByEmail(string email)
@@ -23,9 +23,24 @@ public class AdministrateurService : IAdministrateurService
         return await _http.GetFromJsonAsync<AdministrateurDto>($"api/Administrateur/GetAdminByEmail/{email}");
     }
 
-    public async Task<bool> EnregistrerAdmin(Administrateur administrateur)
+    public async Task<Administrateur> Enregistrer(Administrateur administrateur)
+    {
+        var response = await _http.PostAsJsonAsync("api/Administrateur/Enregistrer", administrateur);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<Administrateur>();
+    }
+
+    public async Task<Administrateur> EnregistrerAdmin(Administrateur administrateur)
     {
         var response = await _http.PostAsJsonAsync("api/Administrateur/EnregistrerAdmin", administrateur);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<Administrateur>();
+    }
+
+    public async Task<bool> EnregistrerAdminSaved(string email, string username, string password)
+    {
+        var admin = new Administrateur { Email = email, Username = username, Password = password };
+        var response = await _http.PostAsJsonAsync("api/Administrateur/EnregistrerAdminSaved", admin);
         return response.IsSuccessStatusCode;
     }
 

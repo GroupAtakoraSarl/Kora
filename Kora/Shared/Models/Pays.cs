@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace Kora.Shared.Models;
 
@@ -20,6 +19,5 @@ public class Pays
     public string DevisePays { get; set; }
     
     public ICollection<Ville> Villes { get; set; }
-
-
+    
 }

@@ -9,6 +9,8 @@ public class Transaction
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdTransaction { get; set; }
     public decimal Solde { get; set; }
+    public string NumExp { get; set; }
+    public string NumDes { get; set; }
     public DateTime Date { get; set; }
     public enum TransactionType
     {

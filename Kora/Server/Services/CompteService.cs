@@ -36,7 +36,7 @@ public class CompteService : ICompteService
     public async Task<CompteDto> GetCompteByNum(string numCompte)
     {
         var compte = await _dbContext.Comptes
-            .Include(c => c.IdClient)
+            .Include(c => c.Client)
             .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
 
         if (compte is null)
@@ -55,9 +55,8 @@ public class CompteService : ICompteService
 
     public async Task<bool> DepotCompte(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
     {
-        var expediteur = _dbContext.Comptes.Include(c => c.IdClient).FirstOrDefault(c=>c.NumCompte == numCompteExpediteur);
+        var expediteur = _dbContext.Comptes.Include(c => c.Client).FirstOrDefault(c=>c.NumCompte == numCompteExpediteur);
         var destinataire = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompteDestinataire);
-
 
         if (expediteur is null || destinataire is null)
         {
@@ -79,6 +78,8 @@ public class CompteService : ICompteService
         var depotTransaction = new Transaction
         {
             Date = DateTime.Now,
+            NumExp = expediteur.NumCompte,
+            NumDes = destinataire.NumCompte,
             Type = Transaction.TransactionType.Dépôt,
             Solde = solde
         };
@@ -92,8 +93,15 @@ public class CompteService : ICompteService
 
     public async Task<bool> RetraitCompte(string numCompte, decimal solde, string password)
     {
-        var compte = _dbContext.Comptes.Include(c => c.IdClient).FirstOrDefault(c => c.NumCompte == numCompte);
-        if (compte is null)
+        var compte = await _dbContext.Comptes
+            .Include(compte => compte.Client)
+            .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
+        if (compte == null)
+        {
+            return false;
+        }
+
+        if (compte.Client == null)
         {
             return false;
         }
@@ -114,6 +122,7 @@ public class CompteService : ICompteService
         var retraitTransaction = new Transaction
         {
             Date = DateTime.Now,
+            NumExp = compte.NumCompte,
             Type = Transaction.TransactionType.Retrait,
             Solde = solde
         };
@@ -128,8 +137,8 @@ public class CompteService : ICompteService
 
     public async Task<bool> Transfert(string numCompte, decimal solde)
     {
-        var compte = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompte);
-        if (compte is null)
+        var compte = await _dbContext.Comptes.FirstOrDefaultAsync(c => c.NumCompte == numCompte);
+        if (compte == null)
         {
             return false;
         }
@@ -139,6 +148,7 @@ public class CompteService : ICompteService
         var transfertTransaction = new Transaction
         {
             Date = DateTime.Now,
+            NumDes = compte.NumCompte,
             Type = Transaction.TransactionType.Transfert,
             Solde = solde
         };
