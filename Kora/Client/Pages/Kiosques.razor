@@ -1,8 +1,99 @@
 @page "/kiosques"
-<h3>Kiosques</h3>
+@using Kora.Shared.Models
+@inject IKiosqueService KiosqueService
+@inject IAgenceService AgenceService
 
-<p>Loading...</p>
+<div class="container">
+    <h4 class="m-2">Entrez les informations pour creer un <strong>kiosque</strong></h4>
+    <br/>
+    <div class="row">
+        <label class="col m-2">Nom</label>
+        <label class="col m-2">Contact</label>
+        <label class="col m-2">Nom d'Agence</label>
+    </div>
+    <form @onsubmit="ConfirmKiosqueAdd">
+        <div class="row">
+            <input class="col m-2" type="text" required placeholder="Nom du Kiosque" @bind="@kiosque.NomKiosque"/>
+            <input class="col m-2" type="text" required placeholder="exple : 22334455" @bind="@kiosque.ContactKiosque"/>
+            <select class="col m-2" @bind="selectedAgenceId">
+                <option value="0">Sélectionnez l'Agence correspondant</option>
+                @foreach (var lagence in agences)
+                {
+                    <option value="@lagence.IdAgence">@lagence.NomAgence</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="row btn btn-success text-center">CREER LE KIOSQUE</button>
+    </form>
+    <br/>
+    <br/>
+    <h4 class="m-2">Listes des kiosques</h4>
+
+    <table class="table table-success table-bordered bg-light fs-6">
+        <thead class="table-primary">
+        <th>N&deg</th>
+        <th class="text-center">Nom du Kiosque</th>
+        <th class="text-center">Adresse</th>
+        <th class="text-center">Contact</th>
+        <th class="text-center">Identifiant de l'Agence</th>
+        </thead>
+        <tbody>
+        @foreach (var lekiosque in kiosques)
+        {
+            <tr>
+                <td class="text-center">@lekiosque.IdKiosque</td>
+                <td class="text-center">@lekiosque.NomKiosque</td>
+                <td class="text-center">@lekiosque.AdresseKiosque</td>
+                <td class="text-center">@lekiosque.ContactKiosque</td>
+                <td class="text-center"><a href="/agences">@lekiosque.IdAgence</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
 
 @code {
+    private List<Kiosque> kiosques = new List<Kiosque>();
+    private List<Agence> agences = new List<Agence>();
+    private int selectedAgenceId;
+    private string adresse;
     
+    private Kiosque kiosque = new Kiosque();
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        kiosques = await KiosqueService.GetAllKiosque();
+        agences = await AgenceService.GetAllAgence();
+    }
+
+    private async Task ConfirmKiosqueAdd()
+    {
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Vous voulez creer un kiosque ?");
+
+        if (result)
+        {
+            if (selectedAgenceId != 0)
+            {
+                var selectedAgence = agences.FirstOrDefault(k => k.IdAgence == selectedAgenceId);
+                if (selectedAgence is not null)
+                {
+                    kiosque.IdAgence = selectedAgenceId;
+                    kiosque.AdresseKiosque = selectedAgence.AdresseAgence;
+                }
+            }
+            
+            var newKiosque = await KiosqueService.AddKiosque(kiosque);
+
+            if (newKiosque is not null)
+            {
+                kiosques.Add(newKiosque);
+
+                kiosque = new Kiosque();
+
+                selectedAgenceId = 0;
+            }
+        }
+    }
+
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UrH50cwCHbowOW6o+bX1jW0y7+1sJG+iqzj8sokJZP4=",
+  "Hash": "0CoweTUeFUN1Q2D2TVVnrNojjht8UG2yJicGXeMf4iY=",
   "Source": "Kora.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\BCrypt.Net-Next.dll",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/BCrypt.Net-Next.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\lib\\net6.0\\BCrypt.Net-Next.dll"
+    },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.boot.json",
       "SourceId": "Kora.Client",
@@ -6543,6 +6560,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authorization.dll"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\W7TtDV7o.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/BCrypt.Net-Next.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\BCrypt.Net-Next.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\BCrypt.Net-Next.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\wa9EFbuF.gz",

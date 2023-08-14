@@ -16,6 +16,6 @@ public class TransactionService : ITransactionService
     
     public async Task<List<TransactionDto>> GetAllTransaction()
     {
-        return await _httpClient.GetFromJsonAsync<List<TransactionDto>>("api/transaction/GetAllTransaction");
+        return await _httpClient.GetFromJsonAsync<List<TransactionDto>>("api/Transaction/GetAllTransaction");
     }
 }

@@ -1,5 +1,6 @@
 @page "/configurations"
 @using Kora.Shared.Models
+@using Kora.Shared.ModelsDto
 @inject IAdministrateurService AdministrateurService
 @inject IPaysService PaysService
 @inject IVilleService VilleService
@@ -33,23 +34,23 @@
             <br/>
             
             <h5>Listes des <strong>Pays en partenariat</strong></h5>
-            <table class="table table-striped table-bordered bg-light fs-6">
+            <table class="table table-hover table-striped table-bordered bg-light fs-7">
                 <thead class="table-light">
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Indicatif</th>
-                <th>Code ISO</th>
-                <th>Devive Pays</th>
+                <th class="text-center">ID</th>
+                <th class="text-center">Nom</th>
+                <th class="text-center">Indicatif</th>
+                <th class="text-center">Code ISO</th>
+                <th class="text-center">Devive Pays</th>
                 </thead>
                 <tbody>
                 @foreach (var lepays in lespays)
                 {
                     <tr>
-                        <td>@lepays.IdPays</td>
-                        <td>@lepays.NomPays</td>
-                        <td>@lepays.Indicatif</td>
-                        <td>@lepays.CodeISO</td>
-                        <td>@lepays.DevisePays</td>
+                        <td class="text-center">@lepays.IdPays</td>
+                        <td class="text-center">@lepays.NomPays</td>
+                        <td class="text-center">@lepays.Indicatif</td>
+                        <td class="text-center">@lepays.CodeISO</td>
+                        <td class="text-center">@lepays.DevisePays</td>
                     </tr>
                 }
                 </tbody>
@@ -74,10 +75,10 @@
             </div>
             <br/>
             <div class="row">
-                <table class="m-2 table table-striped table-bordered bg-light fs-6">
+                <table class="m-2 table-hover table table-striped table-bordered bg-light fs-7">
                     <thead class="table-dark">
-                    <th>Nom</th>
-                    <th>ID du Pays</th>
+                    <th class="text-center">Nom</th>
+                    <th class="text-center">ID du Pays</th>
                     </thead>
                     <tbody>
                     @foreach (var laville in lesvilles)
@@ -96,15 +97,31 @@
     
     <div class="row">
         <h4>Enregistrer un Assistant <strong>Gérant</strong></h4>
-        <div class="row">
-            <label class="col m-2">Nom d'Utilisateur</label>
-            <label class="col m-2">Email</label>
+        <div class="container col">
+            <label class="row m-2">Nom complet</label>
+            <input type="text" class="row m-2 w-25" @bind="admin.Username"/>
+            <label class="row m-2">Email</label>
+            <input type="text" class="row m-2 w-25" @bind="admin.Email"/>
+            <button class="btn btn-success row m-2" @onclick="ConfirmAddAdmin">Ajouter l'adjoint</button>
         </div>
-        <div class="row">
-            <input type="text" class="col m-2" @bind="admin.Username"/>
-            <input type="text" class="col m-2" @bind="admin.Email"/>
+        <div class="col container mb-5">
+            <h6 class="m-2">Liste des <strong>Gérants</strong></h6>
+            <table class="m-2 table-hover table table-striped table-bordered bg-light fs-7">
+                <thead class="table-dark">
+                <th class="text-center">Nom complet</th>
+                <th class="text-center">Email</th>
+                </thead>
+                <tbody>
+                @foreach (var ladmin in lesadmins)
+                {
+                    <tr>
+                        <td class="text-center">@ladmin.Username</td>
+                        <td class="text-center">@ladmin.Email</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
         </div>
-
     </div>
 </div>
 
@@ -116,7 +133,7 @@
 
     private Pays pays = new Pays();
     private Ville ville = new Ville();
-    private Administrateur admin = new Administrateur();
+    private AdministrateurDto admin = new AdministrateurDto();
     
     protected override async Task OnInitializedAsync()
     {
@@ -125,18 +142,18 @@
         lesvilles = await VilleService.GetAllVille();
     }
 
+
     private async Task ConfirmAddAdmin()
     {
-        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Ajouter un assistant ? ");
-        var newAdmin = await AdministrateurService.EnregistrerAdmin(admin);
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Etes-vous sûr d'jouter un adjoint ?");
+        var newAdmin = await AdministrateurService.Enregistrer(admin);
         if (result)
         {
             lesadmins.Add(newAdmin);
-            admin = new Administrateur();
+            admin = new AdministrateurDto();
         }
     }
-
-
+    
     private async Task ConfirmAddVille()
     {
         var result = await JSRuntime.InvokeAsync<bool>("confirm", "Ajouter une nouvelle ville ?");

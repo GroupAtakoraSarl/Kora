@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230809103439_koraMigration")]
+    [Migration("20230811100343_koraMigration")]
     partial class koraMigration
     {
         /// <inheritdoc />
@@ -31,6 +31,7 @@ namespace Kora.Server.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Username")

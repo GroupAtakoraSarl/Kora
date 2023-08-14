@@ -16,7 +16,8 @@ namespace Kora.Client.Services
         {
             return await _httpClient.GetFromJsonAsync<List<Pays>>("api/Pays/GetAllPays");
         }
-
+        
+        
         public async Task<Pays> GetPaysNameById(int idPays)
         {
             return await _httpClient.GetFromJsonAsync<Pays>($"api/Pays/GetPaysNameById/{idPays}");

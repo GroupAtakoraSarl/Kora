@@ -1,8 +1,6 @@
-@layout LoginLayout
-@page "/"
-@page "/login"
+@layout SignLayout
+@page "/sign"
 @using Kora.Shared.Models
-@inject HttpClient HttpClient
 @inject IAdministrateurService AdministrateurService
 @inject NavigationManager Navigation
 
@@ -42,17 +40,16 @@
                     }
                     <form @onsubmit="HandleSubmit">
                         <div class="mb-3">
-                            <label for="username" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="username" @bind="admin.Email" required>
+                            <label for="username" class="form-label">Nom Complet</label>
+                            <input type="text" class="form-control" @bind="@admin.Username"/>
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" @bind="@admin.Email" required>
                         </div>
                         <div class="mb-3">
                             <label for="tel" class="form-label">Mot de passe</label>
-                            <input type="password" class="form-control" id="tel" @bind="admin.Password" required>
+                            <input type="password" class="form-control" id="tel" @bind="@admin.Password" required>
                         </div>
-                        <button type="submit" class="text-center mb-2 w-100 btn btn-primary">Se connecter</button>
-                        <div class="text-center mt-2">
-                            <a href="/sign">M'enregistrer</a>
-                        </div>
+                        <button type="submit" class="text-center mb-2 w-100 btn btn-primary">S'enregistrer</button>
                     </form>
                 </div>
             </div>
@@ -61,7 +58,9 @@
 </div>
 
 @code {
+
     private Administrateur admin = new Administrateur();
+    
     private bool showError = false;
 
     private async Task HandleSubmit()
@@ -69,12 +68,12 @@
         try
         {
             // Envoyer le client enregistré à l'API via une requête POST
-            var response = await AdministrateurService.ConnecterAdmin(admin.Email, admin.Password);
+            var response = await AdministrateurService.EnregistrerAdminSaved(admin.Username, admin.Email, admin.Password);
 
             // Vérifier si la requête a réussi
             if (response)
             {
-                Navigation.NavigateTo("/dashboard");
+                Navigation.NavigateTo("/login");
             }
             else
             {

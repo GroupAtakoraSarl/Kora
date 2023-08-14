@@ -24,10 +24,6 @@
             }
         </select>
     </div>
-    
-    <div class="row">
-        <label class="col m-2"></label>
-    </div>
     <div class="row">
         <button class="btn btn-success text-center w-25 col-5 m-2" @onclick="ConfirmAdd">Creer le compte</button>
     </div>
@@ -37,21 +33,21 @@
 
 <h4>Listes des comptes</h4>
 
-<table class="table table-striped table-bordered bg-light fs-6">
+<table class="table table-hover table-striped table-bordered bg-light fs-6">
     <thead class="table-light">
-    <th>N&deg</th>
-    <th>Numero de Comptes</th>
-    <th>Solde Initial (Fcfa)</th>
-    <th>Identifiant du Client</th>
+    <th class="text-center">N&deg</th>
+    <th class="text-center">Numero de Comptes</th>
+    <th class="text-center">Solde Initial (Fcfa)</th>
+    <th class="text-center">Identifiant du Client</th>
     </thead>
     <tbody>
     @foreach (var compte in comptes)
     {
         <tr>
-            <td>@compte.IdCompte</td>
-            <td>@compte.NumCompte</td>
-            <td>@compte.Solde</td>
-            <td>@compte.IdClient</td>
+            <td class="text-center">@compte.IdCompte</td>
+            <td class="text-center">@compte.NumCompte</td>
+            <td class="text-center">@compte.Solde</td>
+            <td class="text-center">@compte.IdClient</td>
         </tr>
     }
     </tbody>

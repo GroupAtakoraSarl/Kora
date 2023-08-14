@@ -30,7 +30,7 @@ public class AdministrateurService : IAdministrateurService
 
     }
 
-    public bool Enregistrer(Administrateur administrateur)
+    public async Task<Administrateur> Enregistrer(Administrateur administrateur)
     {
         var adminUsername = administrateur.Username;
         var adminEmail = administrateur.Email;
@@ -38,12 +38,13 @@ public class AdministrateurService : IAdministrateurService
         var newAdmin = new Administrateur
         {
             Username = adminUsername,
-            Email = adminEmail
+            Email = adminEmail,
+            Password = "default"
         };
         _dbContext.Administrateurs.Add(newAdmin);
-        _dbContext.SaveChangesAsync();
+         await _dbContext.SaveChangesAsync();
 
-        return true;
+        return newAdmin;
     }
 
 
@@ -51,42 +52,30 @@ public class AdministrateurService : IAdministrateurService
     {
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(administrateur.Password);
         
-        var ladmin = _mapper.Map<Administrateur>(administrateur);
         administrateur.Password = hashedPassword;
-        _dbContext.Administrateurs.Add(ladmin);
+        _dbContext.Administrateurs.Add(administrateur);
         _dbContext.SaveChangesAsync();
         
         return true;
     }
 
-    public bool EnregistrerAdminSaved(string email, string username, string password)
+    public bool EnregistrerAdminSaved(string username, string email, string password)
     {
         string hashedPwd = BCrypt.Net.BCrypt.HashPassword(password);
-        var adminSaved = _dbContext.Administrateurs.Any(a => a.Username == username && a.Email == email);
-        if (adminSaved)
-        {
-            Administrateur admin = new Administrateur
-            {
-                Username = username,
-                Email = email,
-                Password = hashedPwd
-            };
-            _dbContext.Administrateurs.Add(admin);
-        }
-        else
+        var adminSaved = _dbContext.Administrateurs.FirstOrDefault(a => a.Username == username && a.Email == email);
+        if (adminSaved == null)
         {
             return false;
         }
-        
-        _dbContext.SaveChangesAsync();
+        adminSaved.Password = hashedPwd;
+        _dbContext.SaveChanges();
         return true;
     }
-
 
     public bool ConnecterAdmin(string email, string password)
     {
         var ladmin = _dbContext.Administrateurs.FirstOrDefault(a => a.Email == email);
-        if (ladmin is null)
+        if (ladmin == null)
         {
             return false;
         }
@@ -94,6 +83,7 @@ public class AdministrateurService : IAdministrateurService
         // Vérifier que le mot de passe fourni correspond au hachage de mot de passe stocké
         return BCrypt.Net.BCrypt.Verify(password, ladmin.Password);
     }
+    
     
     public async Task<bool> DeleteAdmin(string email)
     {

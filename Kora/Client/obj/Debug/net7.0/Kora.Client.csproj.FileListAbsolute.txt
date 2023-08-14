@@ -850,3 +850,7 @@ D:\BUREAU\STAGE\Kora\Kora\Client\obj\Debug\net7.0\build-gz\PA62RQzY.gz
 D:\BUREAU\STAGE\Kora\Kora\Client\obj\Debug\net7.0\build-gz\z7oQqv1z.gz
 D:\BUREAU\STAGE\Kora\Kora\Client\obj\Debug\net7.0\build-gz\YEkBTy4N.gz
 D:\BUREAU\STAGE\Kora\Kora\Client\obj\Debug\net7.0\build-gz\3CzrY3lc.gz
+D:\BUREAU\STAGE\Kora\Kora\Client\bin\Debug\net7.0\wwwroot\_framework\BCrypt.Net-Next.dll
+D:\BUREAU\STAGE\Kora\Kora\Client\bin\Debug\net7.0\wwwroot\_framework\BCrypt.Net-Next.dll.gz
+D:\BUREAU\STAGE\Kora\Kora\Client\bin\Debug\net7.0\BCrypt.Net-Next.dll
+D:\BUREAU\STAGE\Kora\Kora\Client\obj\Debug\net7.0\build-gz\W7TtDV7o.gz

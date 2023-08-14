@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jcy1T/6++gZ2EFLJp91OEEJocE9a2W/0tiA6Tl6gffmBzZ5Ct2T4+1MPSUcAjPXvbX9E4nggrjCahTNXP+IPhA==",
+  "dgSpecHash": "w3+GSouo7xz0tLlDEugDMeL84nocGuXXvKYR5V3zHi/vUWiA8T5Q1RuHbHB8Fmg7o6rMBj8x43OmrUhr1URv1w==",
   "success": true,
   "projectFilePath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\kalip\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.9\\microsoft.aspnetcore.authorization.7.0.9.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.9\\microsoft.aspnetcore.components.7.0.9.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\7.0.9\\microsoft.aspnetcore.components.analyzers.7.0.9.nupkg.sha512",

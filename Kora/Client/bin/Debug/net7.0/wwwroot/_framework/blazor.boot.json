@@ -7,6 +7,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
+      "BCrypt.Net-Next.dll": "sha256-EVufr\/i5CaGgi2WzFQWOsYLAxMOnfBn81fTanaSdSmM=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-P7\/HRwCqdk3q1MD7UtlAXMN\/E8gZRdzme6ESGZsXHNk=",
       "Microsoft.AspNetCore.Components.dll": "sha256-72wt1Dncw5Whm9zUb3wanQSQBmY\/Ugu9fHEvX\/FtZ8s=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-E0\/WiiyuGn1me5bQB04\/7a\/PMnrIvan9wukL5Mkbpfw=",
@@ -202,15 +203,15 @@
       "mscorlib.dll": "sha256-t1RT9mknsQ54H+sVa1vtMhjv3D8ZjiAGoLzHvuIObPw=",
       "netstandard.dll": "sha256-5SHKPh1PcuJjq4lIo7ymdIyhb9d3++oMAjr46auhUSc=",
       "System.Private.CoreLib.dll": "sha256-eH+XIsCUG5oZ0k8AIzNtRLTCLiV\/8Zv0RFCPMsIkdYY=",
-      "Kora.Shared.dll": "sha256-1nVfXu7xqilc66uCbjM2IsFMKjKaZjQj9tkAHAZlYOo=",
-      "Kora.Client.dll": "sha256-oprjpQmITyuTVwOJoRhsYjKMc3UPX8emvnntVDrbvWk="
+      "Kora.Shared.dll": "sha256-rD2e4fENNDBL2+tpYbMGXBOBSFZu6okmPAnzPSuLYBI=",
+      "Kora.Client.dll": "sha256-KIc4peYMQ7WMTUEo5BP6RXW8G9pgNp7n0NDX0cBhhBk="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "Kora.Shared.pdb": "sha256-HSwg3T74cUSkW6pma+fkErlJZwUMmB8a9gQUfVCbhCU=",
-      "Kora.Client.pdb": "sha256-waE\/Ap9NHGnYEn5M3CnPaZQenTZStsDsZlhV5An556s="
+      "Kora.Shared.pdb": "sha256-D5Z56qodb7bYCALBscCoKhlcgFsBPrwdZHz7GJ8lOcs=",
+      "Kora.Client.pdb": "sha256-JrQlLmkaEXjW1KlKFedgRUWIMaIHPI4OPGlp3Q6xe0o="
     },
     "runtime": {
       "dotnet.7.0.9.wep0k6qray.js": "sha256-dUIY5Mz0ozZWqtTfBb7ArJKbdh5IIp8BXeq6UjK4u\/c=",

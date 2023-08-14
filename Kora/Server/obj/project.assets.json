@@ -1048,6 +1048,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "Kora.Shared": "1.0.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.9",
           "Microsoft.EntityFrameworkCore": "8.0.0-preview.6.23329.4"

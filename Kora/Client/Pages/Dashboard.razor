@@ -27,17 +27,15 @@
     .bgkiosque{
         background-color: #c94652;
     }
-    .bgadmin{
-        background-color: #5b646d;
-    }
     .bgtrans{
         background-color: rgba(84,219,124,0.82);
     }
-    .bgpays{
-        background-color: rgba(107,138,138,1);
+    a{
+        text-decoration: none;
+        color: white;
     }
-    .bgville{
-        background-color: #a6bbd9;
+    a:hover{
+        color: white;
     }
 
 </style>
@@ -56,7 +54,7 @@ else
                         <h5 class="card-title text-center"><span class="oi oi-people"></span></h5>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-text text-center"><strong>@ClientCount</strong> Clients</h2>
+                        <a href="/clients"><h2 class="card-text text-center"><strong>@ClientCount</strong> Clients</h2></a>
                     </div>
                 </div>
             </div>
@@ -67,7 +65,7 @@ else
                         <h5 class="card-title text-center"><span class="oi oi-vertical-align-top"></span></h5>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-text text-center"><strong>@AgenceCount</strong> Agences</h2>
+                        <a href="/agences"><h2 class="card-text text-center"><strong>@AgenceCount</strong> Agences</h2></a>
                     </div>
                 </div>
             </div>
@@ -78,31 +76,31 @@ else
                         <h5 class="card-title text-center"><span class="oi oi-vertical-align-top"></span></h5>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-text text-center"><strong>@KiosqueCount</strong> Kiosques</h2>
+                        <a href="/kiosques"><h2 class="card-text text-center"><strong>@KiosqueCount</strong> Kiosques</h2></a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2 w-50">
                 <div class="card text-white bgcomptes shadow p-3 mb-5 bg-body-tertiary rounded transition">
                     <div class="card-header">
                         <h5 class="card-title text-center"><span class="oi oi-clipboard"></span></h5>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-text text-center"><strong>@CompteCount</strong> Comptes</h2>
+                        <a href="/comptes"><h2 class="card-text text-center"><strong>@CompteCount</strong> Comptes</h2></a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-2 w-50">
                 <div class="card text-white bgtrans shadow p-3 mb-5 bg-body-tertiary rounded transition">
                     <div class="card-header">
                         <h5 class="card-title text-center"><span class="oi oi-loop-circular"></span></h5>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-text text-center"><strong>@TransCount</strong> Transactions</h2>
+                        <a href="/transactions"><h2 class="card-text text-center"><strong>@TransCount</strong> Transactions</h2></a>
                     </div>
                 </div>
             </div>

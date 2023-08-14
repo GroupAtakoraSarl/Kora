@@ -123,6 +123,7 @@ public class CompteService : ICompteService
         {
             Date = DateTime.Now,
             NumExp = compte.NumCompte,
+            NumDes = "none",
             Type = Transaction.TransactionType.Retrait,
             Solde = solde
         };
@@ -133,11 +134,11 @@ public class CompteService : ICompteService
 
         return true;
     }
-
-
+    
     public async Task<bool> Transfert(string numCompte, decimal solde)
     {
-        var compte = await _dbContext.Comptes.FirstOrDefaultAsync(c => c.NumCompte == numCompte);
+        var compte = await _dbContext.Comptes
+            .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
         if (compte == null)
         {
             return false;

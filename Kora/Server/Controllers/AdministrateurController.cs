@@ -42,16 +42,19 @@ public class AdministrateurController : ControllerBase
     
     
     [HttpPost("Enregistrer")]
-    public IActionResult Enregistrer(Administrateur administrateur)
+    public async Task<ActionResult<AdministrateurDto>> Enregistrer(AdministrateurDto adminDto)
     {
         try
         {
-            _administrateurService.EnregistrerAdmin(administrateur);
-            return Ok();
+            var admin = _mapper.Map<Administrateur>(adminDto);
+            var newAdmin = await _administrateurService.Enregistrer(admin);
+            var newAdminDto = _mapper.Map<AdministrateurDto>(newAdmin);
+            return Ok(newAdminDto);
         }
         catch (Exception e)
         {
-            return BadRequest(e);
+            Console.WriteLine(e);
+            throw;
         }
     }
 
@@ -71,20 +74,18 @@ public class AdministrateurController : ControllerBase
     }
     
     [HttpPost("EnregistrerAdminSaved")]
-    public IActionResult EnregistrerAdminSaved(string email, string username, string passsword)
+    public IActionResult EnregistrerAdminSaved(Administrateur administrateur)
     {
         try
         {
-            _administrateurService.EnregistrerAdminSaved(email, username, passsword);
+            _administrateurService.EnregistrerAdminSaved(administrateur.Username, administrateur.Email, administrateur.Password);
             return Ok();
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            return BadRequest(e);
         }
     }
-    
     
     
     [HttpPost("ConnecterAdmin")]

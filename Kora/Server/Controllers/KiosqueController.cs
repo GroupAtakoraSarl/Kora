@@ -21,11 +21,10 @@ public class KiosqueController : ControllerBase
     }
 
     [HttpGet("GetAllKiosque")]
-    public async Task<ActionResult<List<KiosqueDto>>> GetAllKiosque()
+    public async Task<ActionResult<List<Kiosque>>> GetAllKiosque()
     {
         var kiosques = await _kiosqueService.GetAllKiosque();
-        var kiosqueDto = _mapper.Map<List<KiosqueDto>>(kiosques);
-        return Ok(kiosqueDto);
+        return Ok(kiosques);
     }
 
     [HttpGet("GetKiosqueByAresse")]
@@ -40,10 +39,12 @@ public class KiosqueController : ControllerBase
     }
 
     [HttpPost("AddKiosque")]
-    public async Task<ActionResult<Kiosque>> AddKiosque(Kiosque kiosque)
+    public async Task<ActionResult<KiosqueDto>> AddKiosque(KiosqueDto kiosqueDto)
     {
-        var lekiosque = await _kiosqueService.AddKiosque(kiosque);
-        return Ok(lekiosque);
+        var lekiosque = _mapper.Map<Kiosque>(kiosqueDto);
+        _kiosqueService.AddKiosque(lekiosque);
+        var newKiosqueDto = _mapper.Map<KiosqueDto>(lekiosque);
+        return Ok(newKiosqueDto);
     }
 
     [HttpDelete("DeleteKiosque/{contactKiosque}")]

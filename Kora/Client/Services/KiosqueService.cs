@@ -13,9 +13,9 @@ namespace Kora.Client.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<KiosqueDto>> GetAllKiosque()
+        public async Task<List<Kiosque>> GetAllKiosque()
         {
-            return await _httpClient.GetFromJsonAsync<List<KiosqueDto>>("api/Kiosque/GetAllKiosque");
+            return await _httpClient.GetFromJsonAsync<List<Kiosque>>("api/Kiosque/GetAllKiosque");
         }
 
         public async Task<List<KiosqueDto>> GetKiosqueByAdresse(string adresseKiosque)
