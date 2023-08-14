@@ -25,9 +25,9 @@ namespace Kora.Client.Services
 
         public async Task<ResponsableAgence> AddResponsable(ResponsableAgence responsableAgence)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/ResponsableAgence/AddResponsable", responsableAgence);
+            var response = await _httpClient.PostAsJsonAsync("api/ResponsableAgence/AjouterResponsable", responsableAgence);
             response.EnsureSuccessStatusCode();
-            return responsableAgence;
+            return await response.Content.ReadFromJsonAsync<ResponsableAgence>();
         }
 
         public async Task<bool> DeleteResponsable(string tel)

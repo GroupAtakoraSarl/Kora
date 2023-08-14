@@ -77,6 +77,10 @@
       "PackagePath": "staticwebassets\\index.html"
     },
     {
+      "Id": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\wwwroot\\mobile.svg",
+      "PackagePath": "staticwebassets\\mobile.svg"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Kora.Client.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

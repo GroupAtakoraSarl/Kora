@@ -3,20 +3,49 @@
 @inject IResponsableAgence ResponsableAgenceService
 
 
-<h3>Liste des <strong>Responsables</strong> d'<strong>Agences</strong></h3>
 
-<table class="table table-striped table-bordered bg-light">
-    <thead class="table-light">
-    <th>Identifiant</th>
-    <th>Nom</th>
-    <th>Prénoms</th>
-    <th>Sexe</th>
-    <th>Age (ans)</th>
-    <th>Téléphone</th>
-    <th>Statut du Responsable</th>
-    </thead>
-    <tbody>
-        @foreach (var resp in responsables )
+<div class="container">
+    <h3>Entrez les informations pour creer un <strong>responsable</strong></h3>
+    <br/>
+    <div class="row">
+        <label class="col m-2">Nom</label>
+        <label class="col m-2">Prénoms</label>
+        <label class="col m-2">Sexe</label>
+        <label class="col m-2">Age (ans)</label>
+        <label class="col m-2">Téléphone</label>
+        <label class="col m-2">Statut</label>
+    </div>
+    <form @onsubmit="ConfirmAdd">
+        <div class="row">
+            <input type="text" class="col m-2" placeholder="Nom du Responsable" required="required" @bind="@respo.NomResponsable"/>
+            <input type="text" class="col m-2" placeholder="Prénoms du Responsable" required="required" @bind="@respo.PrenomResponsable"/>
+            <input type="text" class="col m-2" placeholder="M/F" required="required" @bind="@respo.SexeResponsable"/>
+            <input type="number" class="col m-2" required="required" @bind="@respo.AgeResponsable"/>
+            <input type="text" class="col m-2" required="required" @bind="@respo.Tel"/>
+            <input type="text" class="col m-2" placeholder="exp: Commerçant" required="required" @bind="@respo.StatutResponsable"/>
+        </div>
+        <div style="margin-top: 5px; margin-bottom: 10px" class="row">
+            <button class="col btn btn-success" type="submit">AJOUTER UN RESPONSABLE</button>
+        </div>
+    </form>
+    
+    <br/>
+    
+    <h4>Liste des <strong>Responsables</strong> d'<strong>Agences</strong></h4>
+
+    <br/>
+    <table class="table table-hover table-striped table-bordered bg-light">
+        <thead class="table-dark">
+        <th>Identifiant</th>
+        <th>Nom</th>
+        <th>Prénoms</th>
+        <th>Sexe</th>
+        <th>Age (ans)</th>
+        <th>Téléphone</th>
+        <th>Statut du Responsable</th>
+        </thead>
+        <tbody>
+        @foreach (var resp in responsables)
         {
             <tr>
                 <td>@resp.IdResponsable</td>
@@ -28,14 +57,34 @@
                 <td>@resp.StatutResponsable</td>
             </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
+
+
 @code {
     private List<ResponsableAgence> responsables = new List<ResponsableAgence>();
+
+    private ResponsableAgence respo = new ResponsableAgence();
 
     protected override async Task OnInitializedAsync()
     {
         responsables = await ResponsableAgenceService.GetAllResponsable();
+    }
+
+    private async Task ConfirmAdd()
+    {
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Voulez-vous ajouter un responsable ?");
+        if (result)
+        {
+            var newRespo = await ResponsableAgenceService.AddResponsable(respo);
+            if (newRespo is not null)
+            {
+                responsables.Add(newRespo);
+                respo = new ResponsableAgence();
+            }
+        }
     }
 
 }

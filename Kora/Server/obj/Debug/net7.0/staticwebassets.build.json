@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EwHBmENDmifOHfqdx/+N/otVya+ZwyUzNzs1XOujAi0=",
+  "Hash": "me/M/cjwqdOVf/lgnwZRF0Yq+xvZg4zRmI7Ki/1f4P8=",
   "Source": "Kora.Server",
   "BasePath": "_content/Kora.Server",
   "Mode": "Default",
@@ -7405,6 +7405,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\wwwroot\\mobile.svg",
+      "SourceId": "Kora.Client",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "mobile.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\mobile.svg"
     }
   ]
 }
