@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230811100343_koraMigration")]
-    partial class koraMigration
+    [Migration("20230815220523_KoraMigration")]
+    partial class KoraMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,9 +75,6 @@ namespace Kora.Server.Migrations
                     b.Property<string>("Pays")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<double>("SoldeInitial")
-                        .HasColumnType("REAL");
 
                     b.Property<string>("Ville")
                         .IsRequired()
@@ -146,6 +143,10 @@ namespace Kora.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ContactKiosque")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -155,6 +156,9 @@ namespace Kora.Server.Migrations
 
                     b.Property<string>("NomKiosque")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Solde")
                         .HasColumnType("TEXT");
 
                     b.HasKey("IdKiosque");
@@ -231,6 +235,9 @@ namespace Kora.Server.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Frais")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("IdCompte")

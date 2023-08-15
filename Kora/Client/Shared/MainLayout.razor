@@ -1,11 +1,22 @@
-﻿@inherits LayoutComponentBase
-
+﻿@using System.Text.Json
+@using Kora.Shared.ModelsDto
+@inherits LayoutComponentBase
+@inject IJSRuntime JsRuntime
 
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
     <main>
+        <div class="top-row px-4">
+            <p>
+                @if (!string.IsNullOrWhiteSpace(adminUsername))
+                {
+                    <span>Bienvenue, @adminUsername !</span>
+                }
+            </p>
+        </div>
+        
         <article class="content px-4">
             @Body
         </article>
@@ -13,7 +24,19 @@
 </div>
 
 @code {
-    
+    private string adminUsername = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var adminInfoJson = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "adminInfo");
+        if (!string.IsNullOrEmpty(adminInfoJson))
+        {
+            var adminInfo = JsonSerializer.Deserialize<AdministrateurDto>(adminInfoJson);
+            adminUsername = adminInfo.Username;
+        }
+    }
+
+
 }
 
 

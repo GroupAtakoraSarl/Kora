@@ -58,8 +58,10 @@ public class AgenceController : ControllerBase
         }
         
     }
-    
 
+
+    
+    
     [HttpDelete("DeleteAgence/{contactAgence}")]
     public IActionResult DeleteAgence(string contactAgence)
     {

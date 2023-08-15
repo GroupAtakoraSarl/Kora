@@ -11,10 +11,12 @@ namespace Kora.Server.Services;
 public class ClientService : IClientService
 {
     private readonly KoraDbContext _dbContext;
+    private readonly ICompteService _compteService;
     
 
-    public ClientService(KoraDbContext dbContext)
+    public ClientService(KoraDbContext dbContext, ICompteService compteService)
     {
+        _compteService = compteService;
         _dbContext = dbContext;
     }
     
@@ -29,12 +31,7 @@ public class ClientService : IClientService
         var client = await _dbContext.Clients.FindAsync(tel);
         return client;
     }
-    
-    // public async Task<ClientLog> GetClient(string username, string password)
-    // {
-    //     var client = await _dbContext.Clients.FindAsync(username, password);
-    //     return _mapper.Map<ClientLog>(client);
-    // }
+
     
     public void EnregistrerClient(Shared.Models.Client client)
     {
@@ -46,6 +43,17 @@ public class ClientService : IClientService
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(client.Password);
         
         client.Password = hashedPassword;
+
+        Compte compte = new Compte
+        {
+            IdClient = client.IdClient,
+            Solde = 0,
+            NumCompte = client.Tel,
+            Client = client,
+            Transactions = new List<Transaction>()
+        };
+
+        _dbContext.Comptes.Add(compte);
         _dbContext.Clients.Add(client);
         _dbContext.SaveChangesAsync();
     }

@@ -8,14 +8,12 @@ namespace Kora.Server.Services;
 
 public class CompteService : ICompteService
 {
-    private readonly IMapper _mapper;
     private readonly KoraDbContext _dbContext;
     
     private List<string> transactions = new List<string>();
 
-    public CompteService(IMapper mapper, KoraDbContext dbContext)
+    public CompteService(IKiosqueService kiosqueService, KoraDbContext dbContext)
     {
-        _mapper = mapper;
         _dbContext = dbContext;
     }
     
@@ -23,13 +21,6 @@ public class CompteService : ICompteService
     {
         var comptes = await _dbContext.Comptes.ToListAsync();
         return comptes;
-    }
-    
-    public async Task<Compte> AddCompte(Compte compte)
-    {
-        _dbContext.Comptes.Add(compte);
-        await _dbContext.SaveChangesAsync();
-        return compte;
     }
 
     
@@ -53,9 +44,11 @@ public class CompteService : ICompteService
         return compteDto;
     }
 
-    public async Task<bool> DepotCompte(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
+    public async Task<bool> Transfert(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde, decimal frais)
     {
-        var expediteur = _dbContext.Comptes.Include(c => c.Client).FirstOrDefault(c=>c.NumCompte == numCompteExpediteur);
+        var expediteur = _dbContext.Comptes
+            .Include(c => c.Client)
+            .FirstOrDefault(c=>c.NumCompte == numCompteExpediteur);
         var destinataire = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompteDestinataire);
 
         if (expediteur is null || destinataire is null)
@@ -72,7 +65,7 @@ public class CompteService : ICompteService
 
         expediteur.Solde -= solde;
         destinataire.Solde += solde;
-        var frais = solde * 0.05m;
+        frais = solde * 0.05m;
         expediteur.Solde -= frais;
 
         var depotTransaction = new Transaction
@@ -80,6 +73,7 @@ public class CompteService : ICompteService
             Date = DateTime.Now,
             NumExp = expediteur.NumCompte,
             NumDes = destinataire.NumCompte,
+            Frais = frais,
             Type = Transaction.TransactionType.Dépôt,
             Solde = solde
         };
@@ -91,12 +85,13 @@ public class CompteService : ICompteService
         return true;
     }
 
-    public async Task<bool> RetraitCompte(string numCompte, decimal solde, string password)
+    public async Task<bool> Retrait(string numCompte, decimal solde, string code, string password)
     {
         var compte = await _dbContext.Comptes
             .Include(compte => compte.Client)
             .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
-        if (compte == null)
+        var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(k => k.Code == code);
+        if (compte == null || kiosque == null)
         {
             return false;
         }
@@ -135,21 +130,26 @@ public class CompteService : ICompteService
         return true;
     }
     
-    public async Task<bool> Transfert(string numCompte, decimal solde)
+    public async Task<bool> Depot(string numCompte, string code, decimal solde, decimal frais)
     {
         var compte = await _dbContext.Comptes
             .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
-        if (compte == null)
+        var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(k => k.Code == code);
+        if (compte == null || kiosque == null)
         {
             return false;
         }
 
         compte.Solde += solde;
-
+        kiosque.Solde -= solde;
+        frais = solde * 0.5m;
+        compte.Solde -= frais;
+        
         var transfertTransaction = new Transaction
         {
             Date = DateTime.Now,
             NumDes = compte.NumCompte,
+            Frais = frais,
             Type = Transaction.TransactionType.Transfert,
             Solde = solde
         };

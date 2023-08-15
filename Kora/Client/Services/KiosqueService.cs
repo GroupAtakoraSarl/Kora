@@ -30,6 +30,24 @@ namespace Kora.Client.Services
             return kiosque;
         }
 
+        public async Task<bool> ChargeSolde(double solde, string contactAgence)
+        {
+            var chargeSoldeRequest = new
+            {
+                ContactAgence = contactAgence,
+                Solde = solde
+            };
+
+            var response = await _httpClient.PostAsJsonAsync("api/Kiosque/ChargeSolde", chargeSoldeRequest);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public async Task<bool> DeleteKiosque(int contactKiosque)
         {
             var response = await _httpClient.DeleteAsync($"api/Kiosque/DeleteKiosque/{contactKiosque}");

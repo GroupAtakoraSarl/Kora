@@ -33,7 +33,6 @@ public class ClientController : ControllerBase
     {
         try
         {
-            var leclient = _mapper.Map<Shared.Models.Client>(client);
             _clientService.EnregistrerClient(client);
             return Ok("Enregistrement réussi");
         }

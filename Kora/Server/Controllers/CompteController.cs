@@ -40,29 +40,12 @@ public class CompteController : ControllerBase
         return Ok(compte);
     }
     
-
-    [HttpPost("CreerCompte")]
-    public async Task<ActionResult<CompteDto>> AddCompte(CompteDto compteDto)
-    {
-        try
-        {
-            var compte = _mapper.Map<Compte>(compteDto); // Effectuez le mappage ici
-            var newCompte = await _compteService.AddCompte(compte);
-            var newCompteDto = _mapper.Map<CompteDto>(newCompte); // Effectuez le mappage ici
-            return Ok(newCompteDto);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
     
     
-    [HttpPost("DepotCompte")]
-    public async Task<ActionResult<string>> DepotCompte(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
+    [HttpPost("Transfert")]
+    public async Task<ActionResult<string>> Transfert(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde, decimal frais)
     {
-        var result = await _compteService.DepotCompte(numCompteExpediteur, passwordExpediteur, numCompteDestinataire, solde);
+        var result = await _compteService.Transfert(numCompteExpediteur, passwordExpediteur, numCompteDestinataire, solde, frais);
         if (!result)
         {
             return NotFound("Compte introuvable !");
@@ -73,9 +56,9 @@ public class CompteController : ControllerBase
 
     
     [HttpPost("RetraitCompte")]
-    public async Task<ActionResult<string>> RetraitCompte(string numCompte, decimal solde, string password)
+    public async Task<ActionResult<string>> Retrait(string numCompte, decimal solde, string code, string password)
     {
-        var result = await _compteService.RetraitCompte(numCompte, solde, password);
+        var result = await _compteService.Retrait(numCompte, solde, code, password);
         if (!result)
         {
             return NotFound("Compte introuvable ou solde supérieure à celui du compte");
@@ -84,10 +67,11 @@ public class CompteController : ControllerBase
         return Ok();
     }
 
-    [HttpPost("Transfert")]
-    public async Task<ActionResult<string>> Transfert(string numCompte, decimal solde)
+    
+    [HttpPost("Depot")]
+    public async Task<ActionResult<string>> Depot(string numCompte, string code, decimal solde, decimal frais)
     {
-        var result = await _compteService.Transfert(numCompte, solde);
+        var result = await _compteService.Depot(numCompte, code, solde, frais);
         if (!result)
             return NotFound("Compte introuvable");
 

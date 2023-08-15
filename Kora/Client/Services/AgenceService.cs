@@ -30,6 +30,8 @@ namespace Kora.Client.Services
             return await response.Content.ReadFromJsonAsync<Agence>();
         }
         
+        
+        
         public async Task<bool> DeleteAgence(string contactAgence)
         {
             var response = await _httpClient.DeleteAsync($"api/Agence/DeleteAgence/{contactAgence}");

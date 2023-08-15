@@ -28,31 +28,7 @@ namespace Kora.Client.Services
             return await _httpClient.GetFromJsonAsync<List<CompteDto>>($"api/Compte/GetCompteByClientId/{clientId}");
         }
 
-        public async Task<Compte> AddCompte(Compte compte)
-        {
-            var response = await _httpClient.PostAsJsonAsync("api/Compte/CreerCompte", compte);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<Compte>();
-        }
-
-        // public async Task<bool> DepotCompte(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
-        // {
-        //     var queryString = $"?numCompteExpediteur={numCompteExpediteur}&passwordExpediteur={passwordExpediteur}&numCompteDestinataire={numCompteDestinataire}&solde={solde}";
-        //     var response = await _httpClient.PostAsJsonAsync($"api/Compte/DepotCompte{queryString}", null).ConfigureAwait(false);
-        //     return response.IsSuccessStatusCode;
-        // }
-        //
-        // public async Task<bool> RetraitCompte(string numCompte, decimal solde, string password)
-        // {
-        //     var response = await _httpClient.PostAsJsonAsync($"api/Compte/RetraitCompte?numCompte={numCompte}&solde={solde}&password={password}", null).ConfigureAwait(false);
-        //     return response.IsSuccessStatusCode;
-        // }
-        //
-        // public async Task<bool> Transfert(string numCompte, decimal solde)
-        // {
-        //     var response = await _httpClient.PostAsJsonAsync($"api/Compte/Transfert?numCompte={numCompte}&solde={solde}", null);
-        //     return response.IsSuccessStatusCode;
-        // }
+        
 
         public async Task<bool> DeleteCompte(string numCompte)
         {

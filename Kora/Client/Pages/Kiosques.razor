@@ -9,12 +9,14 @@
     <div class="row">
         <label class="col m-2">Nom</label>
         <label class="col m-2">Contact</label>
+        <label class="col m-2">Solde initial</label>
         <label class="col m-2">Nom d'Agence</label>
     </div>
     <form @onsubmit="ConfirmKiosqueAdd">
         <div class="row">
-            <input class="col m-2" type="text" required placeholder="Nom du Kiosque" @bind="@kiosque.NomKiosque"/>
-            <input class="col m-2" type="text" required placeholder="exple : 22334455" @bind="@kiosque.ContactKiosque"/>
+            <input class="col m-2" type="text" required="required" placeholder="Nom du Kiosque" @bind="@kiosque.NomKiosque"/>
+            <input class="col m-2" type="text" required="required" placeholder="exple : 22334455" @bind="@kiosque.ContactKiosque"/>
+            <input class="col m-2" type="number" required="required" @bind="@kiosque.Solde"/>
             <select class="col m-2" @bind="selectedAgenceId">
                 <option value="0">Sélectionnez l'Agence correspondant</option>
                 @foreach (var lagence in agences)
@@ -35,6 +37,7 @@
         <th class="text-center">Nom du Kiosque</th>
         <th class="text-center">Adresse</th>
         <th class="text-center">Contact</th>
+        <th class="text-center">Solde</th>
         <th class="text-center">Identifiant de l'Agence</th>
         </thead>
         <tbody>
@@ -45,7 +48,11 @@
                 <td class="text-center">@lekiosque.NomKiosque</td>
                 <td class="text-center">@lekiosque.AdresseKiosque</td>
                 <td class="text-center">@lekiosque.ContactKiosque</td>
+                <td class="text-center">@lekiosque.Solde</td>
                 <td class="text-center"><a href="/agences">@lekiosque.IdAgence</a></td>
+                <td class="text-center">
+                    <span class="oi oi-pencil btn btn-primary"></span>
+                </td>
             </tr>
         }
         </tbody>

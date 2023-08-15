@@ -47,6 +47,22 @@ public class KiosqueController : ControllerBase
         return Ok(newKiosqueDto);
     }
 
+    [HttpPost("ChargeSolde")]
+    public async Task<IActionResult> ChargeSolde(string contactKiosque, decimal solde)
+    {
+        var result = await _kiosqueService.ChargeSolde(solde, contactKiosque);
+        if (result)
+        {
+            return Ok("Solde chargé avec succès");
+        }
+        else
+        {
+            return NotFound();
+        }
+    }
+    
+    
+    
     [HttpDelete("DeleteKiosque/{contactKiosque}")]
     public async Task<ActionResult<KiosqueDto>> DeleteKiosque(string contactKiosque)
     {

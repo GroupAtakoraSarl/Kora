@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Kora.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class koraMigration : Migration
+    public partial class KoraMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -129,7 +129,6 @@ namespace Kora.Server.Migrations
                     ContactAgence = table.Column<string>(type: "TEXT", nullable: false),
                     EmailAgence = table.Column<string>(type: "TEXT", nullable: false),
                     DeviseAgence = table.Column<string>(type: "TEXT", nullable: false),
-                    SoldeInitial = table.Column<double>(type: "REAL", nullable: false),
                     IdResponsable = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -152,6 +151,7 @@ namespace Kora.Server.Migrations
                     Solde = table.Column<decimal>(type: "TEXT", nullable: false),
                     NumExp = table.Column<string>(type: "TEXT", nullable: false),
                     NumDes = table.Column<string>(type: "TEXT", nullable: false),
+                    Frais = table.Column<decimal>(type: "TEXT", nullable: false),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Type = table.Column<int>(type: "INTEGER", nullable: false),
                     IdCompte = table.Column<int>(type: "INTEGER", nullable: false)
@@ -174,6 +174,8 @@ namespace Kora.Server.Migrations
                     IdKiosque = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     NomKiosque = table.Column<string>(type: "TEXT", nullable: false),
+                    Code = table.Column<string>(type: "TEXT", nullable: false),
+                    Solde = table.Column<decimal>(type: "TEXT", nullable: false),
                     AdresseKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     ContactKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     IdAgence = table.Column<int>(type: "INTEGER", nullable: false)

@@ -2,6 +2,7 @@
 @page "/"
 @page "/login"
 @using Kora.Shared.Models
+@using System.Text.Json
 @inject HttpClient HttpClient
 @inject IAdministrateurService AdministrateurService
 @inject NavigationManager Navigation
@@ -74,8 +75,9 @@
             // Vérifier si la requête a réussi
             if (response)
             {
-                Navigation.NavigateTo("/dashboard");
+               Navigation.NavigateTo("/dashboard");
             }
+            
             else
             {
                 showError = true;
@@ -86,4 +88,5 @@
             
         }
     }
+
 }

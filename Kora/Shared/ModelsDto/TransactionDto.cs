@@ -8,6 +8,7 @@ public class TransactionDto
     public decimal Solde { get; set; }
     public string NumExp { get; set; }
     public string? NumDes { get; set; }
+    public decimal Frais { get; set; }
     public DateTime Date { get; set; }
     public  Transaction.TransactionType Type { get; set; }
 

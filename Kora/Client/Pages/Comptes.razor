@@ -4,34 +4,8 @@
 @inject IClientService ClientService
 
 
-<h4>Entrez des infos pour creer un nouveau <strong>compte</strong></h4>
-<br/>
-
-<div class="container">
-    <div class="row">
-        <label class="col m-2">Solde Initial FCFA</label>
-        <label class="col m-2">Numéro de Compte</label>
-        <label class="col m-2">Nom d'Utilisateur du Client</label>
-    </div>
-    <div class="row">
-        <input type="number" required="required" class="col m-2" @bind="@compte.Solde"/>
-        <input type="text" required="required" class="col m-2" @bind="@compte.NumCompte"/>
-        <select class="col m-2" @bind="selectedClientId">
-            <option value="0">Sélectionnez un client ...</option>
-            @foreach (var client in clients)
-            {
-                <option value="@client.IdClient">@client.Username</option>
-            }
-        </select>
-    </div>
-    <div class="row">
-        <button class="btn btn-success text-center w-25 col-5 m-2" @onclick="ConfirmAdd">Creer le compte</button>
-    </div>
-</div>
-<br/>
-<br/>
-
 <h4>Listes des comptes</h4>
+<br/>
 
 <table class="table table-hover table-striped table-bordered bg-light fs-6">
     <thead class="table-light">
@@ -58,7 +32,6 @@
     private List<Client> clients = new List<Client>();
     private int selectedClientId;
     
-    private Compte compte = new Compte();
     
     
     protected override async Task OnInitializedAsync()
@@ -67,33 +40,5 @@
         clients = await ClientService.GetAllClient();
     }
     
-    private async Task ConfirmAdd()
-    {
-        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Voulez-vous vraiment creer le compte ?");
-
-        if (result)
-        {
-            if (selectedClientId != 0)
-            {
-                var selectedClient = clients.FirstOrDefault(c => c.IdClient == selectedClientId);
-                if (selectedClient != null)
-                {
-                    compte.IdClient = selectedClientId;
-                }
-            }
-            
-            var newCompte = await CompteService.AddCompte(compte);
-            
-            if (newCompte != null)
-            {
-                comptes.Add(newCompte);
-
-                compte = new Compte();
-                
-                selectedClientId = 0;
-            }
-        }
-        
-    }
 
 }

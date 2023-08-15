@@ -19,7 +19,14 @@ public class KiosqueService : IKiosqueService
         var kiosques = await _dbContext.Kiosques.ToListAsync();
         return kiosques;
     }
-
+    
+    private string GenerateRandomCode()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var random = new Random();
+        return new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+    
     public async Task<List<Kiosque>> GetKiosqueByAdresse(string adresseKiosque)
     {
         var kiosque = await _dbContext.Kiosques
@@ -31,11 +38,33 @@ public class KiosqueService : IKiosqueService
     
     public async Task<Kiosque> AddKiosque(Kiosque kiosque)
     {
-        var lekiosque = _dbContext.Kiosques.Add(kiosque);
-        await _dbContext.SaveChangesAsync();
-        return lekiosque.Entity;
-    }
+        kiosque.Code = GenerateRandomCode();
+        while (await _dbContext.Kiosques.AnyAsync(k => k.Code == kiosque.Code))
+        {
+            kiosque.Code = GenerateRandomCode();
+        }
 
+        _dbContext.Kiosques.Add(kiosque);
+        await _dbContext.SaveChangesAsync();
+        return kiosque;
+    }
+    
+    public async Task<bool> ChargeSolde(decimal solde, string contactKiosque)
+    {
+        var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(a => a.ContactKiosque == contactKiosque);
+        if (kiosque is not null)
+        {
+            kiosque.Solde += solde;
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+    
     public async Task<bool> DeleteKiosque(string contactKiosque)
     {
         var kiosque = _dbContext.Kiosques.FirstOrDefault(k=>k.ContactKiosque == contactKiosque);
