@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Kora.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class Koramigration : Migration
+    public partial class KoraMIgration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -49,6 +49,7 @@ namespace Kora.Server.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     NomClient = table.Column<string>(type: "TEXT", nullable: false),
                     Solde = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Frais = table.Column<decimal>(type: "TEXT", nullable: false),
                     Type = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

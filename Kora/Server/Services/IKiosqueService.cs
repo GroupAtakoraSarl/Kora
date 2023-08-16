@@ -6,6 +6,7 @@ namespace Kora.Server.Services;
 public interface IKiosqueService
 {
     Task<List<Kiosque>> GetAllKiosque();
+    Task<string> GenerateRandomCode();
     Task<List<Kiosque>> GetKiosqueByAdresse(string adresseKiosque);
     Task<Kiosque> AddKiosque(Kiosque kiosque);
     Task<bool> ChargeSolde(decimal solde, string contactAgence);

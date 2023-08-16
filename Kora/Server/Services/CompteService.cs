@@ -1,9 +1,7 @@
-using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Server.Data;
 using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 
 namespace Kora.Server.Services;
 
@@ -58,7 +56,8 @@ public class CompteService : ICompteService
         return compteDto;
     }
 
-    public async Task<bool> Transfert(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde, decimal frais)
+    
+    public async Task<bool> Transfert(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
     {
         var expediteur = _dbContext.Comptes
             .Include(c => c.Client)
@@ -79,8 +78,16 @@ public class CompteService : ICompteService
 
         expediteur.Solde -= solde;
         destinataire.Solde += solde;
-        frais = solde * 0.05m;
+        var frais = solde * 0.05m;
         expediteur.Solde -= frais;
+        
+        var Notification = new Notification
+        {
+            Solde = solde,
+            Frais = frais,
+            NomClient = expediteur.Client.Username,
+            Type = Shared.Models.Notification.NotifType.Dépôt
+        }; 
 
         var depotTransaction = new Transaction
         {
@@ -88,7 +95,7 @@ public class CompteService : ICompteService
             NumExp = expediteur.NumCompte,
             NumDes = destinataire.NumCompte,
             Frais = frais,
-            Type = Transaction.TransactionType.Dépôt,
+            Type = Transaction.TransactionType.Transfert,
             Solde = solde
         };
         
@@ -105,6 +112,7 @@ public class CompteService : ICompteService
             .Include(compte => compte.Client)
             .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
         var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(k => k.Code == code);
+        
         if (compte == null || kiosque == null)
         {
             return false;
@@ -127,13 +135,16 @@ public class CompteService : ICompteService
         }
         
         compte.Solde -= solde;
+        var frais = solde * 0.05m;
+        compte.Solde -= frais;
 
-        var Notification = new Notification
-        {
-            Solde = solde,
-            NomClient = compte.Client.Username,
-            Type = Shared.Models.Notification.NotifType.Dépôt
-        };
+        // var Notification = new Notification
+        // {
+        //     Solde = solde,
+        //     Frais = frais,
+        //     NomClient = compte.Client.Username,
+        //     Type = Shared.Models.Notification.NotifType.Dépôt
+        // };
         
         var retraitTransaction = new Transaction
         {
@@ -151,7 +162,7 @@ public class CompteService : ICompteService
         return true;
     }
     
-    public async Task<bool> Depot(string numCompte, string code, decimal solde, decimal frais)
+    public async Task<bool> Depot(string numCompte, string code, decimal solde)
     {
         var compte = await _dbContext.Comptes
             .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
@@ -160,26 +171,31 @@ public class CompteService : ICompteService
         {
             return false;
         }
-
+        
         compte.Solde += solde;
         kiosque.Solde -= solde;
-        frais = solde * 0.5m;
+        var frais = solde * 0.05m;
         compte.Solde -= frais;
-        compte.Solde = await ConversionKora(compte.Solde);
 
-        var Notification = new Notification
-        {
-            Solde = solde,
-            NomClient = compte.Client.Username,
-            Type = Shared.Models.Notification.NotifType.Dépôt
-        };
+        var convertSolde = await ConversionKora(compte.Solde);
+        compte.Solde = convertSolde;
+
+        // var Notification = new Notification
+        // {
+        //     Solde = solde,
+        //     Frais = frais,
+        //     NomClient = compte.IdClient,
+        //     Type = Shared.Models.Notification.NotifType.Dépôt
+        // };
+        
         
         var transfertTransaction = new Transaction
         {
             Date = DateTime.Now,
             NumDes = compte.NumCompte,
+            NumExp = kiosque.Code,
             Frais = frais,
-            Type = Transaction.TransactionType.Transfert,
+            Type = Transaction.TransactionType.Rechargement,
             Solde = solde
         };
         
@@ -190,6 +206,7 @@ public class CompteService : ICompteService
         return true;
     }
 
+    
     public async Task<decimal> ConversionKora(decimal solde)
     {
         var somme = solde / Devise;

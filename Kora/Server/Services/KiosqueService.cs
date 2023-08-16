@@ -20,12 +20,20 @@ public class KiosqueService : IKiosqueService
         return kiosques;
     }
     
-    private string GenerateRandomCode()
+    public async Task<string> GenerateRandomCode()
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var random = new Random();
-        return new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+        var code = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+        
+        while (await _dbContext.Kiosques.AnyAsync(k => k.Code == code))
+        {
+            code = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        return code;
     }
+    
     
     public async Task<List<Kiosque>> GetKiosqueByAdresse(string adresseKiosque)
     {
@@ -38,10 +46,10 @@ public class KiosqueService : IKiosqueService
     
     public async Task<Kiosque> AddKiosque(Kiosque kiosque)
     {
-        kiosque.Code = GenerateRandomCode();
+        kiosque.Code = await GenerateRandomCode();
         while (await _dbContext.Kiosques.AnyAsync(k => k.Code == kiosque.Code))
         {
-            kiosque.Code = GenerateRandomCode();
+            kiosque.Code = await GenerateRandomCode();
         }
 
         _dbContext.Kiosques.Add(kiosque);

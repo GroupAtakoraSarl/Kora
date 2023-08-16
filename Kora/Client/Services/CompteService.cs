@@ -17,7 +17,7 @@ namespace Kora.Client.Services
         {
             return await _httpClient.GetFromJsonAsync<List<Compte>>("api/Compte");
         }
-
+        
         public async Task<CompteDto> GetCompteByNum(string numCompte)
         {
             return await _httpClient.GetFromJsonAsync<CompteDto>($"api/Compte/{numCompte}");

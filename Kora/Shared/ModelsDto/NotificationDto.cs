@@ -4,6 +4,7 @@ public class NotificationDto
 {
     public string NomClient { get; set; }
     public decimal Solde { get; set; }
+    public decimal Frais { get; set; }
     public enum NotifType
     {
         Dépôt,

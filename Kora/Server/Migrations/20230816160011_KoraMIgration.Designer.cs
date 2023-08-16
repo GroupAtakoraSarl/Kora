@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230816010650_Koramigration")]
-    partial class Koramigration
+    [Migration("20230816160011_KoraMIgration")]
+    partial class KoraMIgration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -173,6 +173,9 @@ namespace Kora.Server.Migrations
                     b.Property<int>("IdNotification")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Frais")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NomClient")
                         .IsRequired()

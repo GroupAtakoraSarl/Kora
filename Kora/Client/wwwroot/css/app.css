@@ -2,6 +2,7 @@
 
 html, body {
     font-family: 'Poppins Neue', Poppins, Poppins, sans-serif;
+    background-image: url("argent.jpg");
 }
 
 h1:focus {
@@ -77,7 +78,7 @@ a, .btn-link {
 
 .loading-progress circle {
     fill: none;
-    stroke: #c77354;
+    stroke: #e8ab94;
     stroke-width: 0.6rem;
     transform-origin: 50% 50%;
     transform: rotate(-90deg);

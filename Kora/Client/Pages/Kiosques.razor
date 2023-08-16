@@ -10,6 +10,7 @@
     <div class="row">
         <label class="col m-2">Nom</label>
         <label class="col m-2">Contact</label>
+        <label class="col m-2">Adresse</label>
         <label class="col m-2">Solde initial</label>
         <label class="col m-2">Nom d'Agence</label>
     </div>
@@ -17,6 +18,7 @@
         <div class="row">
             <input class="col m-2" type="text" required="required" placeholder="Nom du Kiosque" @bind="@kiosque.NomKiosque"/>
             <input class="col m-2" type="text" required="required" placeholder="exple : 22334455" @bind="@kiosque.ContactKiosque"/>
+            <input class="col m-2" type="text" required="required" placeholder="localisation" @bind="@kiosque.AdresseKiosque"/>
             <input class="col m-2" type="number" required="required" @bind="@kiosque.Solde"/>
             <select class="col m-2" @bind="selectedAgenceId">
                 <option value="0">Sélectionnez l'Agence correspondant</option>
@@ -35,6 +37,10 @@
     {
         <p>Pas de kiosque disponible</p>
     }
+    else if (kiosques is null)
+    {
+        <p>Chargement...</p>
+    }
     else
     {
         <h4 class="m-2">Listes des kiosques</h4>
@@ -43,10 +49,12 @@
             <thead class="table-primary">
             <th>N&deg</th>
             <th class="text-center">Nom du Kiosque</th>
+            <th class="text-center">Code</th>
             <th class="text-center">Adresse</th>
             <th class="text-center">Contact</th>
             <th class="text-center">Solde</th>
             <th class="text-center">Nom de l'Agence</th>
+            <th class="text-center">Charger</th>
             </thead>
             <tbody>
             @foreach (var lekiosque in kiosques)
@@ -54,10 +62,11 @@
                 <tr>
                     <td class="text-center">@lekiosque.IdKiosque</td>
                     <td class="text-center">@lekiosque.NomKiosque</td>
+                    <td class="text-center">@lekiosque.Code</td>
                     <td class="text-center">@lekiosque.AdresseKiosque</td>
                     <td class="text-center">@lekiosque.ContactKiosque</td>
                     <td class="text-center">@lekiosque.Solde</td>
-                    <td class="text-center"><a href="/agences">@GetAgenceName(lekiosque.IdAgence)</a></td>
+                    <td class="text-center"><a style="text-decoration: none" href="/agences">@GetAgenceName(lekiosque.IdAgence)</a></td>
                     <td class="text-center">
                         <span class="oi oi-pencil btn btn-primary"></span>
                     </td>
@@ -67,7 +76,6 @@
         </table>
     }
 </div>
-
 
 
 @code {
@@ -94,25 +102,24 @@
             if (selectedAgenceId != 0)
             {
                 var selectedAgence = agences.FirstOrDefault(k => k.IdAgence == selectedAgenceId);
-                if (selectedAgence is not null)
+                if (selectedAgence != null)
                 {
                     kiosque.IdAgence = selectedAgenceId;
-                    kiosque.AdresseKiosque = selectedAgence.AdresseAgence;
                 }
             }
-            
+
             var newKiosque = await KiosqueService.AddKiosque(kiosque);
 
-            if (newKiosque is not null)
+            if (newKiosque != null)
             {
                 kiosques.Add(newKiosque);
 
                 kiosque = new Kiosque();
-
                 selectedAgenceId = 0;
             }
         }
     }
+    
     private string GetAgenceName(int idAgence)
     {
         var agence = agences.FirstOrDefault(a => a.IdAgence == idAgence);

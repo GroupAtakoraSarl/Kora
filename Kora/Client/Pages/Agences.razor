@@ -98,7 +98,7 @@ else
                 <td class="text-center">@agence.ContactAgence</td>
                 <td class="text-center">@agence.EmailAgence</td>
                 <td class="text-center">@agence.DeviseAgence</td>
-                <td class="text-center">#RES @agence.IdResponsable</td>
+                <td class="text-center">@GetRespoName(agence.IdResponsable)</td>
                 <td class="text-center">
                     <span class="oi oi-trash btn btn-danger" @onclick="() => ShowConfirmation(agence.ContactAgence)"></span>
                 </td>
@@ -156,6 +156,7 @@ else
         }
     }
     
+    
     private async Task ShowConfirmation(string contactAgence)
     {
         var result = await JSRuntime.InvokeAsync<bool>("confirm", $"Voulez-vous vraiment supprimer l'agence avec le contact : {contactAgence} ?");
@@ -176,6 +177,12 @@ else
             // Mettre à jour la liste des agences après la suppression réussie
             agences = await AgenceService.GetAllAgence();
         }
+    }
+    
+    private string GetRespoName(int idRespo)
+    {
+        var respo = responsables.FirstOrDefault(r => r.IdResponsable == idRespo);
+        return respo != null ? respo.NomResponsable : "Inconnu";
     }
 
 }

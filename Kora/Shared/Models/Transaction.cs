@@ -15,7 +15,7 @@ public class Transaction
     public DateTime Date { get; set; }
     public enum TransactionType
     {
-        Dépôt,
+        Rechargement,
         Retrait,
         Transfert
     }

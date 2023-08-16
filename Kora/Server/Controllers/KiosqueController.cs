@@ -41,11 +41,20 @@ public class KiosqueController : ControllerBase
     [HttpPost("AddKiosque")]
     public async Task<ActionResult<KiosqueDto>> AddKiosque(KiosqueDto kiosqueDto)
     {
-        var lekiosque = _mapper.Map<Kiosque>(kiosqueDto);
-        _kiosqueService.AddKiosque(lekiosque);
-        var newKiosqueDto = _mapper.Map<KiosqueDto>(lekiosque);
-        return Ok(newKiosqueDto);
+        try
+        {
+            var kiosque = _mapper.Map<Kiosque>(kiosqueDto);
+            var newKiosque = await _kiosqueService.AddKiosque(kiosque);
+            var newKiosqueDto = _mapper.Map<KiosqueDto>(newKiosque);
+            return Ok(newKiosqueDto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
+    
 
     [HttpPost("ChargeSolde")]
     public async Task<IActionResult> ChargeSolde(string contactKiosque, decimal solde)

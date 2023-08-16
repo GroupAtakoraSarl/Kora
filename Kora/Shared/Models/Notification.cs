@@ -10,6 +10,7 @@ public class Notification
     public int IdNotification { get; set; }
     public string NomClient { get; set; }
     public decimal Solde { get; set; }
+    public decimal Frais { get; set; }
     public enum NotifType
     {
         Dépôt,

@@ -27,7 +27,7 @@ namespace Kora.Client.Services
         {
             var response = await _httpClient.PostAsJsonAsync("api/Kiosque/AddKiosque", kiosque);
             response.EnsureSuccessStatusCode();
-            return kiosque;
+            return await response.Content.ReadFromJsonAsync<Kiosque>();
         }
 
         public async Task<bool> ChargeSolde(double solde, string contactAgence)
@@ -48,6 +48,7 @@ namespace Kora.Client.Services
                 return false;
             }
         }
+        
         public async Task<bool> DeleteKiosque(int contactKiosque)
         {
             var response = await _httpClient.DeleteAsync($"api/Kiosque/DeleteKiosque/{contactKiosque}");

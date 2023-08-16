@@ -171,6 +171,9 @@ namespace Kora.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<decimal>("Frais")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("NomClient")
                         .IsRequired()
                         .HasColumnType("TEXT");

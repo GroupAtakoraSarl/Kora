@@ -1,7 +1,4 @@
-﻿@using System.Text.Json
-@using Kora.Shared.ModelsDto
-@inherits LayoutComponentBase
-@inject IJSRuntime JsRuntime
+﻿@inherits LayoutComponentBase
 
 <div class="page">
     <div class="sidebar">
@@ -9,12 +6,7 @@
     </div>
     <main>
         <div class="top-row px-4">
-            <p>
-                @if (!string.IsNullOrWhiteSpace(adminUsername))
-                {
-                    <span>Bienvenue, @adminUsername !</span>
-                }
-            </p>
+            <p><strong style="color: green">200 FCFA</strong> EQUIVAUT À <strong style="color: mediumpurple">80 KORA</strong></p>
         </div>
         
         <article class="content px-4">
@@ -24,17 +16,7 @@
 </div>
 
 @code {
-    private string adminUsername = string.Empty;
-
-    protected override async Task OnInitializedAsync()
-    {
-        var adminInfoJson = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "adminInfo");
-        if (!string.IsNullOrEmpty(adminInfoJson))
-        {
-            var adminInfo = JsonSerializer.Deserialize<AdministrateurDto>(adminInfoJson);
-            adminUsername = adminInfo.Username;
-        }
-    }
+    
 
 
 }
