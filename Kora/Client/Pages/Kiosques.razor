@@ -3,6 +3,7 @@
 @inject IKiosqueService KiosqueService
 @inject IAgenceService AgenceService
 
+
 <div class="container">
     <h4 class="m-2">Entrez les informations pour creer un <strong>kiosque</strong></h4>
     <br/>
@@ -29,35 +30,45 @@
     </form>
     <br/>
     <br/>
-    <h4 class="m-2">Listes des kiosques</h4>
+    
+    @if (kiosques.Count == 0)
+    {
+        <p>Pas de kiosque disponible</p>
+    }
+    else
+    {
+        <h4 class="m-2">Listes des kiosques</h4>
 
-    <table class="table table-success table-bordered bg-light fs-6">
-        <thead class="table-primary">
-        <th>N&deg</th>
-        <th class="text-center">Nom du Kiosque</th>
-        <th class="text-center">Adresse</th>
-        <th class="text-center">Contact</th>
-        <th class="text-center">Solde</th>
-        <th class="text-center">Identifiant de l'Agence</th>
-        </thead>
-        <tbody>
-        @foreach (var lekiosque in kiosques)
-        {
-            <tr>
-                <td class="text-center">@lekiosque.IdKiosque</td>
-                <td class="text-center">@lekiosque.NomKiosque</td>
-                <td class="text-center">@lekiosque.AdresseKiosque</td>
-                <td class="text-center">@lekiosque.ContactKiosque</td>
-                <td class="text-center">@lekiosque.Solde</td>
-                <td class="text-center"><a href="/agences">@lekiosque.IdAgence</a></td>
-                <td class="text-center">
-                    <span class="oi oi-pencil btn btn-primary"></span>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
+        <table class="table table-success table-bordered bg-light fs-6">
+            <thead class="table-primary">
+            <th>N&deg</th>
+            <th class="text-center">Nom du Kiosque</th>
+            <th class="text-center">Adresse</th>
+            <th class="text-center">Contact</th>
+            <th class="text-center">Solde</th>
+            <th class="text-center">Nom de l'Agence</th>
+            </thead>
+            <tbody>
+            @foreach (var lekiosque in kiosques)
+            {
+                <tr>
+                    <td class="text-center">@lekiosque.IdKiosque</td>
+                    <td class="text-center">@lekiosque.NomKiosque</td>
+                    <td class="text-center">@lekiosque.AdresseKiosque</td>
+                    <td class="text-center">@lekiosque.ContactKiosque</td>
+                    <td class="text-center">@lekiosque.Solde</td>
+                    <td class="text-center"><a href="/agences">@GetAgenceName(lekiosque.IdAgence)</a></td>
+                    <td class="text-center">
+                        <span class="oi oi-pencil btn btn-primary"></span>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
 </div>
+
+
 
 @code {
     private List<Kiosque> kiosques = new List<Kiosque>();
@@ -101,6 +112,11 @@
                 selectedAgenceId = 0;
             }
         }
+    }
+    private string GetAgenceName(int idAgence)
+    {
+        var agence = agences.FirstOrDefault(a => a.IdAgence == idAgence);
+        return agence != null ? agence.NomAgence : "Inconnu";
     }
 
 }

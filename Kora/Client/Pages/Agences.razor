@@ -64,42 +64,51 @@
 
 <br/>
 
-<h4 class="mb-4 mt-5">Liste des Agences</h4>
-<br/>
+@if (agences.Count == 0)
+{
+    <p>Pas d'agence disponible</p>
+}
+else
+{
+    
+    <h4 class="mb-4 mt-5">Liste des Agences</h4>
+    <br/>
+    <table class="table table-striped table-bordered bg-light">
+        <thead class="table-light">
+        <th class="text-center">N&deg</th>
+        <th class="text-center">Nom</th>
+        <th class="text-center">Pays</th>
+        <th class="text-center">Ville</th>
+        <th class="text-center">Adresse</th>
+        <th class="text-center">Contact</th>
+        <th class="text-center">Email</th>
+        <th class="text-center">Devise</th>
+        <th class="text-center">Responsable</th>
+        <th class="text-center">Supprimer</th>
+        </thead>
+        <tbody>
+        @foreach (var agence in agences)
+        {
+            <tr>
+                <td class="text-center">@agence.IdAgence</td>
+                <td class="text-center">@agence.NomAgence</td>
+                <td class="text-center">@agence.Pays</td>
+                <td class="text-center">@agence.Ville</td>
+                <td class="text-center">@agence.AdresseAgence</td>
+                <td class="text-center">@agence.ContactAgence</td>
+                <td class="text-center">@agence.EmailAgence</td>
+                <td class="text-center">@agence.DeviseAgence</td>
+                <td class="text-center">#RES @agence.IdResponsable</td>
+                <td class="text-center">
+                    <span class="oi oi-trash btn btn-danger" @onclick="() => ShowConfirmation(agence.ContactAgence)"></span>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
 
-<table class="table table-striped table-bordered bg-light">
-    <thead class="table-light">
-    <th class="text-center">N&deg</th>
-    <th class="text-center">Nom</th>
-    <th class="text-center">Pays</th>
-    <th class="text-center">Ville</th>
-    <th class="text-center">Adresse</th>
-    <th class="text-center">Contact</th>
-    <th class="text-center">Email</th>
-    <th class="text-center">Devise</th>
-    <th class="text-center">Responsable</th>
-    <th class="text-center">Supprimer</th>
-    </thead>
-    <tbody>
-    @foreach (var agence in agences)
-    {
-        <tr>
-            <td class="text-center">@agence.IdAgence</td>
-            <td class="text-center">@agence.NomAgence</td>
-            <td class="text-center">@agence.Pays</td>
-            <td class="text-center">@agence.Ville</td>
-            <td class="text-center">@agence.AdresseAgence</td>
-            <td class="text-center">@agence.ContactAgence</td>
-            <td class="text-center">@agence.EmailAgence</td>
-            <td class="text-center">@agence.DeviseAgence</td>
-            <td class="text-center">#RES @agence.IdResponsable</td>
-            <td class="text-center">
-                <span class="oi oi-trash btn btn-danger" @onclick="() => ShowConfirmation(agence.ContactAgence)"></span>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+}
+
 
 @code {
     private List<Agence> agences = new List<Agence>();

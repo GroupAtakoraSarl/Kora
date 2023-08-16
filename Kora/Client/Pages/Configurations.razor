@@ -36,7 +36,6 @@
             <h5>Listes des <strong>Pays en partenariat</strong></h5>
             <table class="table table-hover table-striped table-bordered bg-light fs-7">
                 <thead class="table-light">
-                <th class="text-center">ID</th>
                 <th class="text-center">Nom</th>
                 <th class="text-center">Indicatif</th>
                 <th class="text-center">Code ISO</th>
@@ -46,7 +45,6 @@
                 @foreach (var lepays in lespays)
                 {
                     <tr>
-                        <td class="text-center">@lepays.IdPays</td>
                         <td class="text-center">@lepays.NomPays</td>
                         <td class="text-center">@lepays.Indicatif</td>
                         <td class="text-center">@lepays.CodeISO</td>
@@ -78,14 +76,14 @@
                 <table class="m-2 table-hover table table-striped table-bordered bg-light fs-7">
                     <thead class="table-dark">
                     <th class="text-center">Nom</th>
-                    <th class="text-center">ID du Pays</th>
+                    <th class="text-center">Nom du Pays</th>
                     </thead>
                     <tbody>
                     @foreach (var laville in lesvilles)
                     {
                         <tr>
                             <td>@laville.NomVille</td>
-                            <td>@laville.IdPays</td>
+                            <td>@GetPaysName(ville.IdPays)</td>
                         </tr>
                     }
                     </tbody>
@@ -191,5 +189,10 @@
         }
     }
     
+    private string GetPaysName(int idPays)
+    {
+        var pays = lespays.FirstOrDefault(p => p.IdPays == idPays);
+        return pays != null ? pays.NomPays : "Inconnu";
+    }
 
 }

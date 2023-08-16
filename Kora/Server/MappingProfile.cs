@@ -17,5 +17,6 @@ public class MappingProfile : Profile
         CreateMap<ResponsableAgence, ResponsableAgenceDto>().ReverseMap();
         CreateMap<Ville, VilleDto>().ReverseMap();
         CreateMap<Transaction, TransactionDto>().ReverseMap();
+        CreateMap<Notification, NotificationDto>().ReverseMap();
     }
 }

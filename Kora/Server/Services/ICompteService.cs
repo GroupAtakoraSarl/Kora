@@ -10,6 +10,7 @@ public interface ICompteService
     Task<bool> Transfert(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde, decimal frais);
     Task<bool> Retrait(string numCompte,  decimal solde, string code, string password);
     Task<bool> Depot(string numCompte, string code, decimal solde, decimal frais);
+    Task<decimal> ConversionKora(decimal solde);
     Task<List<CompteDto>> GetCompteByClientId(int idClient);
 
     Task<bool> DeleteCompte(string numCompte);

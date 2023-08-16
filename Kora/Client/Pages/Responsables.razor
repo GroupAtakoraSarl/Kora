@@ -3,7 +3,6 @@
 @inject IResponsableAgence ResponsableAgenceService
 
 
-
 <div class="container">
     <h3>Entrez les informations pour creer un <strong>responsable</strong></h3>
     <br/>
@@ -28,39 +27,46 @@
             <button class="col btn btn-success" type="submit">AJOUTER UN RESPONSABLE</button>
         </div>
     </form>
-    
-    <br/>
-    
-    <h4>Liste des <strong>Responsables</strong> d'<strong>Agences</strong></h4>
 
     <br/>
-    <table class="table table-hover table-striped table-bordered bg-light">
-        <thead class="table-dark">
-        <th>Identifiant</th>
-        <th>Nom</th>
-        <th>Prénoms</th>
-        <th>Sexe</th>
-        <th>Age (ans)</th>
-        <th>Téléphone</th>
-        <th>Statut du Responsable</th>
-        </thead>
-        <tbody>
-        @foreach (var resp in responsables)
-        {
-            <tr>
-                <td>@resp.IdResponsable</td>
-                <td>@resp.NomResponsable</td>
-                <td>@resp.PrenomResponsable</td>
-                <td>@resp.SexeResponsable</td>
-                <td>@resp.AgeResponsable</td>
-                <td>@resp.Tel</td>
-                <td>@resp.StatutResponsable</td>
-            </tr>
-        }
-        </tbody>
-    </table>
+
+    @if (responsables.Count == 0)
+    {
+        <p>Pas responsable disponible</p>
+    }
+    else
+    {
+        <h4>Liste des <strong>Responsables</strong> d'<strong>Agences</strong></h4>
+
+        <br/>
+        <table class="table table-hover table-striped table-bordered bg-light">
+            <thead class="table-dark">
+            <th>Identifiant</th>
+            <th>Nom</th>
+            <th>Prénoms</th>
+            <th>Sexe</th>
+            <th>Age (ans)</th>
+            <th>Téléphone</th>
+            <th>Statut du Responsable</th>
+            </thead>
+            <tbody>
+            @foreach (var resp in responsables)
+            {
+                <tr>
+                    <td>@resp.IdResponsable</td>
+                    <td>@resp.NomResponsable</td>
+                    <td>@resp.PrenomResponsable</td>
+                    <td>@resp.SexeResponsable</td>
+                    <td>@resp.AgeResponsable</td>
+                    <td>@resp.Tel</td>
+                    <td>@resp.StatutResponsable</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
 </div>
-
+  
 
 
 @code {

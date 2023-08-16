@@ -9,19 +9,17 @@
 
 <table class="table table-hover table-striped table-bordered bg-light fs-6">
     <thead class="table-light">
-    <th class="text-center">N&deg</th>
     <th class="text-center">Numero de Comptes</th>
     <th class="text-center">Solde Initial (Fcfa)</th>
-    <th class="text-center">Identifiant du Client</th>
+    <th class="text-center">Nom du Client</th>
     </thead>
     <tbody>
     @foreach (var compte in comptes)
     {
         <tr>
-            <td class="text-center">@compte.IdCompte</td>
             <td class="text-center">@compte.NumCompte</td>
             <td class="text-center">@compte.Solde</td>
-            <td class="text-center">@compte.IdClient</td>
+            <td class="text-center">@GetClientName(compte.IdClient)</td>
         </tr>
     }
     </tbody>
@@ -30,14 +28,18 @@
 @code {
     private List<Compte> comptes = new List<Compte>();
     private List<Client> clients = new List<Client>();
-    private int selectedClientId;
-    
     
     
     protected override async Task OnInitializedAsync()
     {
         comptes = await CompteService.GetAllComptes();
         clients = await ClientService.GetAllClient();
+    }
+    
+    private string GetClientName(int idClient)
+    {
+        var client = clients.FirstOrDefault(c => c.IdClient == idClient);
+        return client != null ? client.Username : "Inconnu";
     }
     
 

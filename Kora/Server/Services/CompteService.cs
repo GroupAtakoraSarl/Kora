@@ -3,6 +3,7 @@ using Kora.Shared.Models;
 using Kora.Server.Data;
 using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace Kora.Server.Services;
 
@@ -11,10 +12,23 @@ public class CompteService : ICompteService
     private readonly KoraDbContext _dbContext;
     
     private List<string> transactions = new List<string>();
+    private decimal _devise = 2.5m;
 
     public CompteService(IKiosqueService kiosqueService, KoraDbContext dbContext)
     {
         _dbContext = dbContext;
+    }
+    
+    public decimal Devise
+    {
+        get => _devise;
+        set
+        {
+            if (_devise != value)
+            {
+                _devise = value;
+            }
+        }
     }
     
     public async Task<List<Compte>> GetAllComptes()
@@ -114,6 +128,13 @@ public class CompteService : ICompteService
         
         compte.Solde -= solde;
 
+        var Notification = new Notification
+        {
+            Solde = solde,
+            NomClient = compte.Client.Username,
+            Type = Shared.Models.Notification.NotifType.Dépôt
+        };
+        
         var retraitTransaction = new Transaction
         {
             Date = DateTime.Now,
@@ -144,6 +165,14 @@ public class CompteService : ICompteService
         kiosque.Solde -= solde;
         frais = solde * 0.5m;
         compte.Solde -= frais;
+        compte.Solde = await ConversionKora(compte.Solde);
+
+        var Notification = new Notification
+        {
+            Solde = solde,
+            NomClient = compte.Client.Username,
+            Type = Shared.Models.Notification.NotifType.Dépôt
+        };
         
         var transfertTransaction = new Transaction
         {
@@ -161,6 +190,13 @@ public class CompteService : ICompteService
         return true;
     }
 
+    public async Task<decimal> ConversionKora(decimal solde)
+    {
+        var somme = solde / Devise;
+        return somme;
+    }
+
+    
     public async Task<List<CompteDto>> GetCompteByClientId(int idClient)
     {
         throw new NotImplementedException();

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230815220523_KoraMigration")]
-    partial class KoraMigration
+    [Migration("20230816010650_Koramigration")]
+    partial class Koramigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,6 +166,27 @@ namespace Kora.Server.Migrations
                     b.HasIndex("IdAgence");
 
                     b.ToTable("Kiosques");
+                });
+
+            modelBuilder.Entity("Kora.Shared.Models.Notification", b =>
+                {
+                    b.Property<int>("IdNotification")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("NomClient")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Solde")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("IdNotification");
+
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("Kora.Shared.Models.Pays", b =>

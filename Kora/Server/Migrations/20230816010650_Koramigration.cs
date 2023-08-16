@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Kora.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class KoraMigration : Migration
+    public partial class Koramigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,6 +39,21 @@ namespace Kora.Server.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Clients", x => x.IdClient);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Notifications",
+                columns: table => new
+                {
+                    IdNotification = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NomClient = table.Column<string>(type: "TEXT", nullable: false),
+                    Solde = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Type = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.IdNotification);
                 });
 
             migrationBuilder.CreateTable(
@@ -225,6 +240,9 @@ namespace Kora.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "Kiosques");
+
+            migrationBuilder.DropTable(
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "Transactions");

@@ -165,6 +165,27 @@ namespace Kora.Server.Migrations
                     b.ToTable("Kiosques");
                 });
 
+            modelBuilder.Entity("Kora.Shared.Models.Notification", b =>
+                {
+                    b.Property<int>("IdNotification")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("NomClient")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Solde")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("IdNotification");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("Kora.Shared.Models.Pays", b =>
                 {
                     b.Property<int>("IdPays")

@@ -31,10 +31,8 @@ public class AgenceService : IAgenceService
         await _dbContext.SaveChangesAsync();
         return agence;
     }
-
     
-
-
+    
     public async Task<bool> DeleteAgence(string contactAgence)
     {
         var agence = _dbContext.Agences.FirstOrDefault(a=>a.ContactAgence == contactAgence);
