@@ -32,20 +32,26 @@ namespace Kora.Client.Services
 
         public async Task<bool> ChargeSolde(decimal solde, string contactKiosque)
         {
-            var requestBody = new { Solde = solde, ContactKiosque = contactKiosque };
-            var response = await _httpClient.PostAsJsonAsync("api/Kiosque/ChargeSolde", requestBody);
+            var requestUri = $"api/Kiosque/ChargeSolde?contactKiosque={contactKiosque}&solde={solde}";
+            var response = await _httpClient.PostAsync(requestUri, null);
 
             if (response.IsSuccessStatusCode)
             {
                 return true;
             }
 
-            return false;
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return false;
+            }
+            else
+            {
+                throw new Exception($"Erreur lors de l'appel de l'API : {response.ReasonPhrase}");
+            }
         }
         
         
-
-
+        
         public async Task<bool> DeleteKiosque(int contactKiosque)
         {
             var response = await _httpClient.DeleteAsync($"api/Kiosque/DeleteKiosque/{contactKiosque}");
