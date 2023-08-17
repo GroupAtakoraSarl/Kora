@@ -4,9 +4,9 @@
 @inject IAgenceService AgenceService
 
 
-<div class="container">
-    <h4 class="m-2">Entrez les informations pour creer un <strong>kiosque</strong></h4>
-    <br/>
+<h4 class="m-2">Entrez les informations pour creer un <strong>kiosque</strong></h4>
+<br/>
+<form class="container">
     <div class="row">
         <label class="col m-2">Nom</label>
         <label class="col m-2">Contact</label>
@@ -14,68 +14,62 @@
         <label class="col m-2">Solde initial</label>
         <label class="col m-2">Nom d'Agence</label>
     </div>
-    <form @onsubmit="ConfirmKiosqueAdd">
-        <div class="row">
-            <input class="col m-2" type="text" required="required" placeholder="Nom du Kiosque" @bind="@kiosque.NomKiosque"/>
-            <input class="col m-2" type="text" required="required" placeholder="exple : 22334455" @bind="@kiosque.ContactKiosque"/>
-            <input class="col m-2" type="text" required="required" placeholder="localisation" @bind="@kiosque.AdresseKiosque"/>
-            <input class="col m-2" type="number" required="required" @bind="@kiosque.Solde"/>
-            <select class="col m-2" @bind="selectedAgenceId">
-                <option value="0">Sélectionnez l'Agence correspondant</option>
-                @foreach (var lagence in agences)
-                {
-                    <option value="@lagence.IdAgence">@lagence.NomAgence</option>
-                }
-            </select>
-        </div>
-        <button type="submit" class="row btn btn-success text-center">CREER LE KIOSQUE</button>
-    </form>
-    <br/>
+    <div class="row">
+        <input class="col m-2" type="text" required="required" placeholder="Nom du Kiosque" @bind="@kiosque.NomKiosque"/>
+        <input class="col m-2" type="text" required="required" placeholder="exple : 22334455" @bind="@kiosque.ContactKiosque"/>
+        <input class="col m-2" type="text" required="required" placeholder="localisation" @bind="@kiosque.AdresseKiosque"/>
+        <input class="col m-2" type="number" required="required" @bind="@kiosque.Solde"/>
+        <select class="col m-2" @bind="selectedAgenceId">
+            <option value="0">Sélectionnez l'Agence correspondant</option>
+            @foreach (var lagence in agences)
+            {
+                <option value="@lagence.IdAgence">@lagence.NomAgence</option>
+            }
+        </select>
+    </div>
+    <button type="button" class="row btn btn-success text-center" @onclick="ConfirmKiosqueAdd">CREER LE KIOSQUE</button>
+</form>
     <br/>
     
-    @if (kiosques.Count == 0)
-    {
-        <p>Pas de kiosque disponible</p>
-    }
-    else if (kiosques is null)
-    {
-        <p>Chargement...</p>
-    }
-    else
-    {
-        <h4 class="m-2">Listes des kiosques</h4>
+@if (kiosques.Count == 0)
+{
+    <p>Pas de kiosque disponible</p>
+}
 
-        <table class="table table-success table-bordered bg-light fs-6">
-            <thead class="table-primary">
-            <th>N&deg</th>
-            <th class="text-center">Nom du Kiosque</th>
-            <th class="text-center">Code</th>
-            <th class="text-center">Adresse</th>
-            <th class="text-center">Contact</th>
-            <th class="text-center">Solde</th>
-            <th class="text-center">Nom de l'Agence</th>
-            <th class="text-center">Charger</th>
-            </thead>
-            <tbody>
-            @foreach (var lekiosque in kiosques)
-            {
-                <tr>
-                    <td class="text-center">@lekiosque.IdKiosque</td>
-                    <td class="text-center">@lekiosque.NomKiosque</td>
-                    <td class="text-center">@lekiosque.Code</td>
-                    <td class="text-center">@lekiosque.AdresseKiosque</td>
-                    <td class="text-center">@lekiosque.ContactKiosque</td>
-                    <td class="text-center">@lekiosque.Solde</td>
-                    <td class="text-center"><a style="text-decoration: none" href="/agences">@GetAgenceName(lekiosque.IdAgence)</a></td>
-                    <td class="text-center">
-                        <span class="oi oi-pencil btn btn-primary"></span>
-                    </td>
-                </tr>
-            }
-            </tbody>
-        </table>
-    }
-</div>
+else
+{
+    <h4 class="m-2">Listes des kiosques</h4>
+
+    <table class="table table-success table-bordered bg-light fs-6">
+        <thead class="table-primary">
+        <th>N&deg</th>
+        <th class="text-center">Nom du Kiosque</th>
+        <th class="text-center">Code</th>
+        <th class="text-center">Adresse</th>
+        <th class="text-center">Contact</th>
+        <th class="text-center">Solde</th>
+        <th class="text-center">Nom de l'Agence</th>
+        <th class="text-center">Charger le solde</th>
+        </thead>
+        <tbody>
+        @foreach (var lekiosque in kiosques)
+        {
+            <tr>
+                <td class="text-center">@lekiosque.IdKiosque</td>
+                <td class="text-center">@lekiosque.NomKiosque</td>
+                <td class="text-center">@lekiosque.Code</td>
+                <td class="text-center">@lekiosque.AdresseKiosque</td>
+                <td class="text-center">@lekiosque.ContactKiosque</td>
+                <td class="text-center">@lekiosque.Solde</td>
+                <td class="text-center"><a style="text-decoration: none" href="/agences">@GetAgenceName(lekiosque.IdAgence)</a></td>
+                <td class="text-center">
+                    <span @onclick="Charger" class="oi oi-pencil btn btn-primary"></span>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
 
 
 @code {
@@ -105,11 +99,12 @@
                 if (selectedAgence != null)
                 {
                     kiosque.IdAgence = selectedAgenceId;
+                    kiosque.Code = "string";
                 }
             }
 
             var newKiosque = await KiosqueService.AddKiosque(kiosque);
-
+            
             if (newKiosque != null)
             {
                 kiosques.Add(newKiosque);
@@ -125,5 +120,35 @@
         var agence = agences.FirstOrDefault(a => a.IdAgence == idAgence);
         return agence != null ? agence.NomAgence : "Inconnu";
     }
+
+    private async Task Charger()
+    {
+        var soldeText = await JSRuntime.InvokeAsync<string>("prompt", "Entrez le solde à charger :");
+        if (decimal.TryParse(soldeText, out decimal solde))
+        {
+            await ChargerSolde(solde, kiosque.ContactKiosque);
+            kiosques = await KiosqueService.GetAllKiosque();
+        }
+        else
+        {
+            await JSRuntime.InvokeAsync<bool>("confirm", "Saisie invalide");
+        }
+    }
+    
+    private async Task ChargerSolde(decimal solde, string contactKiosque)
+    {
+        var success = await KiosqueService.ChargeSolde(solde, contactKiosque);
+        if (success)
+        {
+            await KiosqueService.GetAllKiosque();
+            await JSRuntime.InvokeVoidAsync("alert", "Solde charger avec succès");
+        }
+        else
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Erreur lors du chargement");
+        }
+        
+    }
+    
 
 }

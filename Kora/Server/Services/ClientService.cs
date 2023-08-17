@@ -39,6 +39,11 @@ public class ClientService : IClientService
         {
             throw new Exception("Username already exists");
         }
+
+        if (_dbContext.Clients.Any(c => c.Tel == client.Tel))
+        {
+            throw new Exception("Teléphone already exists");
+        }
         
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(client.Password);
         

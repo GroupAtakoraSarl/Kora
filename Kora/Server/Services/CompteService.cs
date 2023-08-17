@@ -135,9 +135,12 @@ public class CompteService : ICompteService
         }
         
         compte.Solde -= solde;
+        
+        solde = await Conversion2Kora(solde);
+        
         var frais = solde * 0.05m;
         compte.Solde -= frais;
-
+        
         // var Notification = new Notification
         // {
         //     Solde = solde,
@@ -150,10 +153,12 @@ public class CompteService : ICompteService
         {
             Date = DateTime.Now,
             NumExp = compte.NumCompte,
-            NumDes = "none",
+            NumDes = kiosque.Code,
+            Frais = frais,
             Type = Transaction.TransactionType.Retrait,
             Solde = solde
         };
+        
         
         compte.Transactions.Add(retraitTransaction);
         
@@ -188,7 +193,6 @@ public class CompteService : ICompteService
         //     Type = Shared.Models.Notification.NotifType.Dépôt
         // };
         
-        
         var transfertTransaction = new Transaction
         {
             Date = DateTime.Now,
@@ -212,7 +216,13 @@ public class CompteService : ICompteService
         var somme = solde / Devise;
         return somme;
     }
+    
 
+    public async Task<decimal> Conversion2Kora(decimal solde)
+    {
+        var somme = solde * Devise;
+        return somme;
+    }
     
     public async Task<List<CompteDto>> GetCompteByClientId(int idClient)
     {

@@ -30,25 +30,22 @@ namespace Kora.Client.Services
             return await response.Content.ReadFromJsonAsync<Kiosque>();
         }
 
-        public async Task<bool> ChargeSolde(double solde, string contactAgence)
+        public async Task<bool> ChargeSolde(decimal solde, string contactKiosque)
         {
-            var chargeSoldeRequest = new
-            {
-                ContactAgence = contactAgence,
-                Solde = solde
-            };
+            var requestBody = new { Solde = solde, ContactKiosque = contactKiosque };
+            var response = await _httpClient.PostAsJsonAsync("api/Kiosque/ChargeSolde", requestBody);
 
-            var response = await _httpClient.PostAsJsonAsync("api/Kiosque/ChargeSolde", chargeSoldeRequest);
             if (response.IsSuccessStatusCode)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
         
+        
+
+
         public async Task<bool> DeleteKiosque(int contactKiosque)
         {
             var response = await _httpClient.DeleteAsync($"api/Kiosque/DeleteKiosque/{contactKiosque}");

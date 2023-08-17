@@ -11,8 +11,9 @@ public interface ICompteService
     Task<bool> Retrait(string numCompte,  decimal solde, string code, string password);
     Task<bool> Depot(string numCompte, string code, decimal solde);
     Task<decimal> ConversionKora(decimal solde);
-    Task<List<CompteDto>> GetCompteByClientId(int idClient);
+    Task<decimal> Conversion2Kora(decimal solde);
 
+    Task<List<CompteDto>> GetCompteByClientId(int idClient);
     Task<bool> DeleteCompte(string numCompte);
 
 }

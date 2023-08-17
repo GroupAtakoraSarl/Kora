@@ -47,11 +47,6 @@ public class KiosqueService : IKiosqueService
     public async Task<Kiosque> AddKiosque(Kiosque kiosque)
     {
         kiosque.Code = await GenerateRandomCode();
-        while (await _dbContext.Kiosques.AnyAsync(k => k.Code == kiosque.Code))
-        {
-            kiosque.Code = await GenerateRandomCode();
-        }
-
         _dbContext.Kiosques.Add(kiosque);
         await _dbContext.SaveChangesAsync();
         return kiosque;
