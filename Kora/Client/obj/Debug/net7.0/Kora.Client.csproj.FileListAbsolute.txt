@@ -854,3 +854,7 @@ D:\BUREAU\STAGE\Kora\Kora\Client\bin\Debug\net7.0\wwwroot\_framework\BCrypt.Net-
 D:\BUREAU\STAGE\Kora\Kora\Client\bin\Debug\net7.0\wwwroot\_framework\BCrypt.Net-Next.dll.gz
 D:\BUREAU\STAGE\Kora\Kora\Client\bin\Debug\net7.0\BCrypt.Net-Next.dll
 D:\BUREAU\STAGE\Kora\Kora\Client\obj\Debug\net7.0\build-gz\W7TtDV7o.gz
+D:\BUREAU\STAGE\Kora\Kora\Client\bin\Debug\net7.0\wwwroot\_framework\Newtonsoft.Json.dll
+D:\BUREAU\STAGE\Kora\Kora\Client\bin\Debug\net7.0\wwwroot\_framework\Newtonsoft.Json.dll.gz
+D:\BUREAU\STAGE\Kora\Kora\Client\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\BUREAU\STAGE\Kora\Kora\Client\obj\Debug\net7.0\build-gz\6Px7EqeS.gz

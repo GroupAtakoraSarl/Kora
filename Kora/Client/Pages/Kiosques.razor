@@ -1,5 +1,6 @@
 @page "/kiosques"
 @using Kora.Shared.Models
+@using Kora.Shared.ModelsDto
 @inject IKiosqueService KiosqueService
 @inject IAgenceService AgenceService
 
@@ -63,7 +64,7 @@ else
                 <td class="text-center">@lekiosque.Solde</td>
                 <td class="text-center"><a style="text-decoration: none" href="/agences">@GetAgenceName(lekiosque.IdAgence)</a></td>
                 <td class="text-center">
-                    <span @onclick="Charger" class="oi oi-pencil btn btn-primary"></span>
+                    <span @onclick="() => Charger(lekiosque.ContactKiosque)" class="oi oi-pencil btn btn-primary"></span>
                 </td>
             </tr>
         }
@@ -121,33 +122,31 @@ else
         return agence != null ? agence.NomAgence : "Inconnu";
     }
 
-    private async Task Charger()
+    private async Task Charger(string contactKiosque)
     {
-        var soldeText = await JSRuntime.InvokeAsync<string>("prompt", "Entrez le solde à charger :");
+        var soldeText = await JSRuntime.InvokeAsync<string>("prompt", "Entrez le solde à charger :", "0");
+    
         if (decimal.TryParse(soldeText, out decimal solde))
         {
-            await ChargerSolde(solde, kiosque.ContactKiosque);
-            kiosques = await KiosqueService.GetAllKiosque();
+            var success = await KiosqueService.ChargeSolde(new ChargeCompteDto
+            {
+                Solde = solde,
+                ContactKiosque = contactKiosque
+            });
+            if (success)
+            {
+                kiosques = await KiosqueService.GetAllKiosque();
+                await JSRuntime.InvokeVoidAsync("alert", "Solde chargé avec succès");
+            }
+            else
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Erreur lors du chargement");
+            }
         }
         else
         {
-            await JSRuntime.InvokeAsync<bool>("confirm", "Saisie invalide");
+            await JSRuntime.InvokeVoidAsync("alert", "Saisie invalide");
         }
-    }
-    
-    private async Task ChargerSolde(decimal solde, string contactKiosque)
-    {
-        var success = await KiosqueService.ChargeSolde(solde, contactKiosque);
-        if (success)
-        {
-            await KiosqueService.GetAllKiosque();
-            await JSRuntime.InvokeVoidAsync("alert", "Solde charger avec succès");
-        }
-        else
-        {
-            await JSRuntime.InvokeVoidAsync("alert", "Erreur lors du chargement");
-        }
-        
     }
     
 

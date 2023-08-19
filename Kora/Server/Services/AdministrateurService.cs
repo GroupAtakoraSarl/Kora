@@ -61,28 +61,49 @@ public class AdministrateurService : IAdministrateurService
 
     public bool EnregistrerAdminSaved(string username, string email, string password)
     {
-        string hashedPwd = BCrypt.Net.BCrypt.HashPassword(password);
+        var hashedPwd = BCrypt.Net.BCrypt.HashPassword(password);
         var adminSaved = _dbContext.Administrateurs.FirstOrDefault(a => a.Username == username && a.Email == email);
         if (adminSaved == null)
         {
             return false;
         }
+
         adminSaved.Password = hashedPwd;
-        _dbContext.SaveChanges();
         return true;
     }
 
-    public bool ConnecterAdmin(string email, string password)
+    private bool CheckPassword(string password, string dataPassword)
     {
-        var ladmin = _dbContext.Administrateurs.FirstOrDefault(a => a.Email == email);
-        if (ladmin == null)
+        return BCrypt.Net.BCrypt.Verify(password, dataPassword);
+    }
+
+    public AuthResponse ConnecterAdmin(string email, string password)
+    {
+        var admin = _dbContext.Administrateurs.FirstOrDefault(a => a.Email == email);
+
+        if (admin != null && CheckPassword(password, admin.Password))
         {
-            return false;
+            return new AuthResponse
+            {
+                Errors = null,
+                Username = admin.Email
+            };
         }
+        else
+        {
+            return new AuthResponse
+            {
+                Errors = "Erreur d'authentification",
+                Username = null
+            };
+        }
+    }
+
+        
 
         // Vérifier que le mot de passe fourni correspond au hachage de mot de passe stocké
-        return BCrypt.Net.BCrypt.Verify(password, ladmin.Password);
-    }
+       
+    
     
     
     public async Task<bool> DeleteAdmin(string email)

@@ -34,6 +34,7 @@
       "Microsoft.Extensions.Primitives.dll": "sha256-qI\/\/ZC2SPzW9VmCMUUQz3UUdqA0\/VN6VHD1023pw3aE=",
       "Microsoft.JSInterop.dll": "sha256-J0owuvx2vKFllVJ+Sn7m1vJSLQPkZPVw13LL6DgUF0Y=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-UMZ1e9p6NSVG4ZBbBBmiR4UxngXA\/gxaNKRUxLjyuUg=",
+      "Newtonsoft.Json.dll": "sha256-IsZJ91\/OW+fHzNqIgEc7Y072ns8z9dGritiSyvR9Wgc=",
       "System.IO.Pipelines.dll": "sha256-P\/MqD0fCBd5bgTM16JC1QC\/Zz7s+CwViyzmDFkBG4\/c=",
       "Microsoft.CSharp.dll": "sha256-U6GApEYCN2mL3EI15VnWWUFsotGT\/ewpFLyNWspdrIE=",
       "Microsoft.VisualBasic.Core.dll": "sha256-PvfX4mKCDhgAYT87QXFsfjILPfoWt544sKvQoQO88BQ=",
@@ -203,15 +204,15 @@
       "mscorlib.dll": "sha256-t1RT9mknsQ54H+sVa1vtMhjv3D8ZjiAGoLzHvuIObPw=",
       "netstandard.dll": "sha256-5SHKPh1PcuJjq4lIo7ymdIyhb9d3++oMAjr46auhUSc=",
       "System.Private.CoreLib.dll": "sha256-eH+XIsCUG5oZ0k8AIzNtRLTCLiV\/8Zv0RFCPMsIkdYY=",
-      "Kora.Shared.dll": "sha256-nFlGGY4W6s1BbusHUoGjhgZSf45fpVtS24tPFImM7Rs=",
-      "Kora.Client.dll": "sha256-BA\/42Bwpl5CjlccNO\/5ZaPiZ\/37BkrITqSFt2GSKiJ4="
+      "Kora.Shared.dll": "sha256-MqdUGO4FcUXZEo98kpxWuwieu9VpOw3Z4i0v3H\/srag=",
+      "Kora.Client.dll": "sha256-ne1Nrkape\/TdGZhQQ+\/Dpj6eQYsGQ4hsz9xIE0Mqy6A="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "Kora.Shared.pdb": "sha256-uJO2YG9yqkyFp+5KU9haMkZkREe2FHR\/mi1x8HMi+Ng=",
-      "Kora.Client.pdb": "sha256-Vb0asPyOsrGBl+lQlG0q1le73kRINa+Hz2JA+pfeK1o="
+      "Kora.Shared.pdb": "sha256-0YQ1IXZY8IHjC\/jkh1MKivWDBDN6S1TiJ0j9TIsR2dA=",
+      "Kora.Client.pdb": "sha256-mLtB7X0ZifVRqCv29nAJsjPlXdudES3gaYHbD5SaYG0="
     },
     "runtime": {
       "dotnet.7.0.9.wep0k6qray.js": "sha256-dUIY5Mz0ozZWqtTfBb7ArJKbdh5IIp8BXeq6UjK4u\/c=",

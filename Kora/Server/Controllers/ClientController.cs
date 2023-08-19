@@ -20,26 +20,24 @@ public class ClientController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ClientDto>>> GetAllClient()
+    public async Task<ActionResult<List<Shared.Models.Client>>> GetAllClient()
     {
         var clients = await _clientService.GetAllClient();
-        var clientDtos = _mapper.Map<List<ClientDto>>(clients); // Utilisez le mappage ici pour convertir les entités Client en Dto
-        return Ok(clientDtos);
+        return Ok(clients);
     }
 
     
     [HttpPost("Enregistrer")]
-    public IActionResult EnregistrerClient(Shared.Models.Client client)
+    public IActionResult EnregistrerClient([FromBody] Shared.Models.Client client)
     {
         try
         {
             _clientService.EnregistrerClient(client);
-            return Ok("Enregistrement réussi");
+            return Ok("Client bien enregistré");
         }
         catch (Exception e)
         {
-            var Message = "Une erreure est survenue";
-            return BadRequest(Message);
+            return BadRequest(e);
         }
     }
     
@@ -53,11 +51,17 @@ public class ClientController : ControllerBase
 
             while (tentative > 0)
             {
-                var isConnected = _clientService.ConnecterClient(client.Tel, client.Password);
+                var leclient = _clientService.ConnecterClient(client.Tel, client.Password);
 
-                if (isConnected)
+                if (leclient != null)
                 {
-                    return Ok("Connexion réussie");
+                    var clientInfo = new
+                    {
+                        leclient.Username,
+                        leclient.Tel
+                    };
+                    
+                    return Ok(leclient);
                 }
                 else
                 {

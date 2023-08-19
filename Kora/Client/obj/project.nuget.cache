@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "w3+GSouo7xz0tLlDEugDMeL84nocGuXXvKYR5V3zHi/vUWiA8T5Q1RuHbHB8Fmg7o6rMBj8x43OmrUhr1URv1w==",
+  "dgSpecHash": "qxpSKpj1nFpB0tlyc7O67OLGm0MrgXMV5Jgbgr43+zOcmydUQfeIh21Syx+ZAUJcDWEK0MtgloB2klk9r5uFQQ==",
   "success": true,
   "projectFilePath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,7 @@
     "C:\\Users\\kalip\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0-preview.6.23329.7\\microsoft.extensions.primitives.8.0.0-preview.6.23329.7.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\microsoft.jsinterop\\7.0.9\\microsoft.jsinterop.7.0.9.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.9\\microsoft.jsinterop.webassembly.7.0.9.nupkg.sha512",
+    "C:\\Users\\kalip\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",

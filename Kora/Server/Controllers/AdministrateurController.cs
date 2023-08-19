@@ -78,8 +78,15 @@ public class AdministrateurController : ControllerBase
     {
         try
         {
-            _administrateurService.EnregistrerAdminSaved(administrateur.Username, administrateur.Email, administrateur.Password);
-            return Ok();
+            var isSucceed = _administrateurService.EnregistrerAdminSaved(administrateur.Username, administrateur.Email, administrateur.Password);
+            if (isSucceed)
+            {
+                return Ok("Reussi");
+            }
+            else
+            {
+                return BadRequest("Admin n'existe pas");
+            }
         }
         catch (Exception e)
         {
@@ -91,23 +98,16 @@ public class AdministrateurController : ControllerBase
     [HttpPost("ConnecterAdmin")]
     public IActionResult ConnecterAdmin(AdministrateurLog administrateur)
     {
-        try
+        var isConnected = _administrateurService.ConnecterAdmin(administrateur.Email, administrateur.Password);
+        if (isConnected.Errors != null)
         {
-            var isConnected = _administrateurService.ConnecterAdmin(administrateur.Email, administrateur.Password);
-            if (!isConnected)
-            {
-                return BadRequest("Nom d'utilisateur ou mot de passe incorrect");
-            }
-            else
-            {
-                return Ok("Connexion réussie");
-            }
+            return BadRequest("Nom d'utilisateur ou mot de passe incorrect");
         }
-        catch (Exception e)
+        else
         {
-            var Message = "Une erreur est survenue";
-            return Ok(Message);
+            return Ok(isConnected.Username);
         }
+        
     }
 
     [HttpDelete("{email}")]

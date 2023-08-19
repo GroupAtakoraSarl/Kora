@@ -68,6 +68,11 @@ public class CompteService : ICompteService
         {
             return false;
         }
+
+        if (expediteur.Solde < solde)
+        {
+            return false;
+        }
         
         var isPwdCorrect = BCrypt.Net.BCrypt.Verify(passwordExpediteur, expediteur.Client.Password);
 
@@ -81,13 +86,13 @@ public class CompteService : ICompteService
         var frais = solde * 0.05m;
         expediteur.Solde -= frais;
         
-        var Notification = new Notification
-        {
-            Solde = solde,
-            Frais = frais,
-            NomClient = expediteur.Client.Username,
-            Type = Shared.Models.Notification.NotifType.Dépôt
-        }; 
+        // var Notification = new Notification
+        // {
+        //     Solde = solde,
+        //     Frais = frais,
+        //     NomClient = expediteur.Client.Username,
+        //     Type = Shared.Models.Notification.NotifType.Dépôt
+        // }; 
 
         var depotTransaction = new Transaction
         {
@@ -118,6 +123,12 @@ public class CompteService : ICompteService
             return false;
         }
 
+        if (compte.Solde < solde)
+        {
+            return false;
+        }
+        
+        
         if (compte.Client == null)
         {
             return false;
@@ -173,6 +184,11 @@ public class CompteService : ICompteService
             .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
         var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(k => k.Code == code);
         if (compte == null || kiosque == null)
+        {
+            return false;
+        }
+
+        if (kiosque.Solde < solde)
         {
             return false;
         }

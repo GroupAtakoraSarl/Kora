@@ -33,14 +33,14 @@ public class ClientService : IClientService
     }
 
     
-    public void EnregistrerClient(Shared.Models.Client client)
+    public async Task EnregistrerClient(Shared.Models.Client client)
     {
-        if (_dbContext.Clients.Any(c => c.Username == client.Username))
+        if (await _dbContext.Clients.AnyAsync(c => c.Username == client.Username))
         {
             throw new Exception("Username already exists");
         }
 
-        if (_dbContext.Clients.Any(c => c.Tel == client.Tel))
+        if (await _dbContext.Clients.AnyAsync(c => c.Tel == client.Tel))
         {
             throw new Exception("Teléphone already exists");
         }
@@ -48,7 +48,6 @@ public class ClientService : IClientService
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(client.Password);
         
         client.Password = hashedPassword;
-
         Compte compte = new Compte
         {
             IdClient = client.IdClient,
@@ -57,23 +56,24 @@ public class ClientService : IClientService
             Client = client,
             Transactions = new List<Transaction>()
         };
-
-        _dbContext.Comptes.Add(compte);
+        
         _dbContext.Clients.Add(client);
-        _dbContext.SaveChangesAsync();
+        _dbContext.Comptes.Add(compte);
+        await _dbContext.SaveChangesAsync();
     }
 
     
-    public bool ConnecterClient(string tel, string password)
+    public Shared.Models.Client ConnecterClient(string tel, string password)
     {
         var leclient = _dbContext.Clients.FirstOrDefault(c => c.Tel == tel);
         if (leclient is null)
         {
-            return false;
+            return null;
         }
 
         // Vérifier que le mot de passe fourni correspond au hachage de mot de passe stocké
-        return BCrypt.Net.BCrypt.Verify(password, leclient.Password);
+         var isConnected =  BCrypt.Net.BCrypt.Verify(password, leclient.Password);
+         return isConnected ? leclient : null;
     }
     
  

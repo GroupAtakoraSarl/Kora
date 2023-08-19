@@ -43,9 +43,9 @@ public class CompteController : ControllerBase
     
     
     [HttpPost("Transfert")]
-    public async Task<ActionResult<string>> Transfert(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
+    public async Task<ActionResult<string>> Transfert(TransfertDto transfertDto)
     {
-        var result = await _compteService.Transfert(numCompteExpediteur, passwordExpediteur, numCompteDestinataire, solde);
+        var result = await _compteService.Transfert(transfertDto.NumCompteExpediteur, transfertDto.PasswordExpediteur, transfertDto.NumCompteDestinataire, transfertDto.Solde);
         if (!result)
         {
             return NotFound("Compte introuvable !");
@@ -56,9 +56,9 @@ public class CompteController : ControllerBase
 
     
     [HttpPost("RetraitCompte")]
-    public async Task<ActionResult<string>> Retrait(string numCompte, decimal solde, string code, string password)
+    public async Task<ActionResult<string>> Retrait(RetraitDto retraitDto)
     {
-        var result = await _compteService.Retrait(numCompte, solde, code, password);
+        var result = await _compteService.Retrait(retraitDto.NumCompte, retraitDto.Solde, retraitDto.Code, retraitDto.Password);
         if (!result)
         {
             return NotFound("Compte introuvable ou solde supérieure à celui du compte");
@@ -66,16 +66,15 @@ public class CompteController : ControllerBase
         
         return Ok();
     }
-
     
     [HttpPost("Depot")]
-    public async Task<ActionResult<string>> Depot(string numCompte, string code, decimal solde)
+    public async Task<ActionResult<string>> Depot(DepotDto depotDto)
     {
-        var result = await _compteService.Depot(numCompte, code, solde);
+        var result = await _compteService.Depot(depotDto.NumCompte, depotDto.Code, depotDto.Solde);
         if (!result)
-            return NotFound("Compte introuvable");
-
-        return Ok();
+            return NotFound("Solde insuffisant ");
+        
+        return Ok("effectue");
     }
     
 

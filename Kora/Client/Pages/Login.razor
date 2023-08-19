@@ -3,9 +3,12 @@
 @page "/login"
 @using Kora.Shared.Models
 @using System.Text.Json
+@using System.Text.Json.Serialization
+@using Newtonsoft.Json
 @inject HttpClient HttpClient
 @inject IAdministrateurService AdministrateurService
 @inject NavigationManager Navigation
+@inject EmailService EmailService
 
 <style>
     .bg-image {
@@ -73,11 +76,13 @@
             var response = await AdministrateurService.ConnecterAdmin(admin.Email, admin.Password);
 
             // Vérifier si la requête a réussi
-            if (response)
+            if (response.IsSuccessStatusCode)
             {
+                var email = await response.Content.ReadAsStringAsync();
+                var Response = JsonConvert.DeserializeObject<AuthResponse>(email);
+                EmailService.Email = Response.Email;
                Navigation.NavigateTo("/dashboard");
             }
-            
             else
             {
                 showError = true;
@@ -85,7 +90,7 @@
         }
         catch (Exception ex)
         {
-            
+            Console.WriteLine("Exception: " + ex.Message);
         }
     }
 

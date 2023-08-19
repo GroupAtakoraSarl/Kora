@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "me/M/cjwqdOVf/lgnwZRF0Yq+xvZg4zRmI7Ki/1f4P8=",
+  "Hash": "wlElucR6BbEFP53ITTCDdOge93PdmqYaItIR860xKWU=",
   "Source": "Kora.Server",
   "BasePath": "_content/Kora.Server",
   "Mode": "Default",
@@ -826,6 +826,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.9\\runtimes\\browser-wasm\\lib\\net7.0\\netstandard.dll"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Newtonsoft.Json.dll",
+      "SourceId": "Kora.Client",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\kalip\\.nuget\\packages\\newtonsoft.json\\13.0.3\\lib\\net6.0\\Newtonsoft.Json.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.AppContext.dll",
@@ -4192,6 +4209,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\System.ComponentModel.DataAnnotations.dll"
+    },
+    {
+      "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\6Px7EqeS.gz",
+      "SourceId": "Kora.Client",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Newtonsoft.Json.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\Newtonsoft.Json.dll"
     },
     {
       "Identity": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\Debug\\net7.0\\build-gz\\6wR0i3ZP.gz",

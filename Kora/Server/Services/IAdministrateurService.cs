@@ -10,6 +10,6 @@ public interface IAdministrateurService
     Task<Administrateur> Enregistrer(Administrateur administrateur);
     bool EnregistrerAdmin(Administrateur administrateur);
     bool EnregistrerAdminSaved(string username, string email, string password);
-    bool ConnecterAdmin(string email, string password);
+    AuthResponse ConnecterAdmin(string email, string password);
     Task<bool> DeleteAdmin(string email);
 }

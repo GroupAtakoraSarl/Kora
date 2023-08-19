@@ -1,6 +1,9 @@
-﻿<div style="background-color: #3d3325" class="flex-row top-row ps-3 navbar navbar-dark">
+﻿@inject EmailService Email
+
+<div style="background-color: #3d3325" class="flex-row top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href=""><h5><strong>KoraTransfert <span class="oi oi-dollar"></span></strong></h5></a>
+        <p>@Email</p>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>

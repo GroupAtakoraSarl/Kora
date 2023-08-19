@@ -54,12 +54,11 @@ public class KiosqueController : ControllerBase
             throw;
         }
     }
-    
 
     [HttpPost("ChargeSolde")]
-    public async Task<IActionResult> ChargeSolde(string contactKiosque, decimal solde)
+    public async Task<IActionResult> ChargeSolde(ChargeCompteDto chargeCompteDto)
     {
-        var result = await _kiosqueService.ChargeSolde(solde, contactKiosque);
+        var result = await _kiosqueService.ChargeSolde(chargeCompteDto.Solde, chargeCompteDto.ContactKiosque);
         if (result)
         {
             return Ok("Solde chargé avec succès");
@@ -70,9 +69,7 @@ public class KiosqueController : ControllerBase
         }
     }
     
-    
-    
-    [HttpDelete("DeleteKiosque/{contactKiosque}")]
+    [HttpDelete("DeleteKiosque")]
     public async Task<ActionResult<KiosqueDto>> DeleteKiosque(string contactKiosque)
     {
         var kiosque = await _kiosqueService.DeleteKiosque(contactKiosque);

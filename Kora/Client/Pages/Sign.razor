@@ -32,13 +32,13 @@
                     <h4 class="card-title fw-bold text-center pt-3 text text-white">KORA-TRANSFERT</h4>
                 </div>
                 <div class="card-body">
-                    @if (showError)
-                    {
-                        <div class="alert alert-danger" role="alert">
-                            <p class="text-center">Veuillez vérifiez les informations fournies</p>
-                        </div>
-                    }
                     <form @onsubmit="HandleSubmit">
+                        @if (showError)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                <p class="text-center">Veuillez vérifiez les informations fournies</p>
+                            </div>
+                        }
                         <div class="mb-3">
                             <label for="username" class="form-label">Nom Complet</label>
                             <input type="text" class="form-control" @bind="@admin.Username"/>
@@ -65,24 +65,16 @@
 
     private async Task HandleSubmit()
     {
-        try
+        var response = await AdministrateurService.EnregistrerAdminSaved(admin.Username, admin.Email, admin.Password);
+        
+        if (response)
         {
-            // Envoyer le client enregistré à l'API via une requête POST
-            var response = await AdministrateurService.EnregistrerAdminSaved(admin.Username, admin.Email, admin.Password);
+            Navigation.NavigateTo("/login");
+        }
+        else
+        {
+            showError = true;
+        }
 
-            // Vérifier si la requête a réussi
-            if (response)
-            {
-                Navigation.NavigateTo("/login");
-            }
-            else
-            {
-                showError = true;
-            }
-        }
-        catch (Exception ex)
-        {
-            
-        }
     }
 }
