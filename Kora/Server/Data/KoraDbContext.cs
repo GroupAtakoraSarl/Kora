@@ -7,12 +7,10 @@ namespace Kora.Server.Data;
 public class KoraDbContext : DbContext
 {
     
-    public KoraDbContext(DbContextOptions<KoraDbContext> options)
-        : base(options)
+    public KoraDbContext(DbContextOptions<KoraDbContext> options) : base(options)
     {
         
     }
-    
     
     public DbSet<Agence> Agences { get; set; }
     public DbSet<Administrateur> Administrateurs { get; set; }
@@ -24,9 +22,11 @@ public class KoraDbContext : DbContext
     public DbSet<Ville> Villes { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<Notification> Notifications { get; set; }
-
+    
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         // modelBuilder.Entity<Agence>()
         //     .HasOne(a => a.ResponsableAgence)
         //     .WithMany()
@@ -51,7 +51,7 @@ public class KoraDbContext : DbContext
         //     .HasOne(k => k.Agence)
         //     .WithMany(a => a.Kiosques)
         //     .HasForeignKey(k => k.IdAgence);
-
+        //
     }
 }
 

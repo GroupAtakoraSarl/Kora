@@ -24,7 +24,7 @@ else
         <th class="text-center">Téléphone</th>
         </thead>
         <tbody>
-        @foreach (var client in clients)
+        @foreach (var client in clients.OrderByDescending(i=>i.IdClient))
         {
             <tr>
                 <td class="text-center">@client.IdClient</td>

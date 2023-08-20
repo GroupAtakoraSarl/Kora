@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="kora" uuid="5f59213f-98f5-4a9f-ab01-7b5f3019a6c6">
+    <data-source source="LOCAL" name="kora" uuid="c6c8504e-8d4a-404b-9cdb-d8be8390dff8">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>

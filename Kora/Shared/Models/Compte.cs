@@ -6,7 +6,6 @@ namespace Kora.Shared.Models;
 public class Compte
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdCompte { get; set; }
     public string NumCompte { get; set; }
     public decimal Solde { get; set; }

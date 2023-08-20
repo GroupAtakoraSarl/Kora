@@ -7,7 +7,6 @@ public class Client
 {
 
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdClient { get; set; }
     [Required]
     public string Username { get; set; }

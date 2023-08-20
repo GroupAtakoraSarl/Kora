@@ -7,9 +7,23 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        //CreateHostBuilder(args).Build().Run();
+        
+        builder.Services.AddDbContext<KoraDbContext>(opt=>
+            opt.UseSqlite(builder.Configuration.GetConnectionString("KoraDbConnection")));
 
-        // Add services to the container.
-        ConfigureServices(builder.Services, builder.Configuration);
+        builder.Services.AddControllers();
+        ConfigureServices(builder.Services);
+
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen(opt =>
+        {
+            opt.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+            {
+                Version = "v1",
+                Title = "Kora Api",
+            });
+        });
 
         var app = builder.Build();
 
@@ -34,7 +48,7 @@ public class Program
     }
 
     // Separate method to configure services
-    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    public static void ConfigureServices(IServiceCollection services)
     {
         services.AddScoped<IAdministrateurService, AdministrateurService>();
         services.AddScoped<IAgenceService, AgenceService>();
@@ -45,23 +59,13 @@ public class Program
         services.AddScoped<IPaysService, PaysService>();
         services.AddScoped<IVilleService, VilleService>();
         services.AddScoped<ITransactionService, TransactionService>();
-
+    
         services.AddControllersWithViews();
         services.AddRazorPages();
         services.AddEndpointsApiExplorer();
-        services.AddDbContext<KoraDbContext>(options =>
-            options.UseSqlite(configuration.GetConnectionString("KoraDbConnection")));
-
-        // Ajouter AutoMapper
+        
+         // Ajouter AutoMapper
         services.AddAutoMapper(typeof(Program));
-
-        services.AddSwaggerGen(opt =>
-        {
-            opt.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-            {
-                Version = "v1",
-                Title = "Kora Api",
-            });
-        });
+        
     }
 }

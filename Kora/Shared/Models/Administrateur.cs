@@ -8,7 +8,6 @@ public class Administrateur
 {
 
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdAdmin { get; set; }
 
     public string Username { get; set; }

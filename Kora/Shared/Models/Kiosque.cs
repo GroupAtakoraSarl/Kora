@@ -6,7 +6,6 @@ namespace Kora.Shared.Models;
 public class Kiosque
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdKiosque { get; set; }
     public string NomKiosque { get; set; }
     public string Code { get; set; }

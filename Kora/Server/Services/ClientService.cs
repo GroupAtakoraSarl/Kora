@@ -51,7 +51,7 @@ public class ClientService : IClientService
         Compte compte = new Compte
         {
             IdClient = client.IdClient,
-            Solde = 0,
+            Solde = 200,
             NumCompte = client.Tel,
             Client = client,
             Transactions = new List<Transaction>()

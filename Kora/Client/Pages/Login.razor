@@ -8,7 +8,6 @@
 @inject HttpClient HttpClient
 @inject IAdministrateurService AdministrateurService
 @inject NavigationManager Navigation
-@inject EmailService EmailService
 
 <style>
     .bg-image {
@@ -28,13 +27,25 @@
         margin: 30px;
         border: none;
     }
+    .monB{
+        background-color: #06483e;
+        padding: 8px;
+        border-radius: 5px;
+         color: white;
+         height: 50px;
+         border: none;
+         }
+    .monB:hover{
+        color: white;
+        background-color:  #0e6b5d;
+        }
 </style>
 
 <div class="container-fluid bg-image">
     <div class="row justify-content-center">
         <div class="col-md-4 shadow p-3 mb-5 bg-body-tertiary rounded" style="margin-top: 100px">
             <div class="card form">
-                <div class="card-header h-25" style="background-color: #4b3d13">
+                <div class="card-header h-25" style="background-color: #06483e">
                     <h4 class="card-title fw-bold text-center pt-3 text text-white">KORA-TRANSFERT</h4>
                 </div>
                 <div class="card-body">
@@ -53,7 +64,7 @@
                             <label for="tel" class="form-label">Mot de passe</label>
                             <input type="password" class="form-control" id="tel" @bind="admin.Password" required>
                         </div>
-                        <button type="submit" class="text-center mb-2 w-100 btn btn-primary">Se connecter</button>
+                        <button type="submit" class="monB text-center mb-2 w-100 btn btn-info">Se connecter</button>
                         <div class="text-center mt-2">
                             <a href="/sign">M'enregistrer</a>
                         </div>
@@ -78,9 +89,6 @@
             // Vérifier si la requête a réussi
             if (response.IsSuccessStatusCode)
             {
-                var email = await response.Content.ReadAsStringAsync();
-                var Response = JsonConvert.DeserializeObject<AuthResponse>(email);
-                EmailService.Email = Response.Email;
                Navigation.NavigateTo("/dashboard");
             }
             else

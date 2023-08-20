@@ -173,10 +173,18 @@
             {
                 lesvilles.Add(newVille);
                 ville = new Ville();
+
+                await VilleService.GetAllVille();
             }
         }
     }
 
+    private string GetPaysName(int idPays)
+    {
+        var pays = lespays.FirstOrDefault(p => p.IdPays == idPays);
+        return pays != null ? pays.NomPays : "Inconnu";
+    }
+    
     private async Task ConfirmAddPays()
     {
         var result = await JSRuntime.InvokeAsync<bool>("confirm", "Ajouter un nouveau Pays ?");
@@ -189,10 +197,6 @@
         }
     }
     
-    private string GetPaysName(int idPays)
-    {
-        var pays = lespays.FirstOrDefault(p => p.IdPays == idPays);
-        return pays != null ? pays.NomPays : "Inconnu";
-    }
+    
 
 }

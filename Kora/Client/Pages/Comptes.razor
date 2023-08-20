@@ -14,7 +14,7 @@
     <th class="text-center">Nom du Client</th>
     </thead>
     <tbody>
-    @foreach (var compte in comptes)
+    @foreach (var compte in comptes.OrderByDescending(s=>s.Solde))
     {
         <tr>
             <td class="text-center">@compte.NumCompte</td>

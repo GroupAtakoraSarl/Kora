@@ -6,7 +6,6 @@ namespace Kora.Shared.Models;
 public class Pays
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdPays { get; set; }
     [Required]
     public string NomPays { get; set; }

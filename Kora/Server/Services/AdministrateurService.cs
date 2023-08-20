@@ -53,6 +53,7 @@ public class AdministrateurService : IAdministrateurService
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(administrateur.Password);
         
         administrateur.Password = hashedPassword;
+        
         _dbContext.Administrateurs.Add(administrateur);
         _dbContext.SaveChangesAsync();
         
@@ -98,11 +99,7 @@ public class AdministrateurService : IAdministrateurService
             };
         }
     }
-
-        
-
-        // Vérifier que le mot de passe fourni correspond au hachage de mot de passe stocké
-       
+    
     
     
     

@@ -7,7 +7,6 @@ namespace Kora.Shared.Models;
 public class ResponsableAgence
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int  IdResponsable { get; set; }
     public string NomResponsable { get; set; }
 

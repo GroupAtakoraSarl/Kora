@@ -8,7 +8,6 @@ public class Agence
 {
 
     [Key] 
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdAgence { get; set; }
     public string Pays { get; set; }
     public string Ville { get; set; }

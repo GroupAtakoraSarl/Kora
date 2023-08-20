@@ -7,7 +7,6 @@ namespace Kora.Shared.Models;
 public class Ville
 {
     [Key] 
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int IdVille { get; set; }
     public string NomVille { get; set; }
     [ForeignKey("Pays")]

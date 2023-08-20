@@ -28,7 +28,7 @@ else
         <th class="text-center">Propriété du Compte</th>
         </thead>
         <tbody>
-        @foreach (var transaction in transactions)
+        @foreach (var transaction in transactions.OrderByDescending(t=>t.Date))
         {
             <tr>
                 <td class="text-center">@transaction.IdTransaction</td>
