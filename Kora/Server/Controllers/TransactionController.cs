@@ -27,5 +27,13 @@ public class TransactionController : ControllerBase
         var transactionDtos = _mapper.Map<List<TransactionDto>>(transactions);
         return Ok(transactionDtos);
     }
+
+    [HttpGet("GetClientTransaction")]
+    public async Task<ActionResult<List<TransactionDto>>> GetClientTransaction(int idClient)
+    {
+        var transactions = await _transactionService.GetClientTransaction(idClient);
+        var transactionDto = _mapper.Map<List<TransactionDto>>(transactions);
+        return Ok(transactionDto);
+    }
     
 }

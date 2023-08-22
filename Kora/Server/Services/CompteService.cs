@@ -85,6 +85,8 @@ public class CompteService : ICompteService
         destinataire.Solde += solde;
         var frais = solde * 0.05m;
         expediteur.Solde -= frais;
+        var fraisCFA = await Conversion2Kora(frais);
+        var soldeFCFA = await Conversion2Kora(solde);
         
         // var Notification = new Notification
         // {
@@ -99,9 +101,9 @@ public class CompteService : ICompteService
             Date = DateTime.Now,
             NumExp = expediteur.NumCompte,
             NumDes = destinataire.NumCompte,
-            Frais = frais,
+            Frais = fraisCFA,
             Type = Transaction.TransactionType.Transfert,
-            Solde = solde
+            Solde = soldeFCFA
         };
         
         expediteur.Transactions.Add(depotTransaction);
@@ -123,11 +125,6 @@ public class CompteService : ICompteService
             return false;
         }
 
-        if (compte.Solde < solde)
-        {
-            return false;
-        }
-        
         
         if (compte.Client == null)
         {
@@ -139,35 +136,31 @@ public class CompteService : ICompteService
         {
             return false;
         }
-
-        if (solde >= compte.Solde)
+        
+        if (solde > compte.Solde)
         {
             return false;
         }
         
+        
         compte.Solde -= solde;
-        
-        solde = await Conversion2Kora(solde);
-        
+
         var frais = solde * 0.05m;
         compte.Solde -= frais;
+
+        var soldeCFA = await Conversion2Kora(solde);
+
+        var fraisCFA = await Conversion2Kora(frais);
         
-        // var Notification = new Notification
-        // {
-        //     Solde = solde,
-        //     Frais = frais,
-        //     NomClient = compte.Client.Username,
-        //     Type = Shared.Models.Notification.NotifType.Dépôt
-        // };
         
         var retraitTransaction = new Transaction
         {
             Date = DateTime.Now,
             NumExp = compte.NumCompte,
             NumDes = kiosque.Code,
-            Frais = frais,
+            Frais = fraisCFA,
             Type = Transaction.TransactionType.Retrait,
-            Solde = solde
+            Solde = soldeCFA
         };
         
         
@@ -188,36 +181,34 @@ public class CompteService : ICompteService
             return false;
         }
 
+        
         if (kiosque.Solde < solde)
         {
             return false;
         }
         
-        compte.Solde += solde;
-        kiosque.Solde -= solde;
-        var frais = solde * 0.05m;
+        var newSolde = await ConversionKora(solde);
+        var lesolde = newSolde;
+        
+        
+        compte.Solde += lesolde;
+        kiosque.Solde -= lesolde;
+        var frais = lesolde * 0.05m;
         compte.Solde -= frais;
 
-        var convertSolde = await ConversionKora(compte.Solde);
-        compte.Solde = convertSolde;
 
-        // var Notification = new Notification
-        // {
-        //     Solde = solde,
-        //     Frais = frais,
-        //     NomClient = compte.IdClient,
-        //     Type = Shared.Models.Notification.NotifType.Dépôt
-        // };
-        
+        var fraisCFA = await Conversion2Kora(frais);
+        var soldeCFA = await Conversion2Kora(solde);
         var transfertTransaction = new Transaction
         {
             Date = DateTime.Now,
             NumDes = compte.NumCompte,
             NumExp = kiosque.Code,
-            Frais = frais,
+            Frais = fraisCFA,
             Type = Transaction.TransactionType.Rechargement,
-            Solde = solde
+            Solde = soldeCFA
         };
+        
         
         compte.Transactions.Add(transfertTransaction);
         

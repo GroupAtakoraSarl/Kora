@@ -9,7 +9,7 @@ public interface IClientService
     Task<Shared.Models.Client> GetClientByTel(string tel);
     // Task<ClientLog> GetClient(string username, string password);
     Task EnregistrerClient(Shared.Models.Client client);
-    Shared.Models.Client ConnecterClient(string tel, string password);
+    AuthLogin ConnecterClient(string tel, string password);
     Task<bool> UpateClient(string tel,Shared.Models.Client client);
     Task<bool> DeleteClient(string tel);
     

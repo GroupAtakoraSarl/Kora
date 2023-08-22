@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Kora.Server.Data;
 using Kora.Server.Services;
 using Microsoft.EntityFrameworkCore;
@@ -60,12 +61,11 @@ public class Program
         services.AddScoped<IVilleService, VilleService>();
         services.AddScoped<ITransactionService, TransactionService>();
     
+        services.AddAutoMapper(typeof(Program));
+        
         services.AddControllersWithViews();
         services.AddRazorPages();
         services.AddEndpointsApiExplorer();
-        
-         // Ajouter AutoMapper
-        services.AddAutoMapper(typeof(Program));
         
     }
 }

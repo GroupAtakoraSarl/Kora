@@ -1,10 +1,7 @@
-using AutoMapper;
 using Kora.Server.Data;
-using Kora.Server.Services;
-using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
-using BCrypt.Net;
 using Kora.Shared.Models;
+using Kora.Shared.ModelsDto;
 
 namespace Kora.Server.Services;
 
@@ -62,18 +59,47 @@ public class ClientService : IClientService
         await _dbContext.SaveChangesAsync();
     }
 
+    private bool CheckPassword(string password, string dataPassword)
+    {
+        return BCrypt.Net.BCrypt.Verify(password, dataPassword);
+    }
     
-    public Shared.Models.Client ConnecterClient(string tel, string password)
+    public AuthLogin ConnecterClient(string tel, string password)
     {
         var leclient = _dbContext.Clients.FirstOrDefault(c => c.Tel == tel);
-        if (leclient is null)
+        var lecompte = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == tel);
+        
+        
+        if (leclient is not null &&  CheckPassword(password, leclient.Password))
+        {
+            var operations = _dbContext.Transactions
+                .Where(o => o.NumExp == tel || o.NumDes == tel)
+                .Select(t=> new Transaction
+                {
+                    Solde = t.Solde,
+                    NumDes = t.NumDes,
+                    NumExp = t.NumExp,
+                    Date = t.Date,
+                    Frais = t.Frais,
+                    Type = t.Type,
+                    IdTransaction = t.IdTransaction,
+                    IdCompte = lecompte.IdCompte,
+                })
+                .ToList();
+            
+            return new AuthLogin
+            {
+                Tel = leclient.Tel,
+                Solde = lecompte.Solde,
+                Transactions = operations,
+                Username = leclient.Username
+            };
+        }
+        else
         {
             return null;
         }
-
-        // Vérifier que le mot de passe fourni correspond au hachage de mot de passe stocké
-         var isConnected =  BCrypt.Net.BCrypt.Verify(password, leclient.Password);
-         return isConnected ? leclient : null;
+        
     }
     
  

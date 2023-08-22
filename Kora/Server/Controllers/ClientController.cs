@@ -20,10 +20,11 @@ public class ClientController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Shared.Models.Client>>> GetAllClient()
+    public async Task<IActionResult> GetAllClient()
     {
         var clients = await _clientService.GetAllClient();
-        return Ok(clients);
+        var clientsDto = _mapper.Map<List<ClientDto>>(clients);
+        return Ok(clientsDto);
     }
 
     
@@ -32,12 +33,19 @@ public class ClientController : ControllerBase
     {
         try
         {
-            _clientService.EnregistrerClient(client);
-            return Ok("Client bien enregistré");
+            var leclient = _clientService.EnregistrerClient(client);
+            if (leclient != null)
+            {
+                return Ok("Client bien enregistré");
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         catch (Exception e)
         {
-            return BadRequest(e);
+            return NotFound(e);
         }
     }
     
@@ -47,31 +55,10 @@ public class ClientController : ControllerBase
     {
         try
         {
-            int tentative = 3;
-
-            while (tentative > 0)
+            var leclient = _clientService.ConnecterClient(client.Tel, client.Password);
+            if (leclient != null)
             {
-                var leclient = _clientService.ConnecterClient(client.Tel, client.Password);
-
-                if (leclient != null)
-                {
-                    var clientInfo = new
-                    {
-                        leclient.Username,
-                        leclient.Tel
-                    };
-                    
-                    return Ok(leclient);
-                }
-                else
-                {
-                    tentative--;
-                    if (tentative == 0)
-                    {
-                        return BadRequest(
-                            "3 tentatives échouées. Veuillez contacter l'admin au '22222222' pour changer votre Mot de Passe ");
-                    }
-                }
+                return Ok(leclient);
             }
             
             return BadRequest("Nom d'utilisateur ou mot de passe incorrect");
@@ -79,7 +66,7 @@ public class ClientController : ControllerBase
         catch (Exception e)
         {
             var Message = "Une erreur est survenue";
-            return Ok(Message);
+            return NotFound();
         }
     }
     
