@@ -48,7 +48,6 @@ public class ClientController : ControllerBase
             return NotFound(e);
         }
     }
-    
 
     [HttpPost("Connecter")]
     public IActionResult ConnecterClient(ClientLog client)

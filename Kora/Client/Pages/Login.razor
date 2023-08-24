@@ -89,7 +89,9 @@
             // Vérifier si la requête a réussi
             if (response.IsSuccessStatusCode)
             {
-               Navigation.NavigateTo("/dashboard");
+                string profilename = await response.Content.ReadAsStringAsync();
+                loggedInProfileName = profilename;
+                Navigation.NavigateTo("/dashboard");
             }
             else
             {
@@ -101,5 +103,4 @@
             Console.WriteLine("Exception: " + ex.Message);
         }
     }
-
 }

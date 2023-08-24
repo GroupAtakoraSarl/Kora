@@ -8,4 +8,7 @@ public class AuthResponse
         get;
         set;
     }
+
+    public string Tel { get; set; }
+    public decimal Solde { get; set; }
 }

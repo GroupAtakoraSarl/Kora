@@ -163,7 +163,6 @@ public class CompteService : ICompteService
             Solde = soldeCFA
         };
         
-        
         compte.Transactions.Add(retraitTransaction);
         
         await _dbContext.SaveChangesAsync();
@@ -193,20 +192,18 @@ public class CompteService : ICompteService
         
         compte.Solde += lesolde;
         kiosque.Solde -= lesolde;
-        var frais = lesolde * 0.05m;
+        var frais = solde * 0.05m;
         compte.Solde -= frais;
 
-
-        var fraisCFA = await Conversion2Kora(frais);
-        var soldeCFA = await Conversion2Kora(solde);
+        
         var transfertTransaction = new Transaction
         {
             Date = DateTime.Now,
             NumDes = compte.NumCompte,
             NumExp = kiosque.Code,
-            Frais = fraisCFA,
+            Frais = frais,
             Type = Transaction.TransactionType.Rechargement,
-            Solde = soldeCFA
+            Solde = solde
         };
         
         

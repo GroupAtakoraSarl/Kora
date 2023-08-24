@@ -54,7 +54,8 @@ else
                         <h5 class="card-title text-center"><span class="oi oi-people"></span></h5>
                     </div>
                     <div class="card-body">
-                        <a href="/clients"><h2 class="card-text text-center"><strong>@ClientCount</strong> Clients</h2></a>
+                        <a href="/clients">
+                            <h2 class="card-text text-center"><strong>@ClientCount</strong> Clients</h2></a>
                     </div>
                 </div>
             </div>
@@ -65,7 +66,8 @@ else
                         <h5 class="card-title text-center"><span class="oi oi-vertical-align-top"></span></h5>
                     </div>
                     <div class="card-body">
-                        <a href="/agences"><h2 class="card-text text-center"><strong>@AgenceCount</strong> Agences</h2></a>
+                        <a href="/agences">
+                            <h2 class="card-text text-center"><strong>@AgenceCount</strong> Agences</h2></a>
                     </div>
                 </div>
             </div>
@@ -76,7 +78,8 @@ else
                         <h5 class="card-title text-center"><span class="oi oi-vertical-align-top"></span></h5>
                     </div>
                     <div class="card-body">
-                        <a href="/kiosques"><h2 class="card-text text-center"><strong>@KiosqueCount</strong> Kiosques</h2></a>
+                        <a href="/kiosques">
+                            <h2 class="card-text text-center"><strong>@KiosqueCount</strong> Kiosques</h2></a>
                     </div>
                 </div>
             </div>
@@ -89,7 +92,8 @@ else
                         <h5 class="card-title text-center"><span class="oi oi-clipboard"></span></h5>
                     </div>
                     <div class="card-body">
-                        <a href="/comptes"><h2 class="card-text text-center"><strong>@CompteCount</strong> Comptes</h2></a>
+                        <a href="/comptes">
+                            <h2 class="card-text text-center"><strong>@CompteCount</strong> Comptes</h2></a>
                     </div>
                 </div>
             </div>
@@ -100,7 +104,8 @@ else
                         <h5 class="card-title text-center"><span class="oi oi-loop-circular"></span></h5>
                     </div>
                     <div class="card-body">
-                        <a href="/transactions"><h2 class="card-text text-center"><strong>@TransCount</strong> Transactions</h2></a>
+                        <a href="/transactions">
+                            <h2 class="card-text text-center"><strong>@TransCount</strong> Transactions</h2></a>
                     </div>
                 </div>
             </div>
@@ -114,7 +119,11 @@ else
     private int CompteCount;
     private int KiosqueCount;
     private int TransCount;
+        
+    private bool IsAuthenticated;
+    private string ErrorMessage;
     private Client client = new Client();
+    
 
     protected override async Task OnInitializedAsync()
     {
@@ -129,7 +138,11 @@ else
         KiosqueCount = kiosques.Count;
         var transactions = await TransactionService.GetAllTransaction();
         TransCount = transactions.Count;
+        
+        string email = "email@example.com";
+        string password = "password";
 
     }
+
 }
 
