@@ -1,5 +1,6 @@
 using Kora.Server.Data;
 using Kora.Shared.Models;
+using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;

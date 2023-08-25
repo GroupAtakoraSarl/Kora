@@ -152,7 +152,6 @@ public class CompteService : ICompteService
 
         var fraisCFA = await Conversion2Kora(frais);
         
-        
         var retraitTransaction = new Transaction
         {
             Date = DateTime.Now,

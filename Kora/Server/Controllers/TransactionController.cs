@@ -28,10 +28,10 @@ public class TransactionController : ControllerBase
         return Ok(transactionDtos);
     }
 
-    [HttpGet("GetClientTransaction")]
-    public async Task<ActionResult<List<TransactionDto>>> GetClientTransaction(int idClient)
+    [HttpPost("GetClientTransaction")]
+    public async Task<ActionResult<List<TransactionDto>>> GetClientTransaction(ClientTrans clientTrans)
     {
-        var transactions = await _transactionService.GetClientTransaction(idClient);
+        var transactions = await _transactionService.GetClientTransaction(clientTrans.IdClient);
         var transactionDto = _mapper.Map<List<TransactionDto>>(transactions);
         return Ok(transactionDto);
     }
