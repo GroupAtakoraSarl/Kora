@@ -211,15 +211,15 @@
       "mscorlib.dll": "sha256-t1RT9mknsQ54H+sVa1vtMhjv3D8ZjiAGoLzHvuIObPw=",
       "netstandard.dll": "sha256-5SHKPh1PcuJjq4lIo7ymdIyhb9d3++oMAjr46auhUSc=",
       "System.Private.CoreLib.dll": "sha256-eH+XIsCUG5oZ0k8AIzNtRLTCLiV\/8Zv0RFCPMsIkdYY=",
-      "Kora.Shared.dll": "sha256-vWebMw+uBFxpLtJrFTYaCSfYaBCkfH4pnNvgIbjV1J4=",
-      "Kora.Client.dll": "sha256-nT1UVFvQ8IFacjLpS\/r1rvp0M1yDvhJDU9lyoaNNu1A="
+      "Kora.Shared.dll": "sha256-p4wfh+Nykxx91GjNsbCsku7oiQoQUorJEqC4vRN5hg4=",
+      "Kora.Client.dll": "sha256-MUcdw7DYVmuoIH65OoVCDUTMDKqQsVnpShU+OT\/FMgA="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "Kora.Shared.pdb": "sha256-97HNj34H\/0H2zZKQ41nQqVvypIQl429\/gGgYONcq1HM=",
-      "Kora.Client.pdb": "sha256-g2Dd5CzJuZcd6\/Vqom8vfwq4mQrGbK+T4CoIqW1n7ZI="
+      "Kora.Shared.pdb": "sha256-JlBURZuIPBnAryNV5a9mbIDRpw\/t7Ltr4rcOBB3bLO4=",
+      "Kora.Client.pdb": "sha256-V+vZFu6w4GUWGl9VXoVsVLjAd1JVv9zGuMs+Uo4r8Ls="
     },
     "runtime": {
       "dotnet.7.0.9.wep0k6qray.js": "sha256-dUIY5Mz0ozZWqtTfBb7ArJKbdh5IIp8BXeq6UjK4u\/c=",

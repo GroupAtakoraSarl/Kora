@@ -46,9 +46,9 @@ namespace Kora.Client.Services
 
         }
         
-        public async Task<bool> DeleteKiosque(int contactKiosque)
+        public async Task<bool> DeleteKiosque(KiosqueDeleteDto kiosqueDeleteDto)
         {
-            var response = await _httpClient.DeleteAsync($"api/Kiosque/DeleteKiosque/{contactKiosque}");
+            var response = await _httpClient.DeleteAsync($"api/Kiosque/DeleteKiosque/{kiosqueDeleteDto}");
             return response.IsSuccessStatusCode;
         }
     }

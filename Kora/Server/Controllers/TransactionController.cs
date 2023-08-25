@@ -31,7 +31,7 @@ public class TransactionController : ControllerBase
     [HttpPost("GetClientTransaction")]
     public async Task<ActionResult<List<TransactionDto>>> GetClientTransaction(ClientTrans clientTrans)
     {
-        var transactions = await _transactionService.GetClientTransaction(clientTrans.IdClient);
+        var transactions = await _transactionService.GetClientTransaction(clientTrans.Tel);
         var transactionDto = _mapper.Map<List<TransactionDto>>(transactions);
         return Ok(transactionDto);
     }

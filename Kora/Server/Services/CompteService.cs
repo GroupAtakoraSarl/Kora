@@ -88,14 +88,6 @@ public class CompteService : ICompteService
         var fraisCFA = await Conversion2Kora(frais);
         var soldeFCFA = await Conversion2Kora(solde);
         
-        // var Notification = new Notification
-        // {
-        //     Solde = solde,
-        //     Frais = frais,
-        //     NomClient = expediteur.Client.Username,
-        //     Type = Shared.Models.Notification.NotifType.Dépôt
-        // }; 
-
         var depotTransaction = new Transaction
         {
             Date = DateTime.Now,

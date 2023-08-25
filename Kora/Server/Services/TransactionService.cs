@@ -24,9 +24,9 @@ public class TransactionService : ITransactionService
         return transactions;
     }
 
-    public async Task<List<Transaction>> GetClientTransaction(int idClient)
+    public async Task<List<Transaction>> GetClientTransaction(string tel)
     {
-        var leclient = _dbContext.Clients.FirstOrDefault(c => c.IdClient == idClient);
+        var leclient = _dbContext.Clients.FirstOrDefault(c => c.Tel == tel);
         if (leclient != null)
         {
             var lecompte = _dbContext.Comptes.FirstOrDefault(cp => cp.NumCompte == leclient.Tel);

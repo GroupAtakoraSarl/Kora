@@ -70,9 +70,9 @@ public class KiosqueController : ControllerBase
     }
     
     [HttpDelete("DeleteKiosque")]
-    public async Task<ActionResult<KiosqueDto>> DeleteKiosque(string contactKiosque)
+    public async Task<ActionResult<KiosqueDto>> DeleteKiosque(KiosqueDeleteDto kiosqueDeleteDto)
     {
-        var kiosque = await _kiosqueService.DeleteKiosque(contactKiosque);
+        var kiosque = await _kiosqueService.DeleteKiosque(kiosqueDeleteDto.ContactKiosque);
         if (!kiosque)
         {
             NotFound("Kiosque introuvable !");
