@@ -2,6 +2,7 @@ using Kora.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
+using Microsoft.VisualBasic;
 
 namespace Kora.Server.Services;
 
@@ -57,6 +58,27 @@ public class ClientService : IClientService
         _dbContext.Clients.Add(client);
         _dbContext.Comptes.Add(compte);
         await _dbContext.SaveChangesAsync();
+
+        var smsclient = new HttpClient();
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://127.0.0.1:5099/api/sendSMS");
+
+        var requestBody = new
+        {
+            from = "KORATRANS-F",
+            to = client.Tel,
+            text = "Bonjour" + client.Username + ", votre compte a été créé avec succès. Vous avez comme bonus " + 200 +"KORA",
+            reference = 1212,
+            api_key = "k_soGjMEHM3Te1pMfn7F3AG3WUzk3JJOAX",
+            api_secret = "s_vo70rCDvEVU8-J2FUkj6OB2rHLkg8n32"
+        };
+
+        request.Content = JsonContent.Create(requestBody);
+        var response = await smsclient.SendAsync(request);
+
+        response.EnsureSuccessStatusCode();
+
+        var responseContent = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseContent);
     }
 
     private bool CheckPassword(string password, string dataPassword)

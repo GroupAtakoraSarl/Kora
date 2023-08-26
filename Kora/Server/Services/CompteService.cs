@@ -218,7 +218,22 @@ public class CompteService : ICompteService
         var somme = solde * Devise;
         return somme;
     }
-    
+
+    public async Task<decimal?> GetClientSolde(string tel)
+    {
+        var leclient = _dbContext.Clients.FirstOrDefault(c => c.Tel == tel);
+        if (leclient != null)
+        {
+            var lecompte = _dbContext.Comptes.FirstOrDefault(c => c.IdClient == leclient.IdClient);
+            if (leclient != null)
+            {
+                return lecompte.Solde;
+            }
+        }
+
+        return null;
+    }
+
     public async Task<List<CompteDto>> GetCompteByClientId(int idClient)
     {
         throw new NotImplementedException();

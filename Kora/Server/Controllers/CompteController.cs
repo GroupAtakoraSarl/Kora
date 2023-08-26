@@ -85,7 +85,20 @@ public class CompteController : ControllerBase
             return NotFound("Compte introuvable !");
         return $"Le compte {numCompte}  bien supprimé";
     }
-    
 
+
+    [HttpPost("GetClientSolde")]
+    public async Task<ActionResult<string>> GetClientSolde(ClientSoldeDto clientSoldeDto)
+    {
+        var lesolde = await _compteService.GetClientSolde(clientSoldeDto.Tel);
+        if (lesolde != null)
+        {
+            return Ok(lesolde);
+        }
+
+        return NotFound();
+    }
+    
+    
 
 }
