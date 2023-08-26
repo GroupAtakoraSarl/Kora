@@ -1,0 +1,85 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = Kora.Client
+build_property.RootNamespace = Kora.Client
+build_property.ProjectDir = D:\BUREAU\STAGE\Kora\Kora\Client\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\BUREAU\STAGE\Kora\Kora\Client
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Agences.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWdlbmNlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Clients.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Comptes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcHRlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Configurations.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uZmlndXJhdGlvbnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Kiosques.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcS2lvc3F1ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Responsables.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVzcG9uc2FibGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Sign.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Pages/Transactions.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNhY3Rpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Shared/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Shared/SignLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNpZ25MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-3swffd1ay9
+
+[D:/BUREAU/STAGE/Kora/Kora/Client/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-30yh8ymoay
