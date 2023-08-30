@@ -21,7 +21,8 @@ public class KoraDbContext : DbContext
     public DbSet<ResponsableAgence> ResponsableAgences { get; set; }
     public DbSet<Ville> Villes { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
-    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<NotificationClient> NotificationsClients { get; set; }
+    public DbSet<NotificationKiosque> NotificationKiosques { get; set; }
     
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

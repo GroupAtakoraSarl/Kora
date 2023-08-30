@@ -1,6 +1,7 @@
 using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Server.Data;
+using Kora.Shared.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kora.Server.Services;
@@ -33,6 +34,20 @@ public class KiosqueService : IKiosqueService
 
         return code;
     }
+
+    public async Task<string> GenerateRandomKey()
+    {
+        const string chars = "abcdefghijklmnopkrstuvwxyz123456789";
+        var random = new Random();
+        var key = new string(Enumerable.Repeat(chars, 5).Select(s => s[random.Next(s.Length)]).ToArray());
+
+        while (await _dbContext.Kiosques.AnyAsync(k=>k.Key == key))
+        {
+            key = new string(Enumerable.Repeat(chars, 5).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        return key;
+    }
     
     
     public async Task<List<Kiosque>> GetKiosqueByAdresse(string adresseKiosque)
@@ -46,12 +61,59 @@ public class KiosqueService : IKiosqueService
     
     public async Task<Kiosque> AddKiosque(Kiosque kiosque)
     {
-        kiosque.Code = await GenerateRandomCode();
-        _dbContext.Kiosques.Add(kiosque);
+        var newKiosque = new Kiosque
+        {
+            ContactKiosque = kiosque.ContactKiosque,
+            NomKiosque = kiosque.NomKiosque,
+            Password = "default",
+            Code = kiosque.Code = await GenerateRandomCode(),
+            Key = kiosque.Key = await GenerateRandomKey(),
+            Solde = kiosque.Solde,
+            AdresseKiosque = kiosque.AdresseKiosque,
+            Agence = kiosque.Agence,
+            IdAgence = kiosque.IdAgence,
+            IdKiosque = kiosque.IdKiosque
+        };
+        
+        _dbContext.Kiosques.Add(newKiosque);
         await _dbContext.SaveChangesAsync();
         return kiosque;
     }
-    
+
+    public bool EnregistrerKiosque(string nomKiosque, string codeKiosque, string password)
+    {
+        var hashedPwd = BCrypt.Net.BCrypt.HashPassword(password);
+        var kiosque = _dbContext.Kiosques.FirstOrDefault(k =>
+            k.NomKiosque == nomKiosque && k.Code == codeKiosque);
+        if (kiosque == null)
+        {
+            return false;
+        }
+        
+        kiosque.Password = hashedPwd;
+        _dbContext.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<KiosqueDto> ConnecterKiosque(string codeKiosque, string password)
+    {
+        var kiosque = _dbContext.Kiosques.FirstOrDefault(k => k.Code == codeKiosque && k.Password == password);
+        if (kiosque == null)
+        {
+            return null;
+        }
+
+        var newKiosque = new KiosqueDto
+        {
+            NomKiosque = kiosque.NomKiosque,
+            Solde = kiosque.Solde,
+            AdresseKiosque = kiosque.AdresseKiosque,
+            Code = kiosque.Code,
+            ContactKiosque = kiosque.ContactKiosque
+        };
+        return newKiosque;
+    }
+
     public async Task<bool> ChargeSolde(decimal solde, string contactKiosque)
     {
         var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(a => a.ContactKiosque == contactKiosque);

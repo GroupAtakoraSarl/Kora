@@ -42,11 +42,12 @@ namespace Kora.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notifications",
+                name: "NotificationKiosques",
                 columns: table => new
                 {
                     IdNotification = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Code = table.Column<string>(type: "TEXT", nullable: false),
                     NomClient = table.Column<string>(type: "TEXT", nullable: false),
                     Solde = table.Column<decimal>(type: "TEXT", nullable: false),
                     Frais = table.Column<decimal>(type: "TEXT", nullable: false),
@@ -54,7 +55,24 @@ namespace Kora.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notifications", x => x.IdNotification);
+                    table.PrimaryKey("PK_NotificationKiosques", x => x.IdNotification);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NotificationsClients",
+                columns: table => new
+                {
+                    IdNotification = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NomClient = table.Column<string>(type: "TEXT", nullable: false),
+                    Solde = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Frais = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Code = table.Column<string>(type: "TEXT", nullable: false),
+                    Type = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NotificationsClients", x => x.IdNotification);
                 });
 
             migrationBuilder.CreateTable(
@@ -144,7 +162,6 @@ namespace Kora.Server.Migrations
                     AdresseAgence = table.Column<string>(type: "TEXT", nullable: false),
                     ContactAgence = table.Column<string>(type: "TEXT", nullable: false),
                     EmailAgence = table.Column<string>(type: "TEXT", nullable: false),
-                    DeviseAgence = table.Column<string>(type: "TEXT", nullable: false),
                     IdResponsable = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -191,7 +208,9 @@ namespace Kora.Server.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     NomKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     Code = table.Column<string>(type: "TEXT", nullable: false),
+                    Key = table.Column<string>(type: "TEXT", nullable: false),
                     Solde = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
                     AdresseKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     ContactKiosque = table.Column<string>(type: "TEXT", nullable: false),
                     IdAgence = table.Column<int>(type: "INTEGER", nullable: false)
@@ -243,7 +262,10 @@ namespace Kora.Server.Migrations
                 name: "Kiosques");
 
             migrationBuilder.DropTable(
-                name: "Notifications");
+                name: "NotificationKiosques");
+
+            migrationBuilder.DropTable(
+                name: "NotificationsClients");
 
             migrationBuilder.DropTable(
                 name: "Transactions");

@@ -18,7 +18,7 @@
           "Microsoft.EntityFrameworkCore.Design": "8.0.0-preview.6.23329.4",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.0-preview.6.23329.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.0-preview.6.23329.4",
-          "Microsoft.EntityFrameworkCore.Tools": "7.0.10",
+          "Microsoft.EntityFrameworkCore.Tools": "8.0.0-preview.1.23111.4",
           "Microsoft.Extensions.Configuration": "8.0.0-preview.6.23329.7",
           "MongoDB.Driver": "2.21.0",
           "MongoDB.Driver.Core": "2.21.0",
@@ -378,7 +378,7 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/7.0.10": {
+      "Microsoft.EntityFrameworkCore.Tools/8.0.0-preview.1.23111.4": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "8.0.0-preview.6.23329.4"
         }
@@ -1465,12 +1465,12 @@
       "path": "microsoft.entityframeworkcore.sqlserver/8.0.0-preview.6.23329.4",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.8.0.0-preview.6.23329.4.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Tools/7.0.10": {
+    "Microsoft.EntityFrameworkCore.Tools/8.0.0-preview.1.23111.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+ZctjoxaO3ZOxZGbnwjsycBbFmwcKiwbvoaIbaE4k693rYGo42svOVV+BAt+QbddkBnaAmikp8iWeus33Qj5mw==",
-      "path": "microsoft.entityframeworkcore.tools/7.0.10",
-      "hashPath": "microsoft.entityframeworkcore.tools.7.0.10.nupkg.sha512"
+      "sha512": "sha512-tbgQHI/eatIcEOyXtaSb4vv2HIlZHDfdlDhYFIa9TeAmIB9k/0G3q1nrIeExVQ2kVMkAu/vbX9TlQU14otfCxQ==",
+      "path": "microsoft.entityframeworkcore.tools/8.0.0-preview.1.23111.4",
+      "hashPath": "microsoft.entityframeworkcore.tools.8.0.0-preview.1.23111.4.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "type": "package",

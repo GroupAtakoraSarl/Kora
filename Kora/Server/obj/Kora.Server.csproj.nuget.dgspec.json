@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BUREAU\\STAGE\\Kora\\Kora\\Server\\Kora.Server.csproj": {}
+    "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Server\\Kora.Server.csproj": {}
   },
   "projects": {
-    "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj": {
+    "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj",
+        "projectUniqueName": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj",
         "projectName": "Kora.Client",
-        "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj",
+        "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj",
         "packagesPath": "C:\\Users\\kalip\\.nuget\\packages\\",
-        "outputPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\",
+        "outputPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kalip\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,8 +26,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
-                "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj"
+              "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
+                "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj"
               }
             }
           }
@@ -82,7 +82,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[7.0.9, 7.0.9]"
+              "version": "[7.0.10, 7.0.10]"
             }
           ],
           "frameworkReferences": {
@@ -90,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -99,14 +99,14 @@
         }
       }
     },
-    "D:\\BUREAU\\STAGE\\Kora\\Kora\\Server\\Kora.Server.csproj": {
+    "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Server\\Kora.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Server\\Kora.Server.csproj",
+        "projectUniqueName": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Server\\Kora.Server.csproj",
         "projectName": "Kora.Server",
-        "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Server\\Kora.Server.csproj",
+        "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Server\\Kora.Server.csproj",
         "packagesPath": "C:\\Users\\kalip\\.nuget\\packages\\",
-        "outputPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Server\\obj\\",
+        "outputPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kalip\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -115,18 +115,17 @@
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj": {
-                "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj"
+              "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj": {
+                "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj"
               },
-              "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
-                "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj"
+              "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
+                "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj"
               }
             }
           }
@@ -179,7 +178,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.10, )"
+              "version": "[8.0.0-preview.1.23111.4, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -229,18 +228,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
+    "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj",
         "projectName": "Kora.Shared",
-        "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj",
+        "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj",
         "packagesPath": "C:\\Users\\kalip\\.nuget\\packages\\",
-        "outputPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\obj\\",
+        "outputPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kalip\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -282,7 +281,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -504,10 +504,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/7.0.10": {
+      "Microsoft.EntityFrameworkCore.Tools/8.0.0-preview.1.23111.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "7.0.10"
+          "Microsoft.EntityFrameworkCore.Design": "8.0.0-preview.1.23111.4"
         },
         "compile": {
           "lib/net6.0/_._": {}
@@ -2605,17 +2605,17 @@
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Tools/7.0.10": {
-      "sha512": "+ZctjoxaO3ZOxZGbnwjsycBbFmwcKiwbvoaIbaE4k693rYGo42svOVV+BAt+QbddkBnaAmikp8iWeus33Qj5mw==",
+    "Microsoft.EntityFrameworkCore.Tools/8.0.0-preview.1.23111.4": {
+      "sha512": "tbgQHI/eatIcEOyXtaSb4vv2HIlZHDfdlDhYFIa9TeAmIB9k/0G3q1nrIeExVQ2kVMkAu/vbX9TlQU14otfCxQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.tools/7.0.10",
+      "path": "microsoft.entityframeworkcore.tools/8.0.0-preview.1.23111.4",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/_._",
-        "microsoft.entityframeworkcore.tools.7.0.10.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.8.0.0-preview.1.23111.4.nupkg.sha512",
         "microsoft.entityframeworkcore.tools.nuspec",
         "tools/EntityFrameworkCore.PS2.psd1",
         "tools/EntityFrameworkCore.PS2.psm1",
@@ -5145,7 +5145,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 8.0.0-preview.6.23329.4",
       "Microsoft.EntityFrameworkCore.Relational >= 8.0.0-preview.6.23329.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.0-preview.6.23329.4",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.10",
+      "Microsoft.EntityFrameworkCore.Tools >= 8.0.0-preview.1.23111.4",
       "Microsoft.Extensions.Configuration >= 8.0.0-preview.6.23329.7",
       "MongoDB.Driver >= 2.21.0",
       "MongoDB.Driver.Core >= 2.21.0",
@@ -5161,11 +5161,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Server\\Kora.Server.csproj",
+      "projectUniqueName": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Server\\Kora.Server.csproj",
       "projectName": "Kora.Server",
-      "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Server\\Kora.Server.csproj",
+      "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Server\\Kora.Server.csproj",
       "packagesPath": "C:\\Users\\kalip\\.nuget\\packages\\",
-      "outputPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Server\\obj\\",
+      "outputPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kalip\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -5174,18 +5174,17 @@
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj": {
-              "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj"
+            "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj": {
+              "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj"
             },
-            "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
-              "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj"
+            "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
+              "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj"
             }
           }
         }
@@ -5238,7 +5237,7 @@
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[7.0.10, )"
+            "version": "[8.0.0-preview.1.23111.4, )"
           },
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
@@ -5288,7 +5287,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

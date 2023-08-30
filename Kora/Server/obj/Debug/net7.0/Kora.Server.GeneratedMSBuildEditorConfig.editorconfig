@@ -9,13 +9,13 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Kora.Server
 build_property.RootNamespace = Kora.Server
-build_property.ProjectDir = D:\BUREAU\STAGE\Kora\Kora\Server\
+build_property.ProjectDir = C:\Users\kalip\RiderProjects\Kora\Kora\Server\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\BUREAU\STAGE\Kora\Kora\Server
+build_property.MSBuildProjectDirectory = C:\Users\kalip\RiderProjects\Kora\Kora\Server
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/BUREAU/STAGE/Kora/Kora/Server/Pages/Error.cshtml]
+[C:/Users/kalip/RiderProjects/Kora/Kora/Server/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

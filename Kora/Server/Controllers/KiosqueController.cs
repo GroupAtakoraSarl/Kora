@@ -31,7 +31,7 @@ public class KiosqueController : ControllerBase
     public async Task<ActionResult<List<KiosqueDto>>> GetKiosqueByAdresse(string adresse)
     {
         var kiosques = await _kiosqueService.GetKiosqueByAdresse(adresse);
-        if (kiosques is null || kiosques.Count == 0)
+        if (kiosques is null)
         {
             return NotFound("Aucun Kiosque trouvé avec cette adresse !");
         }
@@ -53,6 +53,40 @@ public class KiosqueController : ControllerBase
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    [HttpPost("EnregistrerKiosque")]
+    public IActionResult EnregistrerKiosque(KiosqueSign kiosqueSign)
+    {
+        try
+        {
+            var isSucceed =
+                _kiosqueService.EnregistrerKiosque(kiosqueSign.NomKiosque, kiosqueSign.CodeKiosque,
+                    kiosqueSign.Password);
+            if (isSucceed)
+            {
+                return Ok("Reussi");
+            }
+
+            return BadRequest();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    [HttpPost("ConnecterKiosque")]
+    public IActionResult ConnecterKiosque(KiosqueLog kiosqueLog)
+    {
+        var kiosque = _kiosqueService.ConnecterKiosque(kiosqueLog.CodeKiosque, kiosqueLog.Password);
+        if (kiosque != null)
+        {
+            return Ok(kiosque);
+        }
+
+        return NotFound();
     }
 
     [HttpPost("ChargeSolde")]

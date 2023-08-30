@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230826193414_koraMigration")]
+    [Migration("20230829212935_koraMigration")]
     partial class koraMigration
     {
         /// <inheritdoc />
@@ -54,10 +54,6 @@ namespace Kora.Server.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ContactAgence")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DeviseAgence")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -154,7 +150,15 @@ namespace Kora.Server.Migrations
                     b.Property<int>("IdAgence")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("NomKiosque")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -168,11 +172,15 @@ namespace Kora.Server.Migrations
                     b.ToTable("Kiosques");
                 });
 
-            modelBuilder.Entity("Kora.Shared.Models.Notification", b =>
+            modelBuilder.Entity("Kora.Shared.Models.NotificationClient", b =>
                 {
                     b.Property<int>("IdNotification")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("Frais")
                         .HasColumnType("TEXT");
@@ -189,7 +197,35 @@ namespace Kora.Server.Migrations
 
                     b.HasKey("IdNotification");
 
-                    b.ToTable("Notifications");
+                    b.ToTable("NotificationsClients");
+                });
+
+            modelBuilder.Entity("Kora.Shared.Models.NotificationKiosque", b =>
+                {
+                    b.Property<int>("IdNotification")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Frais")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NomClient")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Solde")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("IdNotification");
+
+                    b.ToTable("NotificationKiosques");
                 });
 
             modelBuilder.Entity("Kora.Shared.Models.Pays", b =>

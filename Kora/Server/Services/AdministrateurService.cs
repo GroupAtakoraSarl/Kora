@@ -68,8 +68,8 @@ public class AdministrateurService : IAdministrateurService
         {
             return false;
         }
-
         adminSaved.Password = hashedPwd;
+        _dbContext.SaveChangesAsync();
         return true;
     }
 
