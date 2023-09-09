@@ -2841,11 +2841,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj",
+      "projectUniqueName": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj",
       "projectName": "Kora.Client",
-      "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj",
+      "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj",
       "packagesPath": "C:\\Users\\kalip\\.nuget\\packages\\",
-      "outputPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\obj\\",
+      "outputPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kalip\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2860,8 +2860,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
-              "projectPath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Shared\\Kora.Shared.csproj"
+            "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj": {
+              "projectPath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Shared\\Kora.Shared.csproj"
             }
           }
         }
@@ -2916,7 +2916,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[7.0.9, 7.0.9]"
+            "version": "[7.0.10, 7.0.10]"
           }
         ],
         "frameworkReferences": {
@@ -2924,7 +2924,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

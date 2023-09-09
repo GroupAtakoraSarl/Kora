@@ -1,5 +1,6 @@
 using AutoMapper;
 using Kora.Server.Services;
+using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +35,21 @@ public class TransactionController : ControllerBase
         var transactions = await _transactionService.GetClientTransaction(clientTrans.Tel);
         var transactionDto = _mapper.Map<List<TransactionDto>>(transactions);
         return Ok(transactionDto);
+    } 
+
+    [HttpPost("GetKiosqueTransaction")]
+    public async Task<ActionResult<List<TransactionDto>>> GetKiosqueTransaction(KiosqueCode kiosqueCode)
+    {
+        var transactions = await  _transactionService.GetKiosqueTransaction(kiosqueCode.Code);
+        if (transactions != null)
+        {
+            var transDto = _mapper.Map<List<TransactionDto>>(transactions);
+            return Ok(transDto);
+        }
+        else
+        {
+            return NotFound();
+        }
     }
     
 }

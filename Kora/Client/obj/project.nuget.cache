@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r6UFLJZi6z5CiepHPTiy5a8bWQrN/gXDKlakUaVV5KyC7HKdthXk8znkG7InAF4QYU3Fz22VUw/X7RdorFnLmw==",
+  "dgSpecHash": "fAiwAgDc02GF2X7JPy2S1XbJ5fpkP59eLQ3Hs/ma1143GC2fqMggkADHQgLQzBDwxtOzEMdlOBjYsLkn6x4plQ==",
   "success": true,
-  "projectFilePath": "D:\\BUREAU\\STAGE\\Kora\\Kora\\Client\\Kora.Client.csproj",
+  "projectFilePath": "C:\\Users\\kalip\\RiderProjects\\Kora\\Kora\\Client\\Kora.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kalip\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.9\\microsoft.aspnetcore.authorization.7.0.9.nupkg.sha512",
@@ -48,7 +48,7 @@
     "C:\\Users\\kalip\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\system.text.encodings.web\\8.0.0-preview.3.23174.8\\system.text.encodings.web.8.0.0-preview.3.23174.8.nupkg.sha512",
     "C:\\Users\\kalip\\.nuget\\packages\\system.text.json\\8.0.0-preview.3.23174.8\\system.text.json.8.0.0-preview.3.23174.8.nupkg.sha512",
-    "C:\\Users\\kalip\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.9\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.9.nupkg.sha512"
+    "C:\\Users\\kalip\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.10\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.10.nupkg.sha512"
   ],
   "logs": []
 }

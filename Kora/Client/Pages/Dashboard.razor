@@ -40,78 +40,87 @@
 
 </style>
 
-@if (client is null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card text-white bgclient shadow p-3 mb-5 bg-body-tertiary rounded transition">
-                    <div class="card-header">
-                        <h5 class="card-title text-center"><span class="oi oi-people"></span></h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="/clients">
-                            <h2 class="card-text text-center"><strong>@ClientCount</strong> Clients</h2></a>
-                    </div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bgclient shadow p-3 mb-5 bg-body-tertiary rounded transition">
+                <div class="card-header">
+                    <h5 class="card-title text-center">
+                        <span class="oi oi-people"></span>
+                    </h5>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card text-white bgagence shadow p-3 mb-5 bg-body-tertiary rounded transition">
-                    <div class="card-header">
-                        <h5 class="card-title text-center"><span class="oi oi-vertical-align-top"></span></h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="/agences">
-                            <h2 class="card-text text-center"><strong>@AgenceCount</strong> Agences</h2></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card text-white bgkiosque shadow p-3 mb-5 bg-body-tertiary rounded transition">
-                    <div class="card-header">
-                        <h5 class="card-title text-center"><span class="oi oi-vertical-align-top"></span></h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="/kiosques">
-                            <h2 class="card-text text-center"><strong>@KiosqueCount</strong> Kiosques</h2></a>
-                    </div>
+                <div class="card-body">
+                    <a href="/clients">
+                        <h2 class="card-text text-center"><strong>@ClientCount</strong> Clients</h2>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-2 w-50">
-                <div class="card text-white bgcomptes shadow p-3 mb-5 bg-body-tertiary rounded transition">
-                    <div class="card-header">
-                        <h5 class="card-title text-center"><span class="oi oi-clipboard"></span></h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="/comptes">
-                            <h2 class="card-text text-center"><strong>@CompteCount</strong> Comptes</h2></a>
-                    </div>
+        <div class="col-md-4">
+            <div class="card text-white bgagence shadow p-3 mb-5 bg-body-tertiary rounded transition">
+                <div class="card-header">
+                    <h5 class="card-title text-center">
+                        <span class="oi oi-vertical-align-top"></span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <a href="/agences">
+                        <h2 class="card-text text-center"><strong>@AgenceCount</strong> Agences</h2>
+                    </a>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-2 w-50">
-                <div class="card text-white bgtrans shadow p-3 mb-5 bg-body-tertiary rounded transition">
-                    <div class="card-header">
-                        <h5 class="card-title text-center"><span class="oi oi-loop-circular"></span></h5>
-                    </div>
-                    <div class="card-body">
-                        <a href="/transactions">
-                            <h2 class="card-text text-center"><strong>@TransCount</strong> Transactions</h2></a>
-                    </div>
+        <div class="col-md-4">
+            <div class="card text-white bgkiosque shadow p-3 mb-5 bg-body-tertiary rounded transition">
+                <div class="card-header">
+                    <h5 class="card-title text-center">
+                        <span class="oi oi-vertical-align-top"></span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <a href="/kiosques">
+                        <h2 class="card-text text-center"><strong>@KiosqueCount</strong> Kiosques</h2>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-}
+
+    <div class="row">
+        <div class="col-md-2 w-50">
+            <div class="card text-white bgcomptes shadow p-3 mb-5 bg-body-tertiary rounded transition">
+                <div class="card-header">
+                    <h5 class="card-title text-center">
+                        <span class="oi oi-clipboard"></span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <a href="/comptes">
+                        <h2 class="card-text text-center"><strong>@CompteCount</strong> Comptes</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2 w-50">
+            <div class="card text-white bgtrans shadow p-3 mb-5 bg-body-tertiary rounded transition">
+                <div class="card-header">
+                    <h5 class="card-title text-center">
+                        <span class="oi oi-loop-circular"></span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <a href="/transactions">
+                        <h2 class="card-text text-center"><strong>@TransCount</strong> Transactions</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @code {
     private int ClientCount;
@@ -119,15 +128,9 @@ else
     private int CompteCount;
     private int KiosqueCount;
     private int TransCount;
-        
-    private bool IsAuthenticated;
-    private string ErrorMessage;
-    private Client client = new Client();
-    
 
     protected override async Task OnInitializedAsync()
     {
-    // Charger le nombre de clients depuis l'API en utilisant le service ClientService
         var clients = await ClientService.GetAllClient();
         ClientCount = clients.Count;
         var agences = await AgenceService.GetAllAgence();
@@ -138,11 +141,6 @@ else
         KiosqueCount = kiosques.Count;
         var transactions = await TransactionService.GetAllTransaction();
         TransCount = transactions.Count;
-        
-        string email = "email@example.com";
-        string password = "password";
-
     }
 
 }
-

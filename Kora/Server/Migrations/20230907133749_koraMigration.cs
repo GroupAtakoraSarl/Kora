@@ -176,31 +176,6 @@ namespace Kora.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transactions",
-                columns: table => new
-                {
-                    IdTransaction = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Solde = table.Column<decimal>(type: "TEXT", nullable: false),
-                    NumExp = table.Column<string>(type: "TEXT", nullable: false),
-                    NumDes = table.Column<string>(type: "TEXT", nullable: false),
-                    Frais = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Type = table.Column<int>(type: "INTEGER", nullable: false),
-                    IdCompte = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.IdTransaction);
-                    table.ForeignKey(
-                        name: "FK_Transactions_Comptes_IdCompte",
-                        column: x => x.IdCompte,
-                        principalTable: "Comptes",
-                        principalColumn: "IdCompte",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Kiosques",
                 columns: table => new
                 {
@@ -226,6 +201,37 @@ namespace Kora.Server.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    IdTransaction = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Solde = table.Column<decimal>(type: "TEXT", nullable: false),
+                    NumExp = table.Column<string>(type: "TEXT", nullable: false),
+                    NumDes = table.Column<string>(type: "TEXT", nullable: false),
+                    Frais = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Type = table.Column<int>(type: "INTEGER", nullable: false),
+                    IdCompte = table.Column<int>(type: "INTEGER", nullable: false),
+                    KiosqueIdKiosque = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.IdTransaction);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Comptes_IdCompte",
+                        column: x => x.IdCompte,
+                        principalTable: "Comptes",
+                        principalColumn: "IdCompte",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Kiosques_KiosqueIdKiosque",
+                        column: x => x.KiosqueIdKiosque,
+                        principalTable: "Kiosques",
+                        principalColumn: "IdKiosque");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Agences_IdResponsable",
                 table: "Agences",
@@ -247,6 +253,11 @@ namespace Kora.Server.Migrations
                 column: "IdCompte");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Transactions_KiosqueIdKiosque",
+                table: "Transactions",
+                column: "KiosqueIdKiosque");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Villes_IdPays",
                 table: "Villes",
                 column: "IdPays");
@@ -257,9 +268,6 @@ namespace Kora.Server.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Administrateurs");
-
-            migrationBuilder.DropTable(
-                name: "Kiosques");
 
             migrationBuilder.DropTable(
                 name: "NotificationKiosques");
@@ -274,19 +282,22 @@ namespace Kora.Server.Migrations
                 name: "Villes");
 
             migrationBuilder.DropTable(
-                name: "Agences");
+                name: "Comptes");
 
             migrationBuilder.DropTable(
-                name: "Comptes");
+                name: "Kiosques");
 
             migrationBuilder.DropTable(
                 name: "Pays");
 
             migrationBuilder.DropTable(
-                name: "ResponsableAgences");
+                name: "Clients");
 
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "Agences");
+
+            migrationBuilder.DropTable(
+                name: "ResponsableAgences");
         }
     }
 }

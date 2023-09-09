@@ -41,13 +41,11 @@
 
     <div class="row">
         <label class="col m-2"> Email de l'Agence</label>
-        <label class="col m-2"> Devise de l'Agence</label>
         <label class="col m-2">Nom du Responsable</label>
     </div>
 
     <div class="row">
         <input required="required" class="col m-2" type="email" @bind="@agence.EmailAgence"/>
-        <input required="required" class="col m-2" type="text" @bind="@agence.DeviseAgence"/>
         
         <select class="col m-2" @bind="selectedResponsableId">
             <option value="0">Sélectionnez un Responsable</option>
@@ -81,7 +79,6 @@ else
         <th class="text-center">Adresse</th>
         <th class="text-center">Contact</th>
         <th class="text-center">Email</th>
-        <th class="text-center">Devise</th>
         <th class="text-center">Responsable</th>
         </thead>
         <tbody>
@@ -95,7 +92,6 @@ else
                 <td class="text-center">@agence.AdresseAgence</td>
                 <td class="text-center">@agence.ContactAgence</td>
                 <td class="text-center">@agence.EmailAgence</td>
-                <td class="text-center">@agence.DeviseAgence</td>
                 <td class="text-center">@GetRespoName(agence.IdResponsable)</td>
                 <td class="text-center">
                     <span class="oi oi-trash btn btn-danger" @onclick="() => ShowConfirmation(agence.ContactAgence)"></span>
@@ -141,6 +137,7 @@ else
                 }
             }
             
+            
             var newAgence = await AgenceService.AddAgence(agence);
 
             if (newAgence != null)
@@ -172,7 +169,6 @@ else
         var isDeleted = await AgenceService.DeleteAgence(contactAgence);
         if (isDeleted)
         {
-            // Mettre à jour la liste des agences après la suppression réussie
             agences = await AgenceService.GetAllAgence();
         }
     }

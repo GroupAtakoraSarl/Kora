@@ -1,13 +1,11 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace Kora.Shared.Models;
 
 public class ResponsableAgence
 {
-    [Key]
-    public int  IdResponsable { get; set; }
+    [Key] public int IdResponsable { get; set; }
+
     public string NomResponsable { get; set; }
 
     public string PrenomResponsable { get; set; }
@@ -18,6 +16,4 @@ public class ResponsableAgence
 
     public string Tel { get; set; }
     public string StatutResponsable { get; set; }
-    
-
 }

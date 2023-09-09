@@ -34,7 +34,7 @@
     
 @if (kiosques.Count == 0)
 {
-    <p>Pas de kiosque disponible</p>
+    <p>Chargement...</p>
 }
 
 else
@@ -46,6 +46,7 @@ else
         <th>N&deg</th>
         <th class="text-center">Nom du Kiosque</th>
         <th class="text-center">Code</th>
+        <th class="text-center">Clé d'activation</th>
         <th class="text-center">Adresse</th>
         <th class="text-center">Contact</th>
         <th class="text-center">Solde (FCFA)</th>
@@ -59,6 +60,7 @@ else
                 <td class="text-center">@lekiosque.IdKiosque</td>
                 <td class="text-center">@lekiosque.NomKiosque</td>
                 <td class="text-center">@lekiosque.Code</td>
+                <td class="text-center">@lekiosque.Key</td>
                 <td class="text-center">@lekiosque.AdresseKiosque</td>
                 <td class="text-center">@lekiosque.ContactKiosque</td>
                 <td class="text-center">@lekiosque.Solde</td>
@@ -101,6 +103,7 @@ else
                 {
                     kiosque.IdAgence = selectedAgenceId;
                     kiosque.Code = "string";
+                    kiosque.Key = "string";
                 }
             }
 

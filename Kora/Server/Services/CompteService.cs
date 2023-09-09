@@ -10,7 +10,7 @@ public class CompteService : ICompteService
     private readonly KoraDbContext _dbContext;
     
     private List<string> transactions = new List<string>();
-    private decimal _devise = 2.5m;
+    private decimal _devise = 1000.0m;
 
     public CompteService(IKiosqueService kiosqueService, KoraDbContext dbContext)
     {
@@ -34,7 +34,6 @@ public class CompteService : ICompteService
         var comptes = await _dbContext.Comptes.ToListAsync();
         return comptes;
     }
-
     
     public async Task<CompteDto> GetCompteByNum(string numCompte)
     {
@@ -138,18 +137,16 @@ public class CompteService : ICompteService
         compte.Solde -= solde;
 
         var frais = solde * 0.05m;
-        compte.Solde -= frais;
 
         var soldeCFA = await Conversion2Kora(solde);
 
-        var fraisCFA = await Conversion2Kora(frais);
         
         var retraitTransaction = new Transaction
         {
             Date = DateTime.Now,
             NumExp = compte.NumCompte,
             NumDes = kiosque.Code,
-            Frais = fraisCFA,
+            Frais = frais,
             Type = Transaction.TransactionType.Retrait,
             Solde = soldeCFA
         };
@@ -184,7 +181,6 @@ public class CompteService : ICompteService
         compte.Solde += lesolde;
         kiosque.Solde -= lesolde;
         var frais = solde * 0.05m;
-        compte.Solde -= frais;
 
         
         var transfertTransaction = new Transaction

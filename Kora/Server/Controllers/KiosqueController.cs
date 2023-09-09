@@ -44,9 +44,9 @@ public class KiosqueController : ControllerBase
         try
         {
             var kiosque = _mapper.Map<Kiosque>(kiosqueDto);
-            var newKiosque = await _kiosqueService.AddKiosque(kiosque);
-            var newKiosqueDto = _mapper.Map<KiosqueDto>(newKiosque);
-            return Ok(newKiosqueDto);
+            var lekiosque = await _kiosqueService.AddKiosque(kiosque);
+            var lekiosqueDto = _mapper.Map<KiosqueDto>(lekiosque);
+            return Ok(lekiosqueDto);
         }
         catch (Exception e)
         {
@@ -61,7 +61,7 @@ public class KiosqueController : ControllerBase
         try
         {
             var isSucceed =
-                _kiosqueService.EnregistrerKiosque(kiosqueSign.NomKiosque, kiosqueSign.CodeKiosque,
+                _kiosqueService.EnregistrerKiosque(kiosqueSign.NomKiosque, kiosqueSign.KeyKiosque,
                     kiosqueSign.Password);
             if (isSucceed)
             {
@@ -80,13 +80,21 @@ public class KiosqueController : ControllerBase
     [HttpPost("ConnecterKiosque")]
     public IActionResult ConnecterKiosque(KiosqueLog kiosqueLog)
     {
-        var kiosque = _kiosqueService.ConnecterKiosque(kiosqueLog.CodeKiosque, kiosqueLog.Password);
-        if (kiosque != null)
+        try
         {
-            return Ok(kiosque);
-        }
+            var kiosque = _kiosqueService.ConnecterKiosque(kiosqueLog.CodeKiosque, kiosqueLog.Password);
+            if (kiosque != null)
+            {
+                return Ok(kiosque);
+            }
 
-        return NotFound();
+            return NotFound();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     [HttpPost("ChargeSolde")]
@@ -102,6 +110,19 @@ public class KiosqueController : ControllerBase
             return NotFound();
         }
     }
+    
+    [HttpPost("GetKiosqueSolde")]
+    public async Task<ActionResult<string>> GetKiosqueSolde(KiosqueSoldeDto kiosqueSoldeDto)
+    {
+        var lesolde = await _kiosqueService.GetKiosqueSolde(kiosqueSoldeDto.Code);
+        if (lesolde != null)
+        {
+            return Ok(lesolde);
+        }
+
+        return NotFound();
+    }
+    
     
     [HttpDelete("DeleteKiosque")]
     public async Task<ActionResult<KiosqueDto>> DeleteKiosque(KiosqueDeleteDto kiosqueDeleteDto)

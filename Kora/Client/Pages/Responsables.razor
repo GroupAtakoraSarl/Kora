@@ -18,8 +18,12 @@
         <div class="row">
             <input type="text" class="col m-2" placeholder="Nom du Responsable" required="required" @bind="@respo.NomResponsable"/>
             <input type="text" class="col m-2" placeholder="Prénoms du Responsable" required="required" @bind="@respo.PrenomResponsable"/>
-            <input type="text" class="col m-2" placeholder="M/F" required="required" @bind="@respo.SexeResponsable"/>
-            <input type="number" class="col m-2" required="required" @bind="@respo.AgeResponsable"/>
+            <select @bind="@respo.SexeResponsable" class="col m-2">
+                <option value="0">Sélectionnez le sexe</option>
+                <option value="M">M</option>
+                <option value="F">F</option>
+            </select>
+            <input type="number" min="18" class="col m-2" required="required" @bind="@respo.AgeResponsable"/>
             <input type="text" class="col m-2" required="required" @bind="@respo.Tel"/>
             <input type="text" class="col m-2" placeholder="exp: Commerçant" required="required" @bind="@respo.StatutResponsable"/>
         </div>

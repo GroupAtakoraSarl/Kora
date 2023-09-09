@@ -10,3 +10,14 @@ D:\BUREAU\STAGE\Kora\Kora\Shared\obj\Debug\net7.0\Kora.Shared.dll
 D:\BUREAU\STAGE\Kora\Kora\Shared\obj\Debug\net7.0\refint\Kora.Shared.dll
 D:\BUREAU\STAGE\Kora\Kora\Shared\obj\Debug\net7.0\Kora.Shared.pdb
 D:\BUREAU\STAGE\Kora\Kora\Shared\obj\Debug\net7.0\ref\Kora.Shared.dll
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\bin\Debug\net7.0\Kora.Shared.deps.json
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\bin\Debug\net7.0\Kora.Shared.dll
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\bin\Debug\net7.0\Kora.Shared.pdb
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\obj\Debug\net7.0\Kora.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\obj\Debug\net7.0\Kora.Shared.AssemblyInfoInputs.cache
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\obj\Debug\net7.0\Kora.Shared.AssemblyInfo.cs
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\obj\Debug\net7.0\Kora.Shared.csproj.CoreCompileInputs.cache
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\obj\Debug\net7.0\Kora.Shared.dll
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\obj\Debug\net7.0\refint\Kora.Shared.dll
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\obj\Debug\net7.0\Kora.Shared.pdb
+C:\Users\kalip\RiderProjects\Kora\Kora\Shared\obj\Debug\net7.0\ref\Kora.Shared.dll

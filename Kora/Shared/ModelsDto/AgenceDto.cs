@@ -9,6 +9,5 @@ public class AgenceDto
     public string AdresseAgence { get; set; }
     public string ContactAgence { get; set; }
     public string EmailAgence { get; set; }
-    public string DeviseAgence { get; set; }
     public int IdResponsable { get; set; }
 }

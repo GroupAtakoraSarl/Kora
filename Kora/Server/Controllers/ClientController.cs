@@ -26,7 +26,6 @@ public class ClientController : ControllerBase
         var clientsDto = _mapper.Map<List<ClientDto>>(clients);
         return Ok(clientsDto);
     }
-
     
     [HttpPost("Enregistrer")]
     public IActionResult EnregistrerClient([FromBody] Shared.Models.Client client)

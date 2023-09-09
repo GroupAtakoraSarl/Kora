@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230829212935_koraMigration")]
+    [Migration("20230907133749_koraMigration")]
     partial class koraMigration
     {
         /// <inheritdoc />
@@ -303,6 +303,9 @@ namespace Kora.Server.Migrations
                     b.Property<int>("IdCompte")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("KiosqueIdKiosque")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("NumDes")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -320,6 +323,8 @@ namespace Kora.Server.Migrations
                     b.HasKey("IdTransaction");
 
                     b.HasIndex("IdCompte");
+
+                    b.HasIndex("KiosqueIdKiosque");
 
                     b.ToTable("Transactions");
                 });
@@ -385,6 +390,10 @@ namespace Kora.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Kora.Shared.Models.Kiosque", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("KiosqueIdKiosque");
+
                     b.Navigation("Compte");
                 });
 
@@ -410,6 +419,11 @@ namespace Kora.Server.Migrations
                 });
 
             modelBuilder.Entity("Kora.Shared.Models.Compte", b =>
+                {
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("Kora.Shared.Models.Kiosque", b =>
                 {
                     b.Navigation("Transactions");
                 });

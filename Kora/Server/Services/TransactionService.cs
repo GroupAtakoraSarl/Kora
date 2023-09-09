@@ -43,4 +43,18 @@ public class TransactionService : ITransactionService
 
         return new List<Transaction>();
     }
+
+    public async Task<List<Transaction>> GetKiosqueTransaction(string code)
+    {
+        var lekiosque = _dbContext.Kiosques.FirstOrDefault(k => k.Code == code);
+        if (lekiosque != null)
+        {
+            var transaction = await _dbContext.Transactions
+                .Where(t => t.NumDes == code || t.NumExp == code)
+                .ToListAsync();
+            return transaction;
+        }
+
+        return new List<Transaction>();
+    }
 }

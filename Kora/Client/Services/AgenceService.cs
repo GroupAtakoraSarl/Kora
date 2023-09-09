@@ -31,7 +31,6 @@ namespace Kora.Client.Services
         }
         
         
-        
         public async Task<bool> DeleteAgence(string contactAgence)
         {
             var response = await _httpClient.DeleteAsync($"api/Agence/DeleteAgence/{contactAgence}");

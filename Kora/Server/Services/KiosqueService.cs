@@ -37,7 +37,7 @@ public class KiosqueService : IKiosqueService
 
     public async Task<string> GenerateRandomKey()
     {
-        const string chars = "abcdefghijklmnopkrstuvwxyz123456789";
+        const string chars = "abchijklopkrstuvwxyz123456789";
         var random = new Random();
         var key = new string(Enumerable.Repeat(chars, 5).Select(s => s[random.Next(s.Length)]).ToArray());
 
@@ -61,30 +61,18 @@ public class KiosqueService : IKiosqueService
     
     public async Task<Kiosque> AddKiosque(Kiosque kiosque)
     {
-        var newKiosque = new Kiosque
-        {
-            ContactKiosque = kiosque.ContactKiosque,
-            NomKiosque = kiosque.NomKiosque,
-            Password = "default",
-            Code = kiosque.Code = await GenerateRandomCode(),
-            Key = kiosque.Key = await GenerateRandomKey(),
-            Solde = kiosque.Solde,
-            AdresseKiosque = kiosque.AdresseKiosque,
-            Agence = kiosque.Agence,
-            IdAgence = kiosque.IdAgence,
-            IdKiosque = kiosque.IdKiosque
-        };
-        
-        _dbContext.Kiosques.Add(newKiosque);
+        kiosque.Code = await GenerateRandomCode();
+        kiosque.Key = await GenerateRandomKey();
+        _dbContext.Kiosques.Add(kiosque);
         await _dbContext.SaveChangesAsync();
         return kiosque;
     }
 
-    public bool EnregistrerKiosque(string nomKiosque, string codeKiosque, string password)
+    public bool EnregistrerKiosque(string nomKiosque, string keyKiosque, string password)
     {
         var hashedPwd = BCrypt.Net.BCrypt.HashPassword(password);
         var kiosque = _dbContext.Kiosques.FirstOrDefault(k =>
-            k.NomKiosque == nomKiosque && k.Code == codeKiosque);
+            k.NomKiosque == nomKiosque && k.Key == keyKiosque);
         if (kiosque == null)
         {
             return false;
@@ -94,24 +82,47 @@ public class KiosqueService : IKiosqueService
         _dbContext.SaveChangesAsync();
         return true;
     }
-
-    public async Task<KiosqueDto> ConnecterKiosque(string codeKiosque, string password)
+    
+    private bool CheckPassword(string password, string dataPassword)
     {
-        var kiosque = _dbContext.Kiosques.FirstOrDefault(k => k.Code == codeKiosque && k.Password == password);
-        if (kiosque == null)
+        return BCrypt.Net.BCrypt.Verify(password, dataPassword);
+    }
+
+    public KiosqueTrans ConnecterKiosque(string codeKiosque, string password)
+    {
+        
+        var kiosque = _dbContext.Kiosques.FirstOrDefault(k => k.Code == codeKiosque);
+        
+        if (kiosque != null && CheckPassword(password, kiosque.Password))
         {
-            return null;
+            var operations = _dbContext.Transactions
+                .Where(k => k.NumDes == kiosque.Code || k.NumExp == kiosque.Code)
+                .Select(t => new Transaction
+                {
+                    Solde = t.Solde, 
+                    NumDes = t.NumDes,
+                    NumExp = t.NumExp,
+                    Date = t.Date,
+                    Frais = t.Frais,
+                    Type = t.Type,
+                    IdCompte = t.IdCompte,
+                    IdTransaction = t.IdTransaction,
+                    Compte = t.Compte
+                });
+            return new KiosqueTrans
+            {
+                IdKiosque = kiosque.IdKiosque,
+                NomKiosque = kiosque.NomKiosque,
+                ContactKiosque = kiosque.ContactKiosque,
+                Code = kiosque.Code,
+                Solde = kiosque.Solde,
+                AdresseKiosque = kiosque.AdresseKiosque,
+                Transactions = operations
+            };
         }
 
-        var newKiosque = new KiosqueDto
-        {
-            NomKiosque = kiosque.NomKiosque,
-            Solde = kiosque.Solde,
-            AdresseKiosque = kiosque.AdresseKiosque,
-            Code = kiosque.Code,
-            ContactKiosque = kiosque.ContactKiosque
-        };
-        return newKiosque;
+        return null;
+
     }
 
     public async Task<bool> ChargeSolde(decimal solde, string contactKiosque)
@@ -129,7 +140,21 @@ public class KiosqueService : IKiosqueService
         }
 
     }
-    
+
+    public async Task<decimal?> GetKiosqueSolde(string code)
+    {
+        var lekiosque = _dbContext.Kiosques.FirstOrDefault(k => k.Code == code);
+        if (lekiosque != null)
+        {
+            var kiosque = _dbContext.Kiosques.FirstOrDefault(k => k.IdKiosque == lekiosque.IdKiosque);
+            if (kiosque != null)
+            {
+                return lekiosque.Solde;
+            }
+        }
+        return null;
+    }
+
     public async Task<bool> DeleteKiosque(string contactKiosque)
     {
         var kiosque = _dbContext.Kiosques.FirstOrDefault(k=>k.ContactKiosque == contactKiosque);
