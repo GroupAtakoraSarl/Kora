@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
 using Microsoft.VisualBasic;
+using MongoDB.Bson.IO;
 
 namespace Kora.Server.Services;
 
@@ -30,7 +31,17 @@ public class ClientService : IClientService
         return client;
     }
 
-    
+    public void SmsSend(string from, string to, string text, int reference, string api_key, string api_secret)
+    {
+        from = "KORATRANS";
+        to = to;
+        text = text;
+        reference = reference;
+        api_key = api_key;
+        api_secret = api_secret;
+    }
+
+
     public async Task EnregistrerClient(Shared.Models.Client client)
     {
         try
@@ -56,32 +67,14 @@ public class ClientService : IClientService
                 Client = client,
                 Transactions = new List<Transaction>()
             };
-
+            
+             
+            
             _dbContext.Clients.Add(client);
             _dbContext.Comptes.Add(compte);
             await _dbContext.SaveChangesAsync();
-
-        //     var smsclient = new HttpClient();
-        //     var request = new HttpRequestMessage(HttpMethod.Post, "http://127.0.0.1:5099/api/sendSMS");
-        //
-        //     var requestBody = new
-        //     {
-        //         from = "KORATRANS-F",
-        //         to = client.Tel,
-        //         text = "Bonjour" + client.Username + ", votre compte a été créé avec succès. Vous avez comme bonus " +
-        //                200 + "KORA",
-        //         reference = 1212,
-        //         api_key = "k_soGjMEHM3Te1pMfn7F3AG3WUzk3JJOAX",
-        //         api_secret = "s_vo70rCDvEVU8-J2FUkj6OB2rHLkg8n32"
-        //     };
-        //
-        //     request.Content = JsonContent.Create(requestBody);
-        //     var response = await smsclient.SendAsync(request);
-        //
-        //     response.EnsureSuccessStatusCode();
-        //
-        //     var responseContent = await response.Content.ReadAsStringAsync();
-        //     Console.WriteLine(responseContent);
+            
+            
         }
         catch (Exception e)
         {
@@ -133,24 +126,29 @@ public class ClientService : IClientService
         
     }
     
- 
-    public async Task<bool> UpateClient(string tel, Shared.Models.Client client)
+    public Shared.Models.Client UpdateClient(string password, string newPassword, string tel)
     {
-        var existingClient = await _dbContext.Clients.FindAsync(tel);
+        var existingClient = _dbContext.Clients.FirstOrDefault(c => c.Tel == tel && CheckPassword(password, c.Password));
+        var hashNew = BCrypt.Net.BCrypt.HashPassword(newPassword);
         if (existingClient is null)
         {
-            return false;
+            return null;
         }
 
-        existingClient.Username = client.Username;
-        existingClient.Tel = client.Tel;
-        existingClient.Password = client.Password;
+        existingClient.Password = hashNew;
+        _dbContext.SaveChangesAsync();
+ 
+        return new Shared.Models.Client
+        {
+            IdClient = existingClient.IdClient,
+            Username = existingClient.Username,
+            Tel = existingClient.Tel,
+            Password = hashNew,
+            Comptes = existingClient.Comptes
+        };
         
-        await _dbContext.SaveChangesAsync();
-        return true;
     }
-
-
+    
     public async Task<bool> DeleteClient(string tel)
     {
         var client = _dbContext.Clients.FirstOrDefault(c=>c.Tel == tel);

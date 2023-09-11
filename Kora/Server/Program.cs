@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Kora.Server.Data;
 using Kora.Server.Services;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +58,7 @@ public class Program
         services.AddScoped<IPaysService, PaysService>();
         services.AddScoped<IVilleService, VilleService>();
         services.AddScoped<ITransactionService, TransactionService>();
+        services.AddHttpClient();
     
         services.AddAutoMapper(typeof(Program));
         

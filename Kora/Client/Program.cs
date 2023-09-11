@@ -18,6 +18,6 @@ builder.Services.AddScoped<IResponsableAgence, ResponsableAgenceService>();
 builder.Services.AddScoped<IVilleService, VilleService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://192.168.1.79:10000")});
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://192.168.1.67:10000")});
 
 await builder.Build().RunAsync();

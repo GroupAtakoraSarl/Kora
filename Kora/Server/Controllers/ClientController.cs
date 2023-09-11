@@ -1,8 +1,10 @@
+using System.Text;
 using AutoMapper;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
 using Kora.Server.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Kora.Server.Controllers;
 
@@ -28,14 +30,31 @@ public class ClientController : ControllerBase
     }
     
     [HttpPost("Enregistrer")]
-    public IActionResult EnregistrerClient([FromBody] Shared.Models.Client client)
+    public async Task<IActionResult> EnregistrerClient([FromBody] Shared.Models.Client client)
     {
         try
         {
             var leclient = _clientService.EnregistrerClient(client);
             if (leclient != null)
             {
-                return Ok("Client bien enregistré");
+                var smsClient = new HttpClient();
+                var smsRequest = new
+                {
+                    from = "KORATRANSFERT",
+                    to = client.Tel,
+                    text = $"Bienvenue, "+ client.Username+" aupres de notre système de Transfert d'argent. Votre compte vient d'etre creer avec succès.",
+                    reference = 1212,
+                    api_key = "k_soGjMEHM3Te1pMfn7F3AG3WUzk3JJOAX",
+                    api_secret = "s_vo70rCDvEVU8-J2FUkj6OB2rHLkg8n32"
+                };
+
+                var smsContent = new StringContent(JsonConvert.SerializeObject(smsRequest), Encoding.UTF8, "application/json");
+                var smsResponse = await smsClient.PostAsync("https://extranet.nghcorp.net/api/send-sms", smsContent);
+                smsResponse.EnsureSuccessStatusCode();
+                var smsResponseContent = await smsResponse.Content.ReadAsStringAsync();
+
+                return Ok(new { Message = "Client created and SMS sent.", SmsResponse = smsResponseContent });
+                
             }
             else
             {
@@ -68,28 +87,7 @@ public class ClientController : ControllerBase
         }
     }
     
-    [HttpPut("{tel}")]
-    public async Task<IActionResult> UpdateClient(string tel, ClientDto clientDto)
-    {
-        var clientEntity = await _clientService.GetClientByTel(tel);
-        if (clientEntity == null)
-        {
-            return NotFound();
-        }
-
-        _mapper.Map(clientDto, clientEntity);
-
-        var success = await _clientService.UpateClient(tel, clientEntity);
-        if (success)
-        {
-            return Ok("Client mis à jour avec succès");
-        }
-        else
-        {
-            return BadRequest("Échec de la mise à jour du client");
-        }
-    }
- 
+      
 
     
 }
