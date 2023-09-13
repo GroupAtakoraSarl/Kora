@@ -40,9 +40,9 @@ public class ClientController : ControllerBase
                 var smsClient = new HttpClient();
                 var smsRequest = new
                 {
-                    from = "KORATRANSFERT",
+                    from = "KORA",
                     to = client.Tel,
-                    text = $"Bienvenue, "+ client.Username+" aupres de notre système de Transfert d'argent. Votre compte vient d'etre creer avec succès.",
+                    text = $"Bienvenue, "+ client.Username+" auprès de notre système de Transfert d'argent. Votre compte vient d'être créer avec succès.",
                     reference = 1212,
                     api_key = "k_soGjMEHM3Te1pMfn7F3AG3WUzk3JJOAX",
                     api_secret = "s_vo70rCDvEVU8-J2FUkj6OB2rHLkg8n32"
@@ -83,6 +83,27 @@ public class ClientController : ControllerBase
         catch (Exception e)
         {
             var Message = "Une erreur est survenue";
+            return NotFound();
+        }
+    }
+
+    [HttpPost("ChangePassword")]
+    public IActionResult UpdateClient(ClientUpdate clientUpdate)
+    {
+        try
+        {
+            var leclient =
+                _clientService.UpdateClient(clientUpdate.Password, clientUpdate.NewPassword, clientUpdate.Tel);
+            if (leclient)
+            {
+                return Ok("Mot de passe mis à jour");
+            }
+
+            return BadRequest();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
             return NotFound();
         }
     }

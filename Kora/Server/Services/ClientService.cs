@@ -68,8 +68,6 @@ public class ClientService : IClientService
                 Transactions = new List<Transaction>()
             };
             
-             
-            
             _dbContext.Clients.Add(client);
             _dbContext.Comptes.Add(compte);
             await _dbContext.SaveChangesAsync();
@@ -126,27 +124,22 @@ public class ClientService : IClientService
         
     }
     
-    public Shared.Models.Client UpdateClient(string password, string newPassword, string tel)
+    public bool UpdateClient(string password, string newPassword, string tel)
     {
-        var existingClient = _dbContext.Clients.FirstOrDefault(c => c.Tel == tel && CheckPassword(password, c.Password));
-        var hashNew = BCrypt.Net.BCrypt.HashPassword(newPassword);
-        if (existingClient is null)
+        var existingClient = _dbContext.Clients.FirstOrDefault(c => c.Tel == tel);
+        if (existingClient is not null && CheckPassword(password, existingClient.Password))
         {
-            return null;
+            var hashNew = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            existingClient.Password = hashNew;
         }
-
-        existingClient.Password = hashNew;
-        _dbContext.SaveChangesAsync();
- 
-        return new Shared.Models.Client
+        else
         {
-            IdClient = existingClient.IdClient,
-            Username = existingClient.Username,
-            Tel = existingClient.Tel,
-            Password = hashNew,
-            Comptes = existingClient.Comptes
-        };
+            return false;
+        }
         
+
+        _dbContext.SaveChangesAsync();
+        return true;
     }
     
     public async Task<bool> DeleteClient(string tel)
