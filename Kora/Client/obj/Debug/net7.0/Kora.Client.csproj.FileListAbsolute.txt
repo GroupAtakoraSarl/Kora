@@ -1760,10 +1760,6 @@ C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\zdZc3+gJ
 C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\wvN8anVA.gz
 C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\RvW2CTfS.gz
 C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\kvapR97d.gz
-C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\TS4HxRV+.gz
-C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\VTVOWvli.gz
-C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\ahYYm7bY.gz
-C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\HJNeJ2RA.gz
 C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\GbZEYSTX.gz
 C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\blazor.boot.json
 C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\staticwebassets\msbuild.Kora.Client.Microsoft.AspNetCore.StaticWebAssets.props
@@ -1782,3 +1778,7 @@ C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\Kora.Client.dll
 C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\refint\Kora.Client.dll
 C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\Kora.Client.pdb
 C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\ref\Kora.Client.dll
+C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\TS4HxRV+.gz
+C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\VTVOWvli.gz
+C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\ahYYm7bY.gz
+C:\Users\kalip\RiderProjects\Kora\Kora\Client\obj\Debug\net7.0\build-gz\HJNeJ2RA.gz

@@ -30,16 +30,7 @@ public class ClientService : IClientService
         var client = await _dbContext.Clients.FindAsync(tel);
         return client;
     }
-
-    public void SmsSend(string from, string to, string text, int reference, string api_key, string api_secret)
-    {
-        from = "KORATRANS";
-        to = to;
-        text = text;
-        reference = reference;
-        api_key = api_key;
-        api_secret = api_secret;
-    }
+    
 
 
     public async Task EnregistrerClient(Shared.Models.Client client)

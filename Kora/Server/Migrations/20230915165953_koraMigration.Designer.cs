@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kora.Server.Migrations
 {
     [DbContext(typeof(KoraDbContext))]
-    [Migration("20230907133749_koraMigration")]
+    [Migration("20230915165953_koraMigration")]
     partial class koraMigration
     {
         /// <inheritdoc />

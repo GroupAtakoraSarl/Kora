@@ -10,7 +10,7 @@ public class CompteService : ICompteService
     private readonly KoraDbContext _dbContext;
     
     private List<string> transactions = new List<string>();
-    private decimal _devise = 1000.0m;
+    private decimal _devise = 500m;
 
     public CompteService(IKiosqueService kiosqueService, KoraDbContext dbContext)
     {
@@ -58,147 +58,161 @@ public class CompteService : ICompteService
     
     public async Task<bool> Transfert(string numCompteExpediteur, string passwordExpediteur, string numCompteDestinataire, decimal solde)
     {
-        var expediteur = _dbContext.Comptes
-            .Include(c => c.Client)
-            .FirstOrDefault(c=>c.NumCompte == numCompteExpediteur);
-        var destinataire = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompteDestinataire);
-
-        if (expediteur is null || destinataire is null)
+        try
         {
-            return false;
+            var expediteur = _dbContext.Comptes
+                .Include(c => c.Client)
+                .FirstOrDefault(c => c.NumCompte == numCompteExpediteur);
+            var destinataire = _dbContext.Comptes.FirstOrDefault(c => c.NumCompte == numCompteDestinataire);
+
+            if (expediteur is null || destinataire is null)
+            {
+                return false;
+            }
+
+            if (expediteur.Solde < solde)
+            {
+                return false;
+            }
+
+            var isPwdCorrect = BCrypt.Net.BCrypt.Verify(passwordExpediteur, expediteur.Client.Password);
+
+            if (!isPwdCorrect)
+            {
+                return false;
+            }
+
+            expediteur.Solde -= solde;
+            destinataire.Solde += solde;
+            var frais = solde * 0.05m;
+            expediteur.Solde -= frais;
+            var fraisCFA = await Conversion2Kora(frais);
+            var soldeFCFA = await Conversion2Kora(solde);
+
+            var depotTransaction = new Transaction
+            {
+                Date = DateTime.Now,
+                NumExp = expediteur.NumCompte,
+                NumDes = destinataire.NumCompte,
+                Frais = fraisCFA,
+                Type = Transaction.TransactionType.Transfert,
+                Solde = soldeFCFA
+            };
+
+            expediteur.Transactions.Add(depotTransaction);
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
-
-        if (expediteur.Solde < solde)
+        catch (Exception e)
         {
-            return false;
+            Console.WriteLine(e);
+            throw;
         }
-        
-        var isPwdCorrect = BCrypt.Net.BCrypt.Verify(passwordExpediteur, expediteur.Client.Password);
-
-        if (!isPwdCorrect)
-        {
-            return false;
-        }
-
-        expediteur.Solde -= solde;
-        destinataire.Solde += solde;
-        var frais = solde * 0.05m;
-        expediteur.Solde -= frais;
-        var fraisCFA = await Conversion2Kora(frais);
-        var soldeFCFA = await Conversion2Kora(solde);
-        
-        var depotTransaction = new Transaction
-        {
-            Date = DateTime.Now,
-            NumExp = expediteur.NumCompte,
-            NumDes = destinataire.NumCompte,
-            Frais = fraisCFA,
-            Type = Transaction.TransactionType.Transfert,
-            Solde = soldeFCFA
-        };
-        
-        expediteur.Transactions.Add(depotTransaction);
-        
-        await _dbContext.SaveChangesAsync();
-
-        return true;
     }
 
-    public async Task<bool> Retrait(string numCompte, decimal solde, string code, string password)
+    public async Task Retrait(string numCompte, decimal solde, string code, string password)
     {
-        var compte = await _dbContext.Comptes
-            .Include(compte => compte.Client)
-            .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
-        var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(k => k.Code == code);
-        
-        if (compte == null || kiosque == null)
+        try
         {
-            return false;
+            var compte = await _dbContext.Comptes.FirstOrDefaultAsync(c => c.NumCompte == numCompte);
+            var client = _dbContext.Clients.FirstOrDefault(c => c.Tel == numCompte);
+            var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(k => k.Code == code);
+
+            if (compte == null || kiosque == null)
+            {
+                throw new Exception();
+            }
+
+
+            if (compte.Client == null)
+            {
+                throw new Exception();
+            }
+
+            bool isPwdCorrect = BCrypt.Net.BCrypt.Verify(password, client.Password);
+            if (!isPwdCorrect)
+            {
+                throw new Exception();
+            }
+
+            if (solde > compte.Solde)
+            {
+                throw new Exception();
+            }
+            
+            compte.Solde -= solde;
+
+            var frais = solde * 0.05m;
+            var fraisCfa = await Conversion2Kora(frais);
+            var soldeCFA = await Conversion2Kora(solde);
+            
+            var retraitTransaction = new Transaction
+            {
+                Date = DateTime.Now,
+                NumExp = compte.NumCompte,
+                NumDes = kiosque.Code,
+                Frais = fraisCfa,
+                Type = Transaction.TransactionType.Retrait,
+                Solde = soldeCFA,
+                IdCompte = compte.IdCompte
+            };
+
+            compte.Transactions.Add(retraitTransaction);
+
+            await _dbContext.SaveChangesAsync();
         }
-
-        
-        if (compte.Client == null)
+        catch (Exception e)
         {
-            return false;
+            Console.WriteLine(e);
+            throw;
         }
-
-        bool isPwdCorrect = BCrypt.Net.BCrypt.Verify(password, compte.Client.Password);
-        if (!isPwdCorrect)
-        {
-            return false;
-        }
-        
-        if (solde > compte.Solde)
-        {
-            return false;
-        }
-        
-        
-        compte.Solde -= solde;
-
-        var frais = solde * 0.05m;
-
-        var soldeCFA = await Conversion2Kora(solde);
-
-        
-        var retraitTransaction = new Transaction
-        {
-            Date = DateTime.Now,
-            NumExp = compte.NumCompte,
-            NumDes = kiosque.Code,
-            Frais = frais,
-            Type = Transaction.TransactionType.Retrait,
-            Solde = soldeCFA
-        };
-        
-        compte.Transactions.Add(retraitTransaction);
-        
-        await _dbContext.SaveChangesAsync();
-
-        return true;
     }
     
-    public async Task<bool> Depot(string numCompte, string code, decimal solde)
+    public async Task Depot(string numCompte, string code, decimal solde)
     {
-        var compte = await _dbContext.Comptes
-            .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
-        var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(k => k.Code == code);
-        if (compte == null || kiosque == null)
+        try
         {
-            return false;
+            var compte = await _dbContext.Comptes
+                .FirstOrDefaultAsync(c => c.NumCompte == numCompte);
+            var kiosque = await _dbContext.Kiosques.FirstOrDefaultAsync(k => k.Code == code);
+            if (compte == null || kiosque == null)
+            {
+                throw new Exception();
+            }
+
+
+            if (kiosque.Solde < solde)
+            {
+                throw new Exception();
+            }
+
+            var newSolde = await ConversionKora(solde);
+            var lesolde = newSolde;
+
+
+            compte.Solde += lesolde;
+            kiosque.Solde -= solde;
+
+
+            var transfertTransaction = new Transaction
+            {
+                Date = DateTime.Now,
+                NumDes = compte.NumCompte,
+                NumExp = kiosque.Code,
+                Frais = 0,
+                Type = Transaction.TransactionType.Rechargement,
+                Solde = solde
+            };
+
+            compte.Transactions.Add(transfertTransaction);
+
+            await _dbContext.SaveChangesAsync();
         }
-
-        
-        if (kiosque.Solde < solde)
+        catch (Exception e)
         {
-            return false;
+            Console.WriteLine(e);
+            throw;
         }
-        
-        var newSolde = await ConversionKora(solde);
-        var lesolde = newSolde;
-        
-        
-        compte.Solde += lesolde;
-        kiosque.Solde -= lesolde;
-        var frais = solde * 0.05m;
-
-        
-        var transfertTransaction = new Transaction
-        {
-            Date = DateTime.Now,
-            NumDes = compte.NumCompte,
-            NumExp = kiosque.Code,
-            Frais = frais,
-            Type = Transaction.TransactionType.Rechargement,
-            Solde = solde
-        };
-        
-        
-        compte.Transactions.Add(transfertTransaction);
-        
-        await _dbContext.SaveChangesAsync();
-
-        return true;
     }
 
     
