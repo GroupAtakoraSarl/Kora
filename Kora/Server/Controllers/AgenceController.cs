@@ -1,8 +1,11 @@
+using System.Text;
 using AutoMapper;
+using Kora.Server.Data;
 using Kora.Shared.Models;
 using Kora.Shared.ModelsDto;
 using Kora.Server.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Kora.Server.Controllers;
 
@@ -12,11 +15,13 @@ public class AgenceController : ControllerBase
 {
     private readonly IAgenceService _agenceService;
     private readonly IMapper _mapper;
+    private readonly KoraDbContext _dbContext;
 
-    public AgenceController(IAgenceService agenceService, IMapper mapper)
+    public AgenceController(IAgenceService agenceService, IMapper mapper, KoraDbContext dbContext)
     {
         _mapper = mapper;
         _agenceService = agenceService;
+        _dbContext = dbContext;
     }
 
     [HttpGet("GetAllAgence")]
@@ -49,7 +54,28 @@ public class AgenceController : ControllerBase
             var agence = _mapper.Map<Agence>(agenceDto);
             var newAgence = await _agenceService.AddAgence(agence);
             var newAgenceDto = _mapper.Map<AgenceDto>(newAgence);
-            return Ok(newAgenceDto);
+            var respoId = _dbContext.Agences.FirstOrDefault().IdResponsable;
+            var respo = _dbContext.ResponsableAgences.FirstOrDefault(r => r.IdResponsable == respoId);
+            
+            var smsClient = new HttpClient();
+            var smsRequest = new
+            {
+                from = "KORA",
+                to = respo.Tel,
+                text = $"Bienvenue Mr/Mme, "+ respo.NomResponsable+" auprès de notre système de Transfert de Bon de Consommation KORA. Félicitation," +
+                       " vous êtes maintenant le responsable de l'agence "+ agence.NomAgence ,
+                reference = 1212,
+                api_key = "k_soGjMEHM3Te1pMfn7F3AG3WUzk3JJOAX",
+                api_secret = "s_vo70rCDvEVU8-J2FUkj6OB2rHLkg8n32"
+            };
+
+            var smsContent = new StringContent(JsonConvert.SerializeObject(smsRequest), Encoding.UTF8, "application/json");
+            var smsResponse = await smsClient.PostAsync("https://extranet.nghcorp.net/api/send-sms", smsContent);
+            smsResponse.EnsureSuccessStatusCode();
+            var smsResponseContent = await smsResponse.Content.ReadAsStringAsync();
+
+            return Ok(new { Message = "Client created and SMS sent.", SmsResponse = smsResponseContent });
+
         }
         catch (Exception e)
         {

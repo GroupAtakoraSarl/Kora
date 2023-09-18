@@ -42,7 +42,7 @@ public class ClientController : ControllerBase
                 {
                     from = "KORA",
                     to = client.Tel,
-                    text = $"Bienvenue, "+ client.Username+" auprès de notre système de Transfert d'argent. Votre compte vient d'être créer avec succès.",
+                    text = $"Bienvenue, "+ client.Username+" auprès de notre système de Transfert de Bon de Consommation KORA. Votre compte vient d'être créer avec succès.",
                     reference = 1212,
                     api_key = "k_soGjMEHM3Te1pMfn7F3AG3WUzk3JJOAX",
                     api_secret = "s_vo70rCDvEVU8-J2FUkj6OB2rHLkg8n32"
